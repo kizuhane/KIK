@@ -1,0 +1,5 @@
+{
+  "app.text": "Edit <code class='oneLine'>src/App.js =></code> and save to reload.<br/>Now with {what}!",
+  "app.buttonLightMode": "Switch to Light Mode",
+  "app.buttonDarkMode": "Switch to Dark Mode"
+}

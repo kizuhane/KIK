@@ -1,0 +1,35 @@
+{
+  "name": "kik",
+  "version": "0.0.1",
+  "description": "A documentation website created for Politechnika Koszalińska as Jakiel Artur engineer's thesis",
+  "main": "server.js",
+  "scripts": {
+    "instalAll": "npm install && cd client && npm install",
+    "startServer": "node ./server/server.js",
+    "server": "nodemon ./server/server.js",
+    "client": "npm start --prefix client",
+    "dev": "concurrently \"npm run server\" \"npm run client\""
+  },
+  "author": "Jakiel Artur",
+  "license": "ISC",
+  "devDependencies": {
+    "concurrently": "^4.1.2",
+    "nodemon": "^1.19.2",
+    "eslint": "^6.1.0",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-node": "^4.0.0",
+    "eslint-config-prettier": "^6.3.0",
+    "eslint-plugin-import": "^2.18.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-node": "^10.0.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.3",
+    "eslint-plugin-react-hooks": "^1.7.0"
+  },
+  "dependencies": {
+    "babel-eslint": "^10.0.2",
+    "eslint-plugin-flowtype": "^4.3.0",
+    "express": "^4.17.1",
+    "morgan": "^1.9.1"
+  }
+}

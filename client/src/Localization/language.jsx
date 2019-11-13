@@ -21,14 +21,14 @@ export const useInit = () => React.useContext(InitToggleContext);
 // specify default language
 const defaultLanguage = { language: 'en' };
 
-// https://www.youtube.com/watch?v=RbsH7V437tE
 // TODO: map thru getBrowserLanguage and mach supported language
+
 // get default language set by browser
 function getDefaultLanguage() {
   const getBrowserLanguage = navigator.language.split(/[-_]/)[0];
   return getBrowserLanguage ? { language: getBrowserLanguage } : defaultLanguage;
 }
-
+// save language in local storage
 function getInitialLanguage() {
   const savedIntl = localStorage.getItem('language');
   return savedIntl ? JSON.parse(savedIntl) : getDefaultLanguage();

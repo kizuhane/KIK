@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Contact = props => {
+const Contact = ({ history }) => {
   // redirect function after 2second
-  setTimeout(() => props.history.push('/about'), 2000);
+  setTimeout(() => history.push('/KIK/About'), 2000);
 
   Contact.propTypes = {
     // eslint-disable-next-line react/forbid-prop-types

@@ -6,3 +6,7 @@ A documentation website created for Politechnika Koszalińska as Jakiel Artur en
 
 ### TODO
 - [ ] Do todo list 
+
+
+## Icons 
+ - Font Awesome [LICENSE](https://fontawesome.com/license)

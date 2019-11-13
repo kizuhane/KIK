@@ -1,28 +1,31 @@
 import React from 'react';
 
 /* import:: Router */
-import { BrowserRouter, Route } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 /* import Style */
 import './App.css';
 
-/* import:: Components  */
-import NavBar from './components/navBar/navBar';
-import Home from './components/Home';
-import About from './components/route-test/About';
-import Contact from './components/route-test/Contact';
+/* import:: Page  */
+// auth page
+import LoginPage from './Pages/admin/LoginPage';
+// landing page
+import MainPage from './Pages/MainPage';
+
 // import Customers from './components/test-comp/customers';
 
 function App(props) {
   return (
     <BrowserRouter>
-      <NavBar />
-      <div className="Container">
-        <Route exact path="/" component={Home} />
-        <Route exact path="/About" component={About} />
-        <Route exact path="/Contact" component={Contact} />
-        {/* <Customers /> */}
-      </div>
+      <Route path="/login/" component={LoginPage} />
+      <Route path="/KIK/" component={MainPage} />
+      <Route path="/NEXT/" component={MainPage} />
+
+      <Route exact path="/">
+        <Link to="/KIK">KIK</Link>
+        <hr />
+        <Link to="/NEXT">NEXT</Link>
+      </Route>
     </BrowserRouter>
   );
 }

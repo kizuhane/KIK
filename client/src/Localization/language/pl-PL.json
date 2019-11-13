@@ -1,5 +1,8 @@
 {
   "app.text": "Edytuj <code class='oneLine'>src/App.js =></code> i zapisz aby odświerzyć.<br/>Teraz z {what}!",
   "app.buttonLightMode": "Włącz Jasny Motyw",
-  "app.buttonDarkMode": "Włącz Ciemny Motyw"
+  "app.buttonDarkMode": "Włącz Ciemny Motyw",
+  "navBar.BackToLandingPage": "Start",
+  "navBar.GoToProfessorsPage": "Profesorowie",
+  "navBar.SearchPlaceholder": "Szukaj..."
 }

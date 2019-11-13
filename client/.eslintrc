@@ -28,7 +28,8 @@
       "react/prefer-stateless-function":0,
       "react/destructuring-assignment":0,
       "react/no-access-state-in-setstate":0,
-      "no-param-reassign":["error", { "props": true, "ignorePropertyModificationsFor": ["el"] }]
+      "no-param-reassign":["error", { "props": true, "ignorePropertyModificationsFor": ["el"] }],
+      "no-unused-expressions": ["error", { "allowTernary": true }]
       
     },
     "settings": {

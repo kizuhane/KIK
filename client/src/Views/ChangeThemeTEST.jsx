@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-/* import:: Theme provider */
+/* import:: localization provider */
 import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
-// import
+
 /* import:: Theme */
 import styled, { withTheme } from 'styled-components';
 import { useTheme } from '../Theme/ThemeContext';
@@ -33,7 +33,6 @@ const Home = props => {
   Home.propTypes = {
     theme: PropTypes.objectOf(PropTypes.string).isRequired
   };
-
   return (
     <header className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
@@ -46,7 +45,7 @@ const Home = props => {
         />
       </p>
       <p>
-        <Button onClick={() => themeToggle.toggle()}>
+        <Button onClick={() => themeToggle.toggleTheme()}>
           {props.theme.mode === 'dark' ? (
             <FormattedMessage id="app.buttonLightMode" defaultMessage="Switch to Light Mode" />
           ) : (
@@ -54,6 +53,11 @@ const Home = props => {
           )}
         </Button>
       </p>
+      <div>
+        <Button onClick={() => themeToggle.toggleFont()}>
+          {props.theme.font === 'normal' ? 'Switch to openDyslexic' : 'Switch to roboto'}
+        </Button>
+      </div>
     </header>
   );
 };

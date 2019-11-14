@@ -13,8 +13,8 @@ import { secondaryBackground, textPrimary } from "../../Theme/theme";
 import { NavBar as navBarIcons } from "../icons/ICONS";
 
 /* import:: navigation bar components */
-import NavButton from "./elements/navButton";
-import NavMenuIcon from "./elements/navBarIcon";
+import NavLink from "./elements/navLink";
+import NavMenu from "./menu/navMenu";
 import NavSearchBar from "./elements/navSearchBar";
 
 const Nav = styled.nav`
@@ -27,25 +27,26 @@ const Nav = styled.nav`
   min-height: 48px;
   list-style-type: none;
   align-items: center;
+  z-index: 100;
 `;
 
 function navBar({ match }) {
   return (
     <Nav>
       <NavSearchBar />
-      <NavButton to={`${match.url}`}>
+      <NavLink to={`${match.url}`}>
         <FormattedMessage
           id="navBar.BackToLandingPage"
           defaultMessage="Start"
         />
-      </NavButton>
-      <NavButton to={`${match.url}/About`}>
+      </NavLink>
+      <NavLink to={`${match.url}/About`}>
         <FormattedMessage
           id="navBar.GoToProfessorsPage"
           defaultMessage="Professors"
         />
-      </NavButton>
-      <NavMenuIcon name={navBarIcons.COG} />
+      </NavLink>
+      <NavMenu name={navBarIcons.COG} />
     </Nav>
   );
 }

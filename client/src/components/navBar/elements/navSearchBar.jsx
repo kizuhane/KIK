@@ -17,7 +17,9 @@ import {
 
 /* import:: icon */
 import { SEARCH, TIMES } from "../../icons/ICONS";
-import Icon from "../../icons/Icon";
+
+/* import:: components */
+import BtnIcon from "../../buttons/btnIcon";
 
 const SearchBar = styled.form`
   background: ${absoluteContrast};
@@ -45,29 +47,6 @@ const InputSearchBar = styled.input.attrs({
 
   :focus {
     caret-color: ${primaryDefault};
-  }
-`;
-
-const SearchBarBtn = styled.button.attrs({
-  type: "button"
-})`
-  background: inherit;
-  fill: ${textHint};
-  padding: 5px 10px 5px 0;
-  line-height: 0;
-  outline: 0;
-  border: none;
-  cursor: pointer;
-
-  :disabled {
-    cursor: default;
-    & path {
-      fill: ${textHint};
-    }
-  }
-
-  :hover path {
-    fill: ${props => (props.disabled ? textHint : primaryHover)};
   }
 `;
 
@@ -101,13 +80,13 @@ const NavSearchBar = () => {
           />
         )}
       </FormattedMessage>
-      <SearchBarBtn onClick={search.onClick} disabled={!search.value.length}>
-        <Icon
-          name={search.value.length ? TIMES : SEARCH}
-          size={18}
-          color={search.value.length ? textPrimary : textHint}
-        />
-      </SearchBarBtn>
+      <BtnIcon
+        events={{ onClick: search.onClick }}
+        disabled={!search.value.length}
+        name={search.value.length ? TIMES : SEARCH}
+        size={18}
+        padding={"5px 10px 5px 0"}
+      />
     </SearchBar>
   );
 };

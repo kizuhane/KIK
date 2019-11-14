@@ -1,15 +1,19 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 /* import:: Router */
-import { NavLink } from 'react-router-dom';
+import { NavLink } from "react-router-dom";
 
 /* Import:: Theme */
-import styled from 'styled-components';
+import styled from "styled-components";
 
-import { textPrimary, primaryDefault, primaryHover } from '../../../Theme/theme';
+import {
+  textPrimary,
+  primaryDefault,
+  primaryHover
+} from "../../../Theme/theme";
 
-const NavLinkSelect = 'navActive';
+const NavLinkSelect = "navActive";
 const MyNavLink = styled(NavLink)`
   padding: 10px 14px;
   text-decoration: none;
@@ -33,7 +37,7 @@ const MyNavLink = styled(NavLink)`
   }
 `;
 
-const navButton = ({ to, children }) => {
+const navLink = ({ to, children }) => {
   return (
     <MyNavLink exact to={to} activeClassName={NavLinkSelect}>
       {children}
@@ -41,8 +45,8 @@ const navButton = ({ to, children }) => {
   );
 };
 
-navButton.propTypes = {
+navLink.propTypes = {
   to: PropTypes.string.isRequired,
   children: PropTypes.element.isRequired
 };
-export default navButton;
+export default navLink;

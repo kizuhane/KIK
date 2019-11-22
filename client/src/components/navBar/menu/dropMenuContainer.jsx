@@ -6,6 +6,9 @@ import styled from "styled-components";
 // colors
 import { secondaryBackground, shadows } from "../../../Theme/theme";
 
+/* import:: CONSTANT VALUE */
+import { MOBILE_WIDTH_VALUE } from "../../../Constant/CONSTANT_STYLE_VALUE";
+
 const DropMenu = styled.div`
   display: block;
   position: absolute;
@@ -15,6 +18,12 @@ const DropMenu = styled.div`
   box-shadow: 0px 3px 5px ${shadows};
   right: 0;
   z-index: 1;
+
+  @media (max-width: ${MOBILE_WIDTH_VALUE}px) {
+    width: 100vw;
+    height: Calc(100vh - 68px);
+    transition: 0.2s;
+  }
 `;
 
 const dropMenuContainer = ({ children }) => {

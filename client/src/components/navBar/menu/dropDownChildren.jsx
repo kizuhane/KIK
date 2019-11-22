@@ -38,7 +38,9 @@ const navMenuChildren = ({ to, children }) => {
 
 navMenuChildren.propTypes = {
   to: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired
+  // TODO: Proper validation for navMenu children
+  // eslint-disable-next-line react/forbid-prop-types
+  children: PropTypes.object.isRequired
 };
 
 export default navMenuChildren;

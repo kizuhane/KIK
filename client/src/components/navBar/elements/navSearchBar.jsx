@@ -9,11 +9,13 @@ import styled from "styled-components";
 /* import:: colors */
 import {
   primaryDefault,
-  primaryHover,
   textPrimary,
   textHint,
   absoluteContrast
 } from "../../../Theme/theme";
+
+/* import:: CONSTANT VALUE */
+import { MOBILE_WIDTH_VALUE } from "../../../Constant/CONSTANT_STYLE_VALUE";
 
 /* import:: icon */
 import { SEARCH, TIMES } from "../../icons/ICONS";
@@ -25,9 +27,13 @@ const SearchBar = styled.form`
   background: ${absoluteContrast};
   display: flex;
   align-items: center;
-  width: 40%;
   margin: 8px;
-  max-width: 400px;
+  width: 300px;
+
+  @media (max-width: ${MOBILE_WIDTH_VALUE}px) {
+    width: 100%;
+    transition: 0.2s;
+  }
 `;
 
 const InputSearchBar = styled.input.attrs({
@@ -85,7 +91,7 @@ const NavSearchBar = () => {
         disabled={!search.value.length}
         name={search.value.length ? TIMES : SEARCH}
         size={18}
-        padding={"5px 10px 5px 0"}
+        padding="5px 10px 5px 0"
       />
     </SearchBar>
   );

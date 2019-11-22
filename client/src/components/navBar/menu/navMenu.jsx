@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import PropTypes from "prop-types";
 
 /* import:: Theme */
@@ -12,6 +12,10 @@ import BtnIcon from "../../buttons/btnIcon";
 /* import:: components */
 import Separator from "../../separator";
 
+/* import:: CONSTANT VALUE */
+import { NavLinkElement } from "../../../Constant/NAVBAR_LINKS";
+import { MobileContext } from "../../../Pages/layout/mobileProvider";
+
 const DropDown = styled.div`
   margin-left: auto;
   position: relative;
@@ -20,9 +24,25 @@ const DropDown = styled.div`
   z-index: 1;
 `;
 
-const NavMenu = ({ name }) => {
+const NavLinks = ({ match }) => {
+  return NavLinkElement.map(el =>
+    el.type === "global" ? (
+      <DropDownChildren key={el.id} to={`${el.link}`}>
+        {el.name}
+      </DropDownChildren>
+    ) : (
+      <DropDownChildren key={el.id} to={`${match.url}${el.link}`}>
+        {el.name}
+      </DropDownChildren>
+    )
+  );
+};
+
+const NavMenu = props => {
+  const { name, match } = props;
   const node = useRef();
   const [display, _setDisplay] = useState(false);
+  const mobileVersion = useContext(MobileContext);
 
   const outsideClickHandler = e => {
     if (node.current.contains(e.target)) {
@@ -51,6 +71,7 @@ const NavMenu = ({ name }) => {
       {display && (
         <DropMenuContainer>
           <DropDownChildren to="#2">User ...</DropDownChildren>
+          {mobileVersion && <NavLinks match={match} />}
           <DropDownChildren to="#3">One</DropDownChildren>
           <DropDownChildren to="#4">Two</DropDownChildren>
           <Separator />
@@ -62,6 +83,11 @@ const NavMenu = ({ name }) => {
 };
 
 NavMenu.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired,
+    path: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
+  }).isRequired,
   name: PropTypes.string.isRequired
 };
 

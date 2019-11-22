@@ -16,6 +16,7 @@ import Icon from "../icons/Icon";
 const NavBarIcon = styled.button.attrs({
   type: "button"
 })`
+  ${props => (props.hide ? "display:auto" : "")};
   ${props => (props.right ? "margin-left:auto" : "")};
   background: inherit;
   padding: ${props => props.padding};
@@ -27,9 +28,9 @@ const NavBarIcon = styled.button.attrs({
   :hover path {
     fill: ${primaryHover};
   }
-  :focus path {
+  /* :focus path {
     fill: ${primaryDefault};
-  }
+  } */
   :disabled {
     cursor: default;
     & path {
@@ -54,7 +55,8 @@ const navBarIcon = ({
   toggle,
   padding,
   right,
-  disabled
+  disabled,
+  hide
 }) => {
   return (
     <NavBarIcon
@@ -63,6 +65,7 @@ const navBarIcon = ({
       right={right}
       disabled={disabled}
       padding={padding}
+      hide={hide}
     >
       <Icon name={name} size={size} color={textPrimary} />
     </NavBarIcon>
@@ -76,14 +79,16 @@ navBarIcon.propTypes = {
   padding: PropTypes.string,
   toggle: PropTypes.bool,
   right: PropTypes.bool,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  hide: PropTypes.bool
 };
 navBarIcon.defaultProps = {
   size: 24,
   padding: "12px 14px",
   right: false,
   disabled: false,
-  toggle: false
+  toggle: false,
+  hide: false
 };
 
 export default navBarIcon;

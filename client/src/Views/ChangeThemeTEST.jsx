@@ -1,16 +1,16 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
 /* import:: localization provider */
-import { FormattedMessage, FormattedHTMLMessage } from 'react-intl';
+import { FormattedMessage, FormattedHTMLMessage } from "react-intl";
 
 /* import:: Theme */
-import styled, { withTheme } from 'styled-components';
-import { useTheme } from '../Theme/ThemeContext';
-import { buttonBackgroundColor, buttonTextColor } from '../Theme/theme';
+import styled, { withTheme } from "styled-components";
+import { useTheme } from "../Theme/ThemeContext";
+import { buttonBackgroundColor, buttonTextColor } from "../Theme/theme";
 
 /* import:: Graphic elements */
-import logo from '../logo.svg';
+import logo from "../logo.svg";
 
 const Home = props => {
   const themeToggle = useTheme();
@@ -30,36 +30,45 @@ const Home = props => {
     }
   `;
 
-  Home.propTypes = {
-    theme: PropTypes.objectOf(PropTypes.string).isRequired
-  };
   return (
-    <header className="App-header">
+    <div className="App-header">
       <img src={logo} className="App-logo" alt="logo" />
       <p>
         <FormattedHTMLMessage
           id="app.text"
           defaultMessage="Edit <code>src/App.js</code> and save to reload.<br/>Now with {what}!"
           description="Welcome header on app main page"
-          values={{ what: 'react-intl' }}
+          values={{ what: "react-intl" }}
         />
       </p>
       <p>
         <Button onClick={() => themeToggle.toggleTheme()}>
-          {props.theme.mode === 'dark' ? (
-            <FormattedMessage id="app.buttonLightMode" defaultMessage="Switch to Light Mode" />
+          {props.theme.mode === "dark" ? (
+            <FormattedMessage
+              id="app.buttonLightMode"
+              defaultMessage="Switch to Light Mode"
+            />
           ) : (
-            <FormattedMessage id="app.buttonDarkMode" defaultMessage="Switch to Dark Mode" />
+            <FormattedMessage
+              id="app.buttonDarkMode"
+              defaultMessage="Switch to Dark Mode"
+            />
           )}
         </Button>
       </p>
       <div>
         <Button onClick={() => themeToggle.toggleFont()}>
-          {props.theme.font === 'normal' ? 'Switch to openDyslexic' : 'Switch to roboto'}
+          {props.theme.font === "normal"
+            ? "Switch to openDyslexic"
+            : "Switch to roboto"}
         </Button>
       </div>
-    </header>
+    </div>
   );
+};
+
+Home.propTypes = {
+  theme: PropTypes.objectOf(PropTypes.string).isRequired
 };
 
 export default withTheme(Home);

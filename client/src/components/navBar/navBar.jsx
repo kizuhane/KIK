@@ -16,7 +16,7 @@ import NavSearchBar from "./elements/navSearchBar";
 import BtnIcon from "../buttons/btnIcon";
 
 /* import:: CONSTANT VALUE */
-import { NavLinkElement } from "../../Constant/NAVBAR_LINKS";
+import { NavLinkElement } from "../../Constant/NAVBAR_ELEMENTS";
 import { MobileContext } from "../../Pages/layout/mobileProvider";
 
 const Nav = styled.nav`

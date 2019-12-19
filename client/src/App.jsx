@@ -1,16 +1,17 @@
-import React from 'react';
+import React from "react";
 
 /* import:: Router */
-import { BrowserRouter, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Route, Link } from "react-router-dom";
 
 /* import Style */
-import './App.css';
+import "./App.css";
+import "simplebar/src/simplebar.css";
 
 /* import:: Page  */
 // auth page
-import LoginPage from './Pages/admin/LoginPage';
+import LoginPage from "./Pages/admin/LoginPage";
 // landing page
-import MainPage from './Pages/MainPage';
+import MainPage from "./Pages/MainPage";
 
 // import Customers from './components/test-comp/customers';
 

@@ -1,13 +1,13 @@
-import { css } from 'styled-components';
+import { css } from "styled-components";
 
 /* google font link */
 // <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300i,400,700&display=swap" rel="stylesheet">
 // @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:300i,400,700&display=swap');
 
 // import:: Main fonts
-import RobotoCondensedLightItalic from '../../Fonts/RobotoCondensed/RobotoCondensed-LightItalic.woff';
-import RobotoCondensedRegular from '../../Fonts/RobotoCondensed/RobotoCondensed-Regular.woff';
-import RobotoCondensedBold from '../../Fonts/RobotoCondensed/RobotoCondensed-Bold.woff';
+import RobotoCondensedLightItalic from "../../Fonts/RobotoCondensed/RobotoCondensed-LightItalic.woff";
+import RobotoCondensedRegular from "../../Fonts/RobotoCondensed/RobotoCondensed-Regular.woff";
+import RobotoCondensedBold from "../../Fonts/RobotoCondensed/RobotoCondensed-Bold.woff";
 
 /**
  * @description Roboto Condensed - Main font for all text basic
@@ -17,20 +17,20 @@ import RobotoCondensedBold from '../../Fonts/RobotoCondensed/RobotoCondensed-Bol
  */
 export const RobotoCondensed = css`
   @font-face {
-    font-family: 'Roboto Condensed', sans-serif;
-    src: url(${RobotoCondensedLightItalic}) format('woff');
+    font-family: "Roboto Condensed";
+    src: url(${RobotoCondensedLightItalic}) format("woff");
     font-weight: 300;
     font-style: italic;
   }
   @font-face {
-    font-family: 'Roboto Condensed', sans-serif;
-    src: url(${RobotoCondensedRegular}) format('woff');
+    font-family: "Roboto Condensed";
+    src: url(${RobotoCondensedRegular}) format("woff");
     font-weight: normal;
     font-style: normal;
   }
   @font-face {
-    font-family: 'Roboto Condensed', sans-serif;
-    src: url(${RobotoCondensedBold}) format('woff');
+    font-family: "Roboto Condensed";
+    src: url(${RobotoCondensedBold}) format("woff");
     font-weight: 700;
     font-style: bold;
   }

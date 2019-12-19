@@ -7,7 +7,8 @@ import { backgroundColor, textColor } from "./theme";
 import { font } from "./font";
 
 /* import:: Font handlers */
-import { OpenDyslexic } from "./fonts/OpenDyslexic";
+// ERROR: OpenDyslexic type is still in beta and don't format well for styling
+// import { OpenDyslexic } from "./fonts/OpenDyslexic";
 import { OpenSans } from "./fonts/OpenSans";
 import { RobotoCondensed } from "./fonts/RobotoCondensed";
 import { FiraCode } from "./fonts/FiraCode";
@@ -46,7 +47,7 @@ export const KIKThemeProvider = ({ children }) => {
   body {
     background-color: ${backgroundColor};
     color: ${textColor};
-    ${[OpenSans, RobotoCondensed, OpenDyslexic, FiraCode]}
+    ${[OpenSans, RobotoCondensed, FiraCode]}
   }
   `;
 
@@ -55,7 +56,6 @@ export const KIKThemeProvider = ({ children }) => {
     background-color: ${backgroundColor};
     color: ${textColor};
     font-family: ${font};
-    /* font-family: 'Open Sans', sans-serif; */
   `;
 
   const toggleTheme = () => {
@@ -64,7 +64,7 @@ export const KIKThemeProvider = ({ children }) => {
   };
 
   const toggleFont = () => {
-    const type = fontState.type === "normal" ? `dyslexia` : `normal`;
+    const type = fontState.type === "normal" ? `condensed` : `normal`;
     _setFontState({ type });
   };
 
@@ -73,7 +73,9 @@ export const KIKThemeProvider = ({ children }) => {
   };
 
   return (
-    <ThemeToggleContext.Provider value={{ toggleTheme, toggleFont }}>
+    <ThemeToggleContext.Provider
+      value={{ toggleTheme, toggleFont, themeState, fontState }}
+    >
       <ThemeProvider
         theme={{
           mode: themeState.mode,

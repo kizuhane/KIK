@@ -4,5 +4,12 @@
   "app.buttonDarkMode": "Switch to Dark Mode",
   "navBar.BackToLandingPage": "Start",
   "navBar.GoToProfessorsPage": "Professors",
-  "navBar.SearchPlaceholder": "Search..."
+  "navBar.SearchPlaceholder": "Search...",
+  "navMenu.PageSetting": "Page Setting",
+  "navMenu.DarkMode": "Dark Mode",
+  "navMenu.TypeFont": "Condensed font",
+  "navMenu.PrintPage": "Print Page",
+  "navMenu.PageInfo": "Page info",
+  "navMenu.LogIn": "Log In",
+  "navMenu.LogOut": "Log Out"
 }

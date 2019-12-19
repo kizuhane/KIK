@@ -10,12 +10,13 @@ import { secondaryBackground, shadows } from "../../../Theme/theme";
 import { MOBILE_WIDTH_VALUE } from "../../../Constant/CONSTANT_STYLE_VALUE";
 
 const DropMenu = styled.div`
-  display: block;
+  display: flex;
+  flex-direction: column;
   position: absolute;
   background-color: ${secondaryBackground};
-  padding: 10px 0;
-  min-width: 160px;
-  box-shadow: 0px 3px 5px ${shadows};
+  padding: 20px 0;
+  min-width: 300px;
+  box-shadow: -3px 2px 5px ${shadows};
   right: 0;
   z-index: 1;
 

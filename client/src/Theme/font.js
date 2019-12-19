@@ -1,8 +1,8 @@
-import theme from 'styled-theming';
+import theme from "styled-theming";
 
-export const font = theme('font', {
-  normal: "'Roboto Condensed', sans-serif",
-  condensed: "'Open Sans', sans-serif",
+export const font = theme("font", {
+  normal: "'Open Sans', sans-serif",
+  condensed: "'Roboto Condensed', sans-serif",
   dyslexia: "'OpenDyslexic', sans-serif"
 });
 

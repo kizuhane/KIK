@@ -69,6 +69,7 @@ const useFormInput = initialState => {
   };
 };
 
+// TODO: Search bar logic
 const NavSearchBar = () => {
   const search = useFormInput("");
 

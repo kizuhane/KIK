@@ -1,41 +1,55 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import PropTypes from "prop-types";
+import { FormattedMessage } from "react-intl";
 
 /* import:: Theme */
 import styled from "styled-components";
+import { useTheme } from "../../../Theme/ThemeContext";
 
 /* import:: dropMenu components */
-import DropMenuContainer from "./dropMenuContainer";
-import DropDownChildren from "./dropDownChildren";
 import BtnIcon from "../../buttons/btnIcon";
+import DropMenuContainer from "./dropMenuContainer";
+
+import NavLink from "../elements/navLink";
+import DropDownSectionHeader from "./dropDownSectionHeader";
+import DropDownToggleBtn from "./dropDownToggleBtn";
+import BtnToggle from "../../buttons/btnToggle";
+import BtnSecondary from "../../buttons/btnSecondary";
 
 /* import:: components */
 import Separator from "../../separator";
 
 /* import:: CONSTANT VALUE */
-import { NavLinkElement } from "../../../Constant/NAVBAR_LINKS";
+import { NavLinkElement } from "../../../Constant/NAVBAR_ELEMENTS";
 import { MobileContext } from "../../../Pages/layout/mobileProvider";
+import { Options } from "../../icons/ICONS";
 
 const DropDown = styled.div`
   margin-left: auto;
   position: relative;
   display: inline-block;
-  line-height: 0;
-  z-index: 1;
 `;
 
 const NavLinks = ({ match }) => {
   return NavLinkElement.map(el =>
     el.type === "global" ? (
-      <DropDownChildren key={el.id} to={`${el.link}`}>
+      <NavLink key={el.id} to={`${el.link}`}>
         {el.name}
-      </DropDownChildren>
+      </NavLink>
     ) : (
-      <DropDownChildren key={el.id} to={`${match.url}${el.link}`}>
+      <NavLink key={el.id} to={`${match.url}${el.link}`}>
         {el.name}
-      </DropDownChildren>
+      </NavLink>
     )
   );
+};
+
+const PrintContent = () => {
+  console.log("PrintContent");
+};
+
+const GoToInfoPage = () => {
+  console.log("GoToInfoPage");
 };
 
 const NavMenu = props => {
@@ -43,6 +57,7 @@ const NavMenu = props => {
   const node = useRef();
   const [display, _setDisplay] = useState(false);
   const mobileVersion = useContext(MobileContext);
+  const themeToggle = useTheme();
 
   const outsideClickHandler = e => {
     if (node.current.contains(e.target)) {
@@ -70,12 +85,67 @@ const NavMenu = props => {
       />
       {display && (
         <DropMenuContainer>
-          <DropDownChildren to="#2">User ...</DropDownChildren>
-          {mobileVersion && <NavLinks match={match} />}
-          <DropDownChildren to="#3">One</DropDownChildren>
-          <DropDownChildren to="#4">Two</DropDownChildren>
-          <Separator />
-          <DropDownChildren to="#6">Log Out</DropDownChildren>
+          {/* <DropDownChildren to="#2">User ...</DropDownChildren> */}
+          {mobileVersion && (
+            <>
+              <NavLinks match={match} />
+              <Separator width={90} />
+            </>
+          )}
+          <DropDownSectionHeader>
+            <FormattedMessage
+              id="navMenu.PageSetting"
+              defaultMessage="Page Setting"
+            />
+          </DropDownSectionHeader>
+          <DropDownToggleBtn
+            icon={Options.MOON}
+            events={{ onClick: () => themeToggle.toggleTheme() }}
+            toggle={!!(themeToggle.themeState.mode === "dark")}
+          >
+            <FormattedMessage
+              id="navMenu.DarkMode"
+              defaultMessage="Dark Mode"
+            />
+          </DropDownToggleBtn>
+          <DropDownToggleBtn
+            icon={Options.TEXT_WIDTH}
+            events={{ onClick: () => themeToggle.toggleFont() }}
+            toggle={!(themeToggle.fontState.type === "normal")}
+          >
+            <FormattedMessage
+              id="navMenu.TypeFont"
+              defaultMessage="Condensed font"
+            />
+          </DropDownToggleBtn>
+          <Separator width={90} />
+          <BtnToggle
+            icon={Options.PRINT}
+            events={{ onClick: () => PrintContent() }}
+            toggle={!(themeToggle.fontState.type === "normal")}
+          >
+            <FormattedMessage
+              id="navMenu.PrintPage"
+              defaultMessage="Print Page"
+            />
+          </BtnToggle>
+          <BtnToggle
+            icon={Options.INFO_CIRCLE}
+            events={{ onClick: () => GoToInfoPage() }}
+            toggle={!(themeToggle.fontState.type === "normal")}
+          >
+            <FormattedMessage
+              id="navMenu.PageInfo"
+              defaultMessage="Page info"
+            />
+          </BtnToggle>
+          <Separator width={90} />
+          <BtnSecondary
+            to="#6"
+            events={{ onClick: () => console.log("login") }}
+          >
+            <FormattedMessage id="navMenu.LogIn" defaultMessage="Log In" />
+          </BtnSecondary>
         </DropMenuContainer>
       )}
     </DropDown>

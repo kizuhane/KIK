@@ -1,5 +1,4 @@
 import React from "react";
-/* import:: localization provider */
 import { FormattedMessage } from "react-intl";
 
 export const NavLinkElement = [

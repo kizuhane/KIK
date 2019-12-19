@@ -4,5 +4,12 @@
   "app.buttonDarkMode": "Włącz Ciemny Motyw",
   "navBar.BackToLandingPage": "Start",
   "navBar.GoToProfessorsPage": "Profesorowie",
-  "navBar.SearchPlaceholder": "Szukaj..."
+  "navBar.SearchPlaceholder": "Szukaj...",
+  "navMenu.PageSetting": "Ustawienia strony",
+  "navMenu.DarkMode": "Tryb nocny",
+  "navMenu.TypeFont": "Tryb skondensowany",
+  "navMenu.PrintPage": "Wydrukuj strone",
+  "navMenu.PageInfo": "Dodatkowe inforamcje",
+  "navMenu.LogIn": "Zaloguj",
+  "navMenu.LogOut": "Wyloguj"
 }

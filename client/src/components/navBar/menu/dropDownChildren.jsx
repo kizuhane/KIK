@@ -13,13 +13,17 @@ import {
   primaryDefault
 } from "../../../Theme/theme";
 
+// TODO: DELETE THIS LATER
+
 const MenuChildren = styled(Link)`
   display: block;
-  padding: 9px 0;
-  line-height: 22px;
+  padding: 6px 30px;
+
+  font-size: 24px;
   text-decoration: none;
-  font-weight: bold;
+  font-weight: normal;
   text-align: center;
+
   :link,
   :visited {
     color: ${textPrimary};
@@ -38,9 +42,7 @@ const navMenuChildren = ({ to, children }) => {
 
 navMenuChildren.propTypes = {
   to: PropTypes.string.isRequired,
-  // TODO: Proper validation for navMenu children
-  // eslint-disable-next-line react/forbid-prop-types
-  children: PropTypes.object.isRequired
+  children: PropTypes.element.isRequired
 };
 
 export default navMenuChildren;

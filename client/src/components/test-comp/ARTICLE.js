@@ -2,8 +2,9 @@ const Article = {
   _id: "1",
   author: "Author1",
 
-  topic: "Main Topic Name",
+  section: "Main section Name",
   course: "Course Name",
+  lesson: "Lesson Name",
 
   content: [
     { type: "title", data: { text: "Lesson Name" } },

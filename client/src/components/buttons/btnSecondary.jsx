@@ -4,18 +4,19 @@ import PropTypes from "prop-types";
 /* import:: Theme */
 import styled from "styled-components";
 // colors
-import { textBold, textHint, activeContent } from "../../Theme/theme";
+import { textBold, textInactive, activeContent } from "../../Theme/theme";
 
-// TODO: Style THIS
 const BtnSecondary = styled.button.attrs({
   type: "button"
 })`
   position: relative;
+
   border: none;
   cursor: pointer;
   outline: 0;
 
-  margin: 6px 34px;
+  margin: 6px 26px;
+  padding: 0px 8px;
 
   font-size: 24px;
   text-decoration: none;
@@ -23,29 +24,37 @@ const BtnSecondary = styled.button.attrs({
   text-align: center;
 
   color: ${textBold};
-  background: inherit;
+  background: none;
 
   ::before {
     content: "";
     position: absolute;
-    top: 0px;
-    left: 8px;
-    width: 100%;
-    height: 50%;
-    background: ${activeContent};
-  }
+    height: 15px;
+    width: 0;
 
-  /* :hover {
-    color: ${activeContent};
+    top: 50%;
+    left: 10%;
+    transform: translate(0, -50%);
+    opacity: 0;
+
+    background-color: ${activeContent};
+    z-index: -1;
+
+    transition: 0.1s;
   }
-  :active {
-    color: ${activeContent};
-  } */
+  :hover::before {
+    width: 100%;
+    left: 0;
+    opacity: 1;
+  }
 
   :disabled {
     cursor: default;
-    color: ${textHint};
-    background: inherit;
+    color: ${textInactive};
+    background: none;
+  }
+  :disabled:hover::before {
+    display: none;
   }
 `;
 
@@ -58,7 +67,8 @@ const btnSecondary = ({ children, events, disabled }) => {
 };
 
 btnSecondary.propTypes = {
-  children: PropTypes.element.isRequired,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+    .isRequired,
   events: PropTypes.PropTypes.objectOf(PropTypes.func).isRequired,
   disabled: PropTypes.bool
 };

@@ -1,8 +1,23 @@
 import React from "react";
 
-const ArticleTest = () => {
+import PathDirection from "../../components/articleContent/pathDirection";
+import Article from "../../components/test-comp/ARTICLE";
+
+const ArticleTest = props => {
+  console.log(`ArticleTest`, props);
+  console.log("ArticleTest", Article);
   return (
     <div>
+      <PathDirection
+        // section={Article.section}
+        // course={Article.course}
+        // lesson={Article.lesson}
+        // author={Article.author}
+        section="section with space"
+        course="course"
+        lesson="lesson"
+        author="author"
+      />
       <h1>TEST Content</h1>
       <p>
         Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis sint amet

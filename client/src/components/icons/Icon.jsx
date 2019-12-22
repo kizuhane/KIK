@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from "react";
+import PropTypes from "prop-types";
 
-import styled from 'styled-components';
+import styled from "styled-components";
 /* import:: colors */
-import { textPrimary } from '../../Theme/theme';
+import { textPrimary } from "../../Theme/theme";
 
 const Icon = ({ name, size, color }) => {
   const MySvg = styled.svg.attrs({
-    viewBox: '0 0 512 512'
+    viewBox: "0 0 512 512"
   })`
-    display: inline-block;
+    display: block;
     width: ${size}px;
     height: ${size}px;
 

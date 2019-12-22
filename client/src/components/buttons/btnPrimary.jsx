@@ -2,59 +2,97 @@ import React from "react";
 import PropTypes from "prop-types";
 
 /* import:: Theme */
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 // colors
-import {
-  textPrimary,
-  textHint,
-  primaryHover,
-  primaryDefault
-} from "../../Theme/theme";
+import { textBold, textInactive, activeContent } from "../../Theme/theme";
 
 // TODO: Style THIS
 const ButtonPrimary = styled.button.attrs({
   type: "button"
 })`
-  ${props => (props.hide ? "display:auto" : "")};
-  ${props => (props.right ? "margin-left:auto" : "")};
-  color: ${textPrimary};
-  background: inherit;
-  padding: ${props => props.padding};
-  line-height: 0;
+  position: relative;
+
   border: none;
   cursor: pointer;
   outline: 0;
 
-  :hover path {
-    fill: ${primaryHover};
+  margin: 4px 12px;
+  padding: 11px 27px;
+
+  font-size: 24px;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: center;
+
+  color: ${textBold};
+  background: none;
+
+  /* border  */
+  background-image: linear-gradient(${textBold}, ${textBold}),
+    linear-gradient(${textBold}, ${textBold}),
+    linear-gradient(${textBold}, ${textBold}),
+    linear-gradient(${textBold}, ${textBold});
+  background-repeat: no-repeat;
+  background-size: 3px 30px, 30px 3px, 3px 30px, 30px 3px;
+  background-position: left top, left top, right bottom, right bottom;
+
+  ::before {
+    content: "";
+    position: absolute;
+    height: 15px;
+    width: 0;
+
+    top: 50%;
+    left: 20%;
+    transform: translate(0, -50%);
+    opacity: 0;
+
+    background-color: ${activeContent};
+    z-index: -1;
+
+    transition: 0.1s;
   }
-  /* :focus path {
-    fill: ${primaryDefault};
-  } */
+  :hover::before {
+    width: Calc(100% - 38px);
+    left: 19px;
+    opacity: 1;
+  }
+
   :disabled {
     cursor: default;
-    & path {
-      fill: ${textHint};
-    }
-  }
+    color: ${textInactive};
+    background: none;
 
-  ${props =>
-    props.toggle
-      ? css`
-          && path {
-            fill: ${primaryDefault};
-          }
-        `
-      : null}
+    background-image: linear-gradient(${textInactive}, ${textInactive}),
+      linear-gradient(${textInactive}, ${textInactive}),
+      linear-gradient(${textInactive}, ${textInactive}),
+      linear-gradient(${textInactive}, ${textInactive});
+    background-repeat: no-repeat;
+    background-size: 3px 30px, 30px 3px, 3px 30px, 30px 3px;
+    background-position: left top, left top, right bottom, right bottom;
+  }
+  :disabled:hover::before {
+    display: none;
+  }
 `;
 
-const btnPrimary = ({ children, events }) => {
-  return <ButtonPrimary {...events}>{children}</ButtonPrimary>;
+const btnPrimary = ({ children, events, disabled }) => {
+  return (
+    <ButtonPrimary {...events} disabled={disabled}>
+      {children}
+    </ButtonPrimary>
+  );
 };
 
 btnPrimary.propTypes = {
-  children: PropTypes.element.isRequired,
-  events: PropTypes.PropTypes.objectOf(PropTypes.func).isRequired
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
+    .isRequired,
+  events: PropTypes.PropTypes.objectOf(PropTypes.func).isRequired,
+  disabled: PropTypes.bool
+};
+btnPrimary.defaultProps = {
+  disabled: false
 };
 
 export default btnPrimary;

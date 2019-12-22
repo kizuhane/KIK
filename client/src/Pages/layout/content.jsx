@@ -11,9 +11,8 @@ import { primaryBackground, textPrimary } from "../../Theme/theme";
 /* import:: CONSTANT VALUE */
 import { MOBILE_WIDTH_VALUE } from "../../Constant/CONSTANT_STYLE_VALUE";
 
-const Content = styled(SimpleBarReact).attrs({
-  id: "ContentPage"
-})`
+// const Content = styled.div.attrs({
+const Content = styled(SimpleBarReact)`
   position: fixed;
   left: 316px;
   right: 0;
@@ -36,7 +35,11 @@ const Content = styled(SimpleBarReact).attrs({
 
 const content = props => {
   const { children } = props;
-  return <Content scrollbarMinSize={100}>{children}</Content>;
+  return (
+    <Content scrollbarMinSize={100}>
+      <div id="ContentPage">{children}</div>
+    </Content>
+  );
 };
 
 content.propTypes = {

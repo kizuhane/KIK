@@ -14,7 +14,8 @@ import NavLink from "../elements/navLink";
 import DropDownSectionHeader from "./dropDownSectionHeader";
 import DropDownToggleBtn from "./dropDownToggleBtn";
 import BtnToggle from "../../buttons/btnToggle";
-import BtnSecondary from "../../buttons/btnSecondary";
+
+import LoginBtn from "./loginBtn";
 
 /* import:: components */
 import Separator from "../../separator";
@@ -22,7 +23,11 @@ import Separator from "../../separator";
 /* import:: CONSTANT VALUE */
 import { NavLinkElement } from "../../../Constant/NAVBAR_ELEMENTS";
 import { MobileContext } from "../../../Pages/layout/mobileProvider";
+/* import:: ICONS */
 import { Options } from "../../icons/ICONS";
+
+/* import:: functions */
+import { printContent } from "../../../function/printContent";
 
 const DropDown = styled.div`
   margin-left: auto;
@@ -44,14 +49,11 @@ const NavLinks = ({ match }) => {
   );
 };
 
-const PrintContent = () => {
-  console.log("PrintContent");
-};
-
 const GoToInfoPage = () => {
   console.log("GoToInfoPage");
 };
 
+// TODO: LOGIN Logic
 const NavMenu = props => {
   const { name, match } = props;
   const node = useRef();
@@ -121,7 +123,7 @@ const NavMenu = props => {
           <Separator width={90} />
           <BtnToggle
             icon={Options.PRINT}
-            events={{ onClick: () => PrintContent() }}
+            events={{ onClick: () => printContent("ContentPage") }}
             toggle={!(themeToggle.fontState.type === "normal")}
           >
             <FormattedMessage
@@ -140,12 +142,7 @@ const NavMenu = props => {
             />
           </BtnToggle>
           <Separator width={90} />
-          <BtnSecondary
-            to="#6"
-            events={{ onClick: () => console.log("login") }}
-          >
-            <FormattedMessage id="navMenu.LogIn" defaultMessage="Log In" />
-          </BtnSecondary>
+          <LoginBtn />
         </DropMenuContainer>
       )}
     </DropDown>

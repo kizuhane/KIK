@@ -1,5 +1,10 @@
+import normalize from "normalize-strings";
+
 export const stringToPath = string => {
-  console.log(string);
-  return string;
+  return normalize(string)
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-zA-Z0-9 -]/g, " ")
+    .replace(/\s+/g, "-");
 };
 export default stringToPath;

@@ -1,11 +1,33 @@
-import React from "react";
+import React, { useState } from "react";
 
+/* import:: components */
 import PathDirection from "../../components/articleContent/pathDirection";
+import Title from "../../components/articleContent/title";
+import Paragraphs from "../../components/articleContent/paragraphs";
+
+// db
 import Article from "../../components/test-comp/ARTICLE";
 
+const useShowAllSections = bool => {
+  const [showAll, _setShowAll] = useState(bool);
+
+  const toggleArticle = () => {
+    _setShowAll(!showAll);
+  };
+
+  return {
+    showAll,
+    toggleArticle
+  };
+};
+
 const ArticleTest = props => {
+  const ShowAllSections = useShowAllSections(false);
+
   console.log(`ArticleTest`, props);
   console.log("ArticleTest", Article);
+
+  // console.log(Article.articleBody[1].data.content[2].data.text);
   return (
     <div>
       <PathDirection
@@ -13,17 +35,26 @@ const ArticleTest = props => {
         // course={Article.course}
         // lesson={Article.lesson}
         // author={Article.author}
-        section="section with space"
-        course="course"
-        lesson="lesson"
-        author="author"
+        baseRoute={props.match.url}
+        section="java"
+        course="Programowanie komponentowe"
+        lesson="Model abstrakcyjny"
+        author="Henryk Budzisz"
       />
-      <h1>TEST Content</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quis sint amet
-        beatae voluptates a! Nobis magni temporibus consequatur sequi nulla?
-      </p>
+
+      <Title toggle={ShowAllSections}>TEST Content</Title>
+      <Paragraphs>
+        {`
+        Given <mark>data can be used</mark> as you want: render with HTML for
+        <code>Web clients</code>, render natively for <code>mobile apps</code>,
+        create markup for <code>Facebook Instant Articles</code> or
+        <code>Google AMP</code>, generate an <code>audio version</code> and so
+        on.`}
+      </Paragraphs>
       <h2>Sub Section</h2>
+      <Paragraphs>
+        {Article.articleBody[1].data.content[2].data.text}
+      </Paragraphs>
       <p>
         Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quisquam
         aliquid dignissimos officiis voluptate! Saepe unde vel, facere

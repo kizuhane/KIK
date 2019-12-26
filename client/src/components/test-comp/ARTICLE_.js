@@ -1,12 +1,12 @@
 const Article = {
   _id: "1",
-  author: "Henryk Budzisz",
+  author: "Author1",
 
-  section: "java",
-  course: "Programowanie komponentowe",
-  lesson: "Model abstrakcyjny",
+  section: "Section",
+  course: "Course Name",
+  lesson: "Lesson Name",
 
-  articleBody: [
+  content: [
     { type: "title", data: { text: "Lesson Name" } },
     {
       type: "section",
@@ -25,7 +25,7 @@ const Article = {
             type: "paragraph",
             data: {
               text:
-                "Lorem <mark>ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor maximus porttitor. Fusce id placerat lectus. Vivamus vehicula nibh</mark> vitae lectus congue, et dictum tellus pulvinar. Etiam convallis quis sapien quis bibendum. Donec posuere tincidunt quam tincidunt pellentesque."
+                'Lorem <mark class="cdx-marker">ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor maximus porttitor. Fusce id placerat lectus. Vivamus vehicula nibh</mark> vitae lectus congue, et dictum tellus pulvinar. Etiam convallis quis sapien quis bibendum. Donec posuere tincidunt quam tincidunt pellentesque.'
             }
           },
           {

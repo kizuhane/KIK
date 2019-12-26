@@ -1,11 +1,12 @@
 body {
   margin: 0;
-  font-family: 'Open Sans', 'Roboto', 'Fira Sans', 'Ubuntu', -apple-system,
+  font-family: "Open Sans", "Roboto", "Fira Sans", "Ubuntu", -apple-system,
     BlinkMacSystemFont sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', 'Fira Code', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    "Fira Code", monospace;
 }

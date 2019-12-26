@@ -130,3 +130,6 @@ export const articleIcon = {
 
 /** @description all direction icon for article component */
 export const PathDirectionIcons = { PATH_SECTION, PATH_LESSONS };
+
+/** @description drop down icons for title component */
+export const toggleArticleIcons = { ANGLE_DOUBLE_UP, ANGLE_DOUBLE_DOWN };

@@ -12,8 +12,8 @@ import {
 } from "../../Theme/theme";
 
 const Paragraphs = styled.p`
-  margin: 0 0 6px 0;
-  padding: 0 20px;
+  margin: 0 0 8px 0;
+  padding: 0;
 
   color: ${textPrimary};
 

@@ -112,20 +112,10 @@ export const contact = {
 /** @description all NavBar icons */
 export const NavBar = { COG, SEARCH, BARS, TIMES };
 
-/** @description all NavBar icons */
-export const articleIcon = {
-  EXCLAMATION,
-  INFO,
-  QUESTION,
-  PRINT,
-  QUOTE_RIGHT,
-  TERMINAL,
-  SUPERSCRIPT,
-  CODE,
-  STICKY_NOTE,
-  BOOK_OPEN,
-  TABLE,
-  LINK
+/** @description  */
+export const SectionArrows = {
+  CHEVRON_DOWN,
+  CHEVRON_UP
 };
 
 /** @description all direction icon for article component */

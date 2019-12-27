@@ -13,7 +13,7 @@ import { NavBar as navBarIcons } from "../icons/ICONS";
 import NavLink from "./elements/navLink";
 import NavMenu from "./menu/navMenu";
 import NavSearchBar from "./elements/navSearchBar";
-import BtnIcon from "../buttons/btnIcon";
+import ButtonIcon from "../buttons/BtnIcon";
 
 /* import:: CONSTANT VALUE */
 import { NavLinkElement } from "../../Constant/NAVBAR_ELEMENTS";
@@ -53,7 +53,7 @@ function NavBar({ match, displaySidebar, toggleSidebarEvent }) {
   return (
     <Nav>
       {mobileVersion && (
-        <BtnIcon
+        <ButtonIcon
           name={navBarIcons.BARS}
           toggle={displaySidebar}
           events={{ onClick: toggleSidebarEvent }}

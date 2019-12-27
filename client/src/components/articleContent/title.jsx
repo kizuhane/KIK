@@ -5,7 +5,7 @@ import styled from "styled-components";
 /* import:: colors */
 import { textHeader, primaryDefault } from "../../Theme/theme";
 
-import BtnIcon from "../buttons/btnIcon";
+import ButtonIcon from "../buttons/BtnIcon";
 /* import:: Nav icons */
 import { PRINT, toggleArticleIcons } from "../icons/ICONS";
 
@@ -37,13 +37,13 @@ const Title = ({ children, toggle }) => {
   return (
     <H1Title>
       {children}
-      <BtnIcon
+      <ButtonIcon
         name={PRINT}
         right
         size={24}
         events={{ onClick: () => printContent("ContentPage") }}
       />
-      <BtnIcon
+      <ButtonIcon
         name={
           toggle.showAll
             ? toggleArticleIcons.ANGLE_DOUBLE_UP

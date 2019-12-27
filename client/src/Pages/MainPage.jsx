@@ -17,8 +17,9 @@ import MobileProvider from "./layout/mobileProvider";
 import NavBar from "../components/navBar/navBar";
 import SideBar from "../components/sideBar/sideBar";
 
-// TEST COMPONENTS
-import ArticleTest from "../Views/route-test/ArticleTest";
+// Article Page
+import ArticlePage from "./ArticlePage";
+
 /* import:: Views  */
 
 const MainPage = ({ match }) => {
@@ -81,7 +82,7 @@ const MainPage = ({ match }) => {
       </MobileProvider>
       <Content>
         <Switch>
-          <Route exact path={`${match.path}`} component={ArticleTest} />
+          <Route exact path={`${match.path}`} component={ArticlePage} />
           <Route
             exact
             path={`${match.path}Professors`}

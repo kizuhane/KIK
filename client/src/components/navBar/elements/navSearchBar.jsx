@@ -21,7 +21,7 @@ import { MOBILE_WIDTH_VALUE } from "../../../Constant/CONSTANT_STYLE_VALUE";
 import { SEARCH, TIMES } from "../../icons/ICONS";
 
 /* import:: components */
-import BtnIcon from "../../buttons/btnIcon";
+import ButtonIcon from "../../buttons/BtnIcon";
 
 const SearchBar = styled.form`
   background: ${absoluteContrast};
@@ -87,7 +87,7 @@ const NavSearchBar = () => {
           />
         )}
       </FormattedMessage>
-      <BtnIcon
+      <ButtonIcon
         events={{ onClick: search.onClick }}
         disabled={!search.value.length}
         name={search.value.length ? TIMES : SEARCH}

@@ -11,16 +11,16 @@ const Article = {
     {
       type: "section",
       data: {
-        text: "section name",
+        text: "Section name 1",
         content: [
           {
             type: "paragraph",
             data: {
               text:
-                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec auctor maximus porttitor. Fusce id placerat lectus. Vivamus vehicula nibh vitae lectus congue, et dictum tellus pulvinar. Etiam convallis quis sapien quis bibendum. Donec posuere tincidunt quam tincidunt pellentesque. Maecenas dignissim ante a elit congue maximus. Fusce imperdiet tortor quis mattis faucibus."
+                "Given <mark>data can be used</mark> as you want: render with HTML for <code>Web clients</code>, render natively for <code>mobile apps</code>, create markup for <code>Facebook Instant Articles</code> or <code>Google AMP</code>, generate an <code>audio version</code> and so on."
             }
           },
-          { type: "subsection", data: { text: "Subsection name" } },
+          { type: "subsection", data: { text: "Subsection name 1" } },
           {
             type: "paragraph",
             data: {
@@ -37,24 +37,33 @@ const Article = {
           },
           { type: "subsection", data: { text: "Subsection 2 name" } },
           {
+            type: "paragraph",
+            data: {
+              text:
+                'Given data can be used as you want: render with HTML for <code class="inline-code">Web clients</code>, render natively for <code class="inline-code">mobile apps</code>, create markup for <code class="inline-code">Facebook Instant Articles</code> or <code class="inline-code">Google AMP</code>, generate an <code class="inline-code">audio version</code> and so on.'
+            }
+          },
+          {
             type: "quote",
             data: {
-              text: "Lorem ipsum dolor sit amet,",
+              text:
+                "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque sapien ac bibendum tincidunt. Etiam mi quam, posuere vel massa eu, imperdiet venenatis sem. Nunc ut risus consequat, tempus eros mattis, mattis eros. Curabitur venenatis, nunc vel gravida tempor, mi lorem malesuada metus, et mollis turpis nisi in ante. Donec sed est hendrerit, congue nunc nec, pharetra turpis. Maecenas et tellus eu ligula bibendum facilisis vitae id est. In sit amet tortor magna. Nullam semper finibus lectus, eget rhoncus nisi finibus eget. Nulla fermentum est rhoncus auctor imperdiet. Integer consectetur egestas ante, sagittis tristique ante rutrum sed. Nulla aliquet vestibulum. ",
               author: "lorem ipsum 1015"
             }
           },
           {
             type: "header",
             data: {
-              text: "example name",
+              text: "example name header1",
               icon: "<svg ...><path ...></path></svg>"
             }
           },
           {
             type: "image",
             data: {
-              url: "https://image.url/imagename",
-              description: "image caption"
+              url: "http://placehold.jp/800x600.png",
+              description:
+                "image caption Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin pellentesque sapien ac bibendum tincidunt. "
             }
           },
           {

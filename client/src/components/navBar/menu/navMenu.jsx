@@ -7,7 +7,7 @@ import styled from "styled-components";
 import { useTheme } from "../../../Theme/ThemeContext";
 
 /* import:: dropMenu components */
-import BtnIcon from "../../buttons/btnIcon";
+import ButtonIcon from "../../buttons/BtnIcon";
 import DropMenuContainer from "./dropMenuContainer";
 
 import NavLink from "../elements/navLink";
@@ -80,7 +80,7 @@ const NavMenu = props => {
 
   return (
     <DropDown ref={node}>
-      <BtnIcon
+      <ButtonIcon
         name={name}
         toggle={display}
         events={{ onClick: e => _setDisplay(!display) }}

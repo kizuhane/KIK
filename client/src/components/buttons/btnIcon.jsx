@@ -13,10 +13,10 @@ import {
 /* import:: Icon */
 import Icon from "../icons/Icon";
 
-const NavBarIcon = styled.button.attrs({
+const ButtonIcon = styled.button.attrs({
   type: "button"
 })`
-  ${props => (props.hide ? "display:auto" : "")};
+  ${props => (props.hide ? "display:none" : "")};
   ${props => (props.right ? "margin-left:auto" : "")};
   background: inherit;
   padding: ${props => props.padding};
@@ -48,7 +48,7 @@ const NavBarIcon = styled.button.attrs({
       : null}
 `;
 
-const navBarIcon = ({
+const BtnIcon = ({
   name,
   events,
   size,
@@ -56,10 +56,11 @@ const navBarIcon = ({
   padding,
   right,
   disabled,
-  hide
+  hide,
+  color
 }) => {
   return (
-    <NavBarIcon
+    <ButtonIcon
       {...events}
       toggle={toggle}
       right={right}
@@ -67,12 +68,12 @@ const navBarIcon = ({
       padding={padding}
       hide={hide}
     >
-      <Icon name={name} size={size} color={textPrimary} />
-    </NavBarIcon>
+      <Icon name={name} size={size} color={color} />
+    </ButtonIcon>
   );
 };
 
-navBarIcon.propTypes = {
+BtnIcon.propTypes = {
   name: PropTypes.string.isRequired,
   events: PropTypes.PropTypes.objectOf(PropTypes.func).isRequired,
   size: PropTypes.number,
@@ -80,15 +81,17 @@ navBarIcon.propTypes = {
   toggle: PropTypes.bool,
   right: PropTypes.bool,
   disabled: PropTypes.bool,
-  hide: PropTypes.bool
+  hide: PropTypes.bool,
+  color: PropTypes.func
 };
-navBarIcon.defaultProps = {
+BtnIcon.defaultProps = {
   size: 24,
   padding: "12px 14px",
   right: false,
   disabled: false,
   toggle: false,
-  hide: false
+  hide: false,
+  color: textPrimary
 };
 
-export default navBarIcon;
+export default BtnIcon;

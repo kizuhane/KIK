@@ -14,6 +14,7 @@ import Note from "../components/articleContent/note";
 import List from "../components/articleContent/list";
 import LinkList from "../components/articleContent/linkList";
 import Embed from "../components/articleContent/embed";
+import CodeBlock from "../components/articleContent/codeBlock";
 import Table from "../components/articleContent/table";
 import RawHtml from "../components/articleContent/rawHtml";
 
@@ -75,6 +76,10 @@ const ArticlePage = props => {
           {Article.articleBody[1].data.content[0].data.text}
         </Paragraphs>
 
+        <CodeBlock>
+          {Article.articleBody[1].data.content[9].data.text}
+        </CodeBlock>
+
         <SubsectionHeader>
           {Article.articleBody[1].data.content[1].data.text}
         </SubsectionHeader>
@@ -116,7 +121,7 @@ const ArticlePage = props => {
         <List type={Article.articleBody[1].data.content[16].data.style}>
           {Article.articleBody[1].data.content[16].data.items}
         </List>
-        {/* <Embed {...Article.articleBody[1].data.content[17].data} /> */}
+        <Embed {...Article.articleBody[1].data.content[17].data} />
         <Table>{Article.articleBody[1].data.content[18].data.content}</Table>
         <RawHtml>{Article.articleBody[1].data.content[19].data.text}</RawHtml>
         <LinkList>

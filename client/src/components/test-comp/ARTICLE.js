@@ -127,8 +127,8 @@ const Article = {
             data: {
               service: "youtube",
               source: "https://www.youtube.com/watch?v=hHW1oY26kxQ",
-              embed: "https://www.youtube.com/embed/hHW1oY26kxQ",
-              description: "lorem ipsum"
+              embed: "https://www.youtube-nocookie.com/embed/hHW1oY26kxQ",
+              description: "lorem ipsum youtube"
             }
           },
           {
@@ -164,6 +164,24 @@ const Article = {
                 },
                 { href: "https://medium.com/", text: "test link medium" }
               ]
+            }
+          },
+          {
+            type: "embed",
+            data: {
+              service: "codesandbox",
+              source: "https://codesandbox.io/s/react-router-basic-bnpsd",
+              embed: "https://codesandbox.io/embed/react-router-basic-bnpsd",
+              description: "lorem ipsum codesandbox"
+            }
+          },
+          {
+            type: "embed",
+            data: {
+              service: "codepen",
+              source: "https://codepen.io/alichur/pen/OJJNZYO",
+              embed: "https://codepen.io/alichur/embed/preview/OJJNZYO",
+              description: "lorem ipsum codepen"
             }
           }
         ]

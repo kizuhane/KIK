@@ -17,6 +17,8 @@ import BtnToggle from "../../buttons/btnToggle";
 
 import LoginBtn from "./loginBtn";
 
+import { textHeader } from "../../../Theme/theme";
+
 /* import:: components */
 import Separator from "../../separator";
 
@@ -82,6 +84,7 @@ const NavMenu = props => {
     <DropDown ref={node}>
       <ButtonIcon
         name={name}
+        color={textHeader}
         toggle={display}
         events={{ onClick: e => _setDisplay(!display) }}
       />

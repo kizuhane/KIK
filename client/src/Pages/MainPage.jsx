@@ -79,18 +79,18 @@ const MainPage = ({ match }) => {
             </SideBar>
           )}
         />
+        <Content>
+          <Switch>
+            <Route exact path={`${match.path}`} component={ArticlePage} />
+            <Route
+              exact
+              path={`${match.path}Professors`}
+              component={Professors}
+            />
+            <Route path="*" component={Error404Page} />
+          </Switch>
+        </Content>
       </MobileProvider>
-      <Content>
-        <Switch>
-          <Route exact path={`${match.path}`} component={ArticlePage} />
-          <Route
-            exact
-            path={`${match.path}Professors`}
-            component={Professors}
-          />
-          <Route path="*" component={Error404Page} />
-        </Switch>
-      </Content>
     </>
   );
 };

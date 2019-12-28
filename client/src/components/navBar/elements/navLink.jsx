@@ -7,11 +7,7 @@ import { NavLink } from "react-router-dom";
 /* Import:: Theme */
 import styled from "styled-components";
 
-import {
-  textPrimary,
-  primaryDefault,
-  primaryHover
-} from "../../../Theme/theme";
+import { textHeader, primaryDefault, primaryHover } from "../../../Theme/theme";
 
 const NavLinkSelect = "navActive";
 const MyNavLink = styled(NavLink)`
@@ -24,7 +20,7 @@ const MyNavLink = styled(NavLink)`
   text-transform: uppercase;
   :link,
   :visited {
-    color: ${textPrimary};
+    color: ${textHeader};
   }
   :hover {
     color: ${primaryHover};

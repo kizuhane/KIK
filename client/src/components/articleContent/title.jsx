@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import PropTypes from "prop-types";
 
 import styled from "styled-components";
@@ -11,6 +11,7 @@ import { PRINT, toggleArticleIcons } from "../icons/ICONS";
 
 /* import:: CONSTANT */
 import { MOBILE_WIDTH_VALUE } from "../../Constant/CONSTANT_STYLE_VALUE";
+import { MobileContext } from "../../Pages/layout/mobileProvider";
 import { printContent } from "../../function/printContent";
 
 const H1Title = styled.h1`
@@ -33,25 +34,31 @@ const H1Title = styled.h1`
   }
 `;
 
-const Title = ({ children, toggle }) => {
+const Title = ({ children, toggle, ShowIcon }) => {
+  const mobileVersion = useContext(MobileContext);
+
   return (
     <H1Title>
       {children}
-      <ButtonIcon
-        name={PRINT}
-        right
-        size={24}
-        events={{ onClick: () => printContent("ContentPage") }}
-      />
-      <ButtonIcon
-        name={
-          toggle.showAll
-            ? toggleArticleIcons.ANGLE_DOUBLE_UP
-            : toggleArticleIcons.ANGLE_DOUBLE_DOWN
-        }
-        size={24}
-        events={{ onClick: toggle.toggleArticle }}
-      />
+      {ShowIcon && !mobileVersion && (
+        <>
+          <ButtonIcon
+            name={PRINT}
+            right
+            size={24}
+            events={{ onClick: () => printContent("ContentPage") }}
+          />
+          <ButtonIcon
+            name={
+              toggle.showAll
+                ? toggleArticleIcons.ANGLE_DOUBLE_UP
+                : toggleArticleIcons.ANGLE_DOUBLE_DOWN
+            }
+            size={24}
+            events={{ onClick: toggle.toggleArticle }}
+          />
+        </>
+      )}
     </H1Title>
   );
 };
@@ -61,7 +68,11 @@ Title.propTypes = {
   toggle: PropTypes.shape({
     showAll: PropTypes.bool,
     toggleArticle: PropTypes.func
-  }).isRequired
+  }).isRequired,
+  ShowIcon: PropTypes.bool
+};
+Title.defaultProps = {
+  ShowIcon: true
 };
 
 export default Title;

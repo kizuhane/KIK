@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import { useHistory } from "react-router-dom";
@@ -13,7 +13,6 @@ import { LINK } from "../icons/ICONS";
 
 /* import:: CONSTANT */
 import { copyStringToClipboard } from "../../function/copyStringToClipboard";
-import { hashLinkScroll } from "../../function/hashLinkScroll";
 import { stringToPath } from "../../function/stringToPath";
 
 const Subsection = styled.h4.attrs(props => ({
@@ -52,10 +51,6 @@ const SubsectionHeader = ({ children }) => {
     });
     copyStringToClipboard(window.location);
   };
-
-  useEffect(() => {
-    hashLinkScroll(history.location.hash);
-  });
 
   return (
     <Subsection id={stringToPath(children)}>

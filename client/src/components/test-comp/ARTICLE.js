@@ -73,9 +73,30 @@ const Article = {
                 '// Start of dummy file\nvar logUpperCase = function(){\n  const _this = this\n\n  this.string = this.string.toUpperCase()\n  return function () {\n    return console.log(_this.string)\n  }\n}\n\nlogUpperCase.call({ string: \'es6 rocks\' })()\n\n//Good looking example comment\nfunction examplefunction(param){\n  var text = "string";\n  for (let i = 0; i <param.lenght; i++) {\n    text += i;\n  }\n  return {\n    "text": text,\n    "boolean": false\n  };\n}'
             }
           },
-          { type: "note", data: { style: "caution", text: "caution content" } },
-          { type: "note", data: { style: "warning", text: "warning content" } },
-          { type: "note", data: { style: "info", text: "note content" } },
+          {
+            type: "note",
+            data: {
+              style: "caution",
+              text:
+                "CAUTION CONTENT Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lacinia hendrerit velit non consectetur. "
+            }
+          },
+          {
+            type: "note",
+            data: {
+              style: "warning",
+              text:
+                "WARNING CONTENT Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lacinia hendrerit velit non consectetur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean a orci vitae nunc dapibus condimentum. Duis ac molestie sapien, blandit consectetur dui. Pellentesque sit amet arcu nisi."
+            }
+          },
+          {
+            type: "note",
+            data: {
+              style: "info",
+              text:
+                "NOTE CONTENT Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus lacinia hendrerit velit non consectetur. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Aenean a orci vitae nunc dapibus condimentum."
+            }
+          },
           {
             type: "delimiter",
             data: {}
@@ -91,7 +112,7 @@ const Article = {
             type: "list",
             data: {
               style: "ordered",
-              items: ["1st line", "2nd line", "3rd line"]
+              items: ["1st <b>line</b>", "2nd <i>line</i>", "3rd line"]
             }
           },
           {
@@ -114,9 +135,34 @@ const Article = {
             type: "table",
             data: {
               content: [
-                ["A", "B", "C", "D", "E"],
+                [
+                  "<strong>A</strong>",
+                  "<strong>B</strong>",
+                  "<strong>C</strong>",
+                  "<strong>D</strong>",
+                  "<strong>E</strong>"
+                ],
                 ["1a", "1b", "1c", "1d", "1e"],
                 ["2a", "2b", "2c", "2d", "2e"]
+              ]
+            }
+          },
+          {
+            type: "rawHtml",
+            data: {
+              text: "<button>Click ME</button>"
+            }
+          },
+          {
+            type: "linkList",
+            data: {
+              items: [
+                { href: "https://www.google.com/", text: "test link google" },
+                {
+                  href: "https://stackoverflow.com/",
+                  text: "test link stackoverflow"
+                },
+                { href: "https://medium.com/", text: "test link medium" }
               ]
             }
           }

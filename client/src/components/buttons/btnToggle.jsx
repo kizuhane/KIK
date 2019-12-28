@@ -4,12 +4,7 @@ import PropTypes from "prop-types";
 /* import:: Theme */
 import styled from "styled-components";
 // colors
-import {
-  textHeader,
-  primaryHover,
-  primaryDefault,
-  textInactive
-} from "../../Theme/theme";
+import { textHeader, primaryHover, textInactive } from "../../Theme/theme";
 
 import Icons from "../icons/Icon";
 

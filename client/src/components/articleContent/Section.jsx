@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
 import { useHistory } from "react-router-dom";
@@ -14,13 +14,12 @@ import {
 } from "../../Theme/theme";
 
 import ButtonIcon from "../buttons/BtnIcon";
-/* import:: Nav icons */
+/* import:: icons */
 import { LINK, SectionArrows } from "../icons/ICONS";
 
 /* import:: CONSTANT */
 import { MOBILE_WIDTH_VALUE } from "../../Constant/CONSTANT_STYLE_VALUE";
 import { copyStringToClipboard } from "../../function/copyStringToClipboard";
-import { hashLinkScroll } from "../../function/hashLinkScroll";
 import { stringToPath } from "../../function/stringToPath";
 
 const SectionContainer = styled.section`
@@ -126,10 +125,6 @@ const Section = ({ name, children, show }) => {
     });
     copyStringToClipboard(window.location);
   };
-
-  useEffect(() => {
-    hashLinkScroll(history.location.hash);
-  });
 
   return (
     <SectionContainer id={elementID}>

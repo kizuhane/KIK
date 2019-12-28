@@ -7,6 +7,8 @@ import styled from "styled-components";
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/hHW1oY26kxQ" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 */
 /* import:: components */
+
+// TODO: end this
 import Paragraphs from "./paragraphs";
 
 const EmbedContainer = styled.div`
@@ -27,7 +29,7 @@ const EmbedContainer = styled.div`
 
 const Embed = props => {
   const { service, source, embed, description } = props;
-  console.log(props);
+  // console.log(props);
   return (
     <EmbedContainer>
       <embed src={embed} />

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import PropTypes from "prop-types";
 
 import { useHistory } from "react-router-dom";
@@ -13,12 +13,17 @@ import {
   textHyperlink
 } from "../../Theme/theme";
 
-import ButtonIcon from "../buttons/BtnIcon";
 /* import:: icons */
+import ButtonIcon from "../buttons/BtnIcon";
+
 import { LINK, SectionArrows } from "../icons/ICONS";
+
+/* import:: components */
+import ProfessorInfo from "./professorInfo";
 
 /* import:: CONSTANT */
 import { MOBILE_WIDTH_VALUE } from "../../Constant/CONSTANT_STYLE_VALUE";
+import { MobileContext } from "../../Pages/layout/mobileProvider";
 import { copyStringToClipboard } from "../../function/copyStringToClipboard";
 import { stringToPath } from "../../function/stringToPath";
 
@@ -32,7 +37,7 @@ const SectionContainer = styled.section`
     linear-gradient(${textBold}, ${textBold}),
     linear-gradient(${textBold}, ${textBold});
   background-repeat: no-repeat;
-  background-size: 3px 30px, 30px 3px, 3px 30px, 30px 3px;
+  background-size: 3px 30px, 90px 3px, 3px 30px, 90px 3px;
   background-position: left top, left top, right bottom, right bottom;
 `;
 
@@ -101,12 +106,14 @@ const SectionElements = styled.div`
   }
 `;
 
-const Section = ({ name, children, show }) => {
+const ProfessorBox = props => {
+  const { name, titles, photo, department, contactInfo, orcid } = props;
   const history = useHistory();
+  const mobileVersion = useContext(MobileContext);
   const elementID = stringToPath(name);
 
   const defaultShowSection = () => {
-    return show ? true : !!(history.location.hash === `#${elementID}`);
+    return !!(history.location.hash === `#${elementID}`);
   };
 
   const [showSection, _setShowSection] = useState(defaultShowSection());
@@ -126,7 +133,7 @@ const Section = ({ name, children, show }) => {
     <SectionContainer id={elementID}>
       <SectionHeaderContainer>
         <SectionHeader show={showSection} onClick={toggleShowSection}>
-          {name}
+          {mobileVersion ? name : `${titles} ${name}`}
         </SectionHeader>
         <ButtonIcon
           right
@@ -151,15 +158,32 @@ const Section = ({ name, children, show }) => {
           }}
         />
       </SectionHeaderContainer>
-      <SectionElements show={showSection}>{children}</SectionElements>
+      <SectionElements show={showSection}>
+        <ProfessorInfo
+          name={name}
+          photo={photo}
+          department={department}
+          contactInfo={contactInfo}
+          orcid={orcid}
+          mobileVersion={mobileVersion}
+          MoreBtnLink={`${history.location.pathname}/${elementID}`}
+        />
+      </SectionElements>
     </SectionContainer>
   );
 };
 
-Section.propTypes = {
+ProfessorBox.propTypes = {
   name: PropTypes.string.isRequired,
-  children: PropTypes.node.isRequired,
-  show: PropTypes.bool.isRequired
+  titles: PropTypes.string.isRequired,
+  photo: PropTypes.string.isRequired,
+  department: PropTypes.string.isRequired,
+  contactInfo: PropTypes.shape({
+    address: PropTypes.string,
+    mail: PropTypes.string,
+    phone: PropTypes.string
+  }).isRequired,
+  orcid: PropTypes.string.isRequired
 };
 
-export default Section;
+export default ProfessorBox;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import PropTypes from "prop-types";
 
 /* import:: components */
 import PathDirection from "../components/articleContent/pathDirection";
@@ -21,8 +22,13 @@ import RawHtml from "../components/articleContent/rawHtml";
 /* import:: CONSTANT */
 import { SHOW_ALL_SECTION } from "../Constant/CONSTANT_STYLE_VALUE";
 import { hashLinkScroll } from "../function/hashLinkScroll";
-// db
-import Article from "../components/test-comp/ARTICLE";
+
+/* import:: JSON DATA */
+/* have all elements */
+// import Article from "../components/test-comp/ARTICLE";
+
+/* for showcase */
+import Article from "../components/test-comp/ARTICLE_";
 
 const useShowAllSections = bool => {
   const [showAll, _setShowAll] = useState(bool);
@@ -37,100 +43,130 @@ const useShowAllSections = bool => {
   };
 };
 
-/** TODO: article elements
- * code
- * embed NOTE: YOU ARE HERE
- *
- * */
-
-const ArticlePage = props => {
-  /** @description jump do id from hash from link */
-  useEffect(() => {
-    hashLinkScroll(props.history.location.hash);
-  });
-
+const ArticlePage = ({ history, match }) => {
   const ShowAllSections = useShowAllSections(SHOW_ALL_SECTION);
 
-  console.log(`ArticlePage`, props);
-  console.log("ArticlePage Article", Article);
+  /** @description jump do id from hash from link */
+  useEffect(() => {
+    hashLinkScroll(history.location.hash);
+  });
 
-  // console.log(Article.articleBody[1].data.content[2].data.text);
-  console.log("ArticlePage Article Details", Article.articleBody[1].data);
+  const sectionsBody = (type, data, key) => {
+    switch (type) {
+      case "paragraph":
+        return <Paragraphs key={key}>{data.text}</Paragraphs>;
+      case "subsection":
+        return <SubsectionHeader key={key}>{data.text}</SubsectionHeader>;
+      case "quote":
+        return (
+          <Quote author={data.author} key={key}>
+            {data.text}
+          </Quote>
+        );
+      case "header":
+        return <ElementsHeader key={key}>{data.text}</ElementsHeader>;
+      case "image":
+        return (
+          <ImageContainer
+            image={data.url}
+            description={data.description}
+            key={key}
+          />
+        );
+      case "code":
+        return (
+          <CodeBlock language={data.language} key={key}>
+            {data.text}
+          </CodeBlock>
+        );
+      case "note":
+        return (
+          <Note type={data.style} key={key}>
+            {data.text}
+          </Note>
+        );
+      case "delimiter":
+        return <Delimiter key={key} />;
+      case "list":
+        return (
+          <List type={data.style} key={key}>
+            {data.items}
+          </List>
+        );
+      case "embed":
+        return <Embed {...data} key={key} />;
+      case "table":
+        return <Table key={key}>{data.content}</Table>;
+      case "rawHtml":
+        return <RawHtml key={key}>{data.text}</RawHtml>;
+      case "linkList":
+        return <LinkList key={key}>{data.items}</LinkList>;
+      default:
+        return null;
+    }
+  };
+
+  const articleSections = (type, data) => {
+    switch (type) {
+      case "title":
+        return (
+          <Title key={type} toggle={ShowAllSections}>
+            {data.text}
+          </Title>
+        );
+      case "section":
+        return (
+          <Section
+            key={data.text}
+            name={data.text}
+            show={ShowAllSections.showAll}
+          >
+            {data.content.map((content, index) =>
+              sectionsBody(content.type, content.data, index)
+            )}
+          </Section>
+        );
+      default:
+        return null;
+    }
+  };
 
   return (
     <article>
       <PathDirection
-        baseRoute={props.match.url}
+        baseRoute={match.url}
         section={Article.section}
         course={Article.course}
         lesson={Article.lesson}
         author={Article.author}
       />
-
-      <Title toggle={ShowAllSections}>TEST Content</Title>
-      <Section
-        name={Article.articleBody[1].data.text}
-        show={ShowAllSections.showAll}
-      >
-        <Paragraphs>
-          {Article.articleBody[1].data.content[0].data.text}
-        </Paragraphs>
-        <SubsectionHeader>
-          {Article.articleBody[1].data.content[1].data.text}
-        </SubsectionHeader>
-        <Paragraphs>
-          {Article.articleBody[1].data.content[2].data.text}
-        </Paragraphs>
-        <CodeBlock
-          language={Article.articleBody[1].data.content[9].data.language}
-        >
-          {Article.articleBody[1].data.content[9].data.text}
-        </CodeBlock>
-        <Paragraphs>
-          {Article.articleBody[1].data.content[3].data.text}
-        </Paragraphs>
-        <SubsectionHeader>
-          {Article.articleBody[1].data.content[4].data.text}
-        </SubsectionHeader>
-        <Paragraphs>
-          {Article.articleBody[1].data.content[5].data.text}
-        </Paragraphs>
-        <Quote author={Article.articleBody[1].data.content[6].data.author}>
-          {Article.articleBody[1].data.content[6].data.text}
-        </Quote>
-        <ElementsHeader>
-          {Article.articleBody[1].data.content[7].data.text}
-        </ElementsHeader>
-        <ImageContainer
-          image={Article.articleBody[1].data.content[8].data.url}
-          description={Article.articleBody[1].data.content[8].data.description}
-        />
-        <Note type={Article.articleBody[1].data.content[10].data.style}>
-          {Article.articleBody[1].data.content[10].data.text}
-        </Note>
-        <Note type={Article.articleBody[1].data.content[11].data.style}>
-          {Article.articleBody[1].data.content[11].data.text}
-        </Note>
-        <Note type={Article.articleBody[1].data.content[12].data.style}>
-          {Article.articleBody[1].data.content[12].data.text}
-        </Note>
-        <Delimiter />
-        <List type={Article.articleBody[1].data.content[15].data.style}>
-          {Article.articleBody[1].data.content[15].data.items}
-        </List>
-        <List type={Article.articleBody[1].data.content[16].data.style}>
-          {Article.articleBody[1].data.content[16].data.items}
-        </List>
-        <Embed {...Article.articleBody[1].data.content[17].data} />
-        <Table>{Article.articleBody[1].data.content[18].data.content}</Table>
-        <RawHtml>{Article.articleBody[1].data.content[19].data.text}</RawHtml>
-        <LinkList>
-          {Article.articleBody[1].data.content[20].data.items}
-        </LinkList>
-      </Section>
-      <div style={{ height: "1000px" }}>TEST BOX</div>
+      {Article.articleBody.map(sections =>
+        articleSections(sections.type, sections.data)
+      )}
     </article>
   );
+};
+
+ArticlePage.propTypes = {
+  history: PropTypes.shape({
+    length: PropTypes.number,
+    action: PropTypes.string,
+    location: PropTypes.object,
+    createHref: PropTypes.func,
+    push: PropTypes.func,
+    replace: PropTypes.func,
+    go: PropTypes.func,
+    goBack: PropTypes.func,
+    goForward: PropTypes.func,
+    block: PropTypes.func,
+    listen: PropTypes.func
+  }).isRequired,
+  match: PropTypes.shape({
+    path: PropTypes.string,
+    url: PropTypes.string,
+    isExact: PropTypes.bool,
+    params: PropTypes.object
+  }).isRequired
 };
 
 export default ArticlePage;

@@ -36,12 +36,14 @@ const StandardRenderErrorContainer = styled.div`
   text-align: center;
 `;
 
-const standardRenderErrorDiv = ({ message }) => {
+const standardRenderErrorDiv = ({ message, icon }) => {
   return (
     <StandardRenderErrorContainer>
-      <ErrorEmoticon>
-        {errorsEmoticons[getRandomInt(errorsEmoticons.length)]}
-      </ErrorEmoticon>
+      {icon && (
+        <ErrorEmoticon>
+          {errorsEmoticons[getRandomInt(errorsEmoticons.length)]}
+        </ErrorEmoticon>
+      )}
       <ErrorMessage>{message}</ErrorMessage>
     </StandardRenderErrorContainer>
   );
@@ -50,8 +52,10 @@ const standardRenderErrorDiv = ({ message }) => {
 export default standardRenderErrorDiv;
 
 standardRenderErrorDiv.propTypes = {
-  message: PropTypes.string
+  message: PropTypes.string,
+  icon: PropTypes.bool
 };
 standardRenderErrorDiv.defaultProps = {
-  message: "Element failed to render"
+  message: "Element failed to render",
+  icon: true
 };

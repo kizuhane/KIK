@@ -6,7 +6,7 @@ import styled from "styled-components";
 import { textHeader } from "../../Theme/theme";
 
 const Header = styled.h5`
-  margin: 8px 0 4px 0;
+  margin: 10px 0 4px 0;
   padding: 0;
 
   color: ${textHeader};

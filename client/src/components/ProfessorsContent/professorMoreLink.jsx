@@ -1,17 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 
+import { Link } from "react-router-dom";
+
 /* Import:: Theme */
 import styled from "styled-components";
 
-import { textHyperlink, primaryDark } from "../Theme/theme";
+import { textHyperlink, primaryDark } from "../../Theme/theme";
 
-const MyATag = styled.a`
+const MyLink = styled(Link)`
   text-decoration: none;
 
   font-style: normal;
   font-weight: normal;
-  font-size: 14px;
+  font-size: 18px;
 
   :link,
   :visited {
@@ -25,14 +27,14 @@ const MyATag = styled.a`
   }
 `;
 
-const aTag = ({ href, children }) => {
-  return <MyATag href={href}>{children}</MyATag>;
+const professorMoreLink = ({ href, children }) => {
+  return <MyLink to={href}>{children}</MyLink>;
 };
 
-aTag.propTypes = {
+professorMoreLink.propTypes = {
   href: PropTypes.string.isRequired,
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
     .isRequired
 };
 
-export default aTag;
+export default professorMoreLink;

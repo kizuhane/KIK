@@ -19,8 +19,7 @@ const ImageContainerWrapper = styled.div`
   }
 `;
 
-const ImageContainer = props => {
-  const { image, description } = props;
+const ImageContainer = ({ image, description }) => {
   const [imgError, _setImgError] = useState(false);
 
   const triggerError = () => {

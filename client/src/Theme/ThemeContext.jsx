@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
 import { backgroundColor, textColor } from "./theme";
 import { font } from "./font";
-
+import { highlightJS } from "./highlightJS";
 /* import:: Font handlers */
 // ERROR: OpenDyslexic type is still in beta and don't format well for styling
 // import { OpenDyslexic } from "./fonts/OpenDyslexic";
@@ -48,6 +48,7 @@ export const KIKThemeProvider = ({ children }) => {
     background-color: ${backgroundColor};
     color: ${textColor};
     ${[OpenSans, RobotoCondensed, FiraCode]}
+    ${highlightJS}
   }
   `;
 

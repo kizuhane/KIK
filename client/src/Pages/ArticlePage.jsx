@@ -75,17 +75,17 @@ const ArticlePage = props => {
         <Paragraphs>
           {Article.articleBody[1].data.content[0].data.text}
         </Paragraphs>
-
-        <CodeBlock>
-          {Article.articleBody[1].data.content[9].data.text}
-        </CodeBlock>
-
         <SubsectionHeader>
           {Article.articleBody[1].data.content[1].data.text}
         </SubsectionHeader>
         <Paragraphs>
           {Article.articleBody[1].data.content[2].data.text}
         </Paragraphs>
+        <CodeBlock
+          language={Article.articleBody[1].data.content[9].data.language}
+        >
+          {Article.articleBody[1].data.content[9].data.text}
+        </CodeBlock>
         <Paragraphs>
           {Article.articleBody[1].data.content[3].data.text}
         </Paragraphs>

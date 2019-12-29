@@ -129,3 +129,46 @@ export const shadows = theme("mode", {
   light: "rgba(0, 0, 0, 0.25)",
   dark: "rgba(0, 0, 0, 0.75)"
 });
+
+/* ------------------ HIGHLIGHT.JS COLORS ------------------*/
+
+export const hljscolor = theme("mode", {
+  light: "#383a42",
+  dark: "#abb2bf"
+});
+export const hljsBackground = theme("mode", {
+  light: "#f5f5f5",
+  dark: "#282c34"
+});
+export const hljsQuote = theme("mode", {
+  light: "#a0a1a7",
+  dark: "#5c6370"
+});
+export const hljsFormula = theme("mode", {
+  light: "#a626a4",
+  dark: "#c678dd"
+});
+export const hljsSubst = theme("mode", {
+  light: "#e45649",
+  dark: "#e06c75"
+});
+export const hljsLiteral = theme("mode", {
+  light: "#0184bb",
+  dark: "#56b6c2"
+});
+export const hljsString = theme("mode", {
+  light: "#50a14f",
+  dark: "#98c379"
+});
+export const hljsClass = theme("mode", {
+  light: "#c18401",
+  dark: "#e6c07b"
+});
+export const hljsNumber = theme("mode", {
+  light: "#986801",
+  dark: "#d19a66"
+});
+export const hljsTitle = theme("mode", {
+  light: "#4078f2",
+  dark: "#61aeee"
+});

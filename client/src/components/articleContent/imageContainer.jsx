@@ -15,7 +15,7 @@ const ImageContainerWrapper = styled.div`
   }
   & p {
     background-color: ${secondaryBackground};
-    padding: 2px 0 0 10px;
+    padding: 2px 0 5px 10px;
   }
 `;
 

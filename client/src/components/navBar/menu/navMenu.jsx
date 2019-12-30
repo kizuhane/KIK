@@ -1,6 +1,8 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
+/* import:: react router history */
+import { useHistory } from "react-router-dom";
 
 /* import:: Theme */
 import styled from "styled-components";
@@ -31,10 +33,22 @@ import { Options } from "../../icons/ICONS";
 /* import:: functions */
 import { printContent } from "../../../function/printContent";
 
+/* import:: CONSTANT */
+import { MOBILE_WIDTH_VALUE } from "../../../Constant/CONSTANT_STYLE_VALUE";
+
 const DropDown = styled.div`
   margin-left: auto;
   position: relative;
   display: inline-block;
+`;
+
+const BtnSection = styled.div`
+  @media (max-width: ${MOBILE_WIDTH_VALUE}px) {
+    padding: 0 85px;
+    & * {
+      margin-left: 0;
+    }
+  }
 `;
 
 const NavLinks = ({ match }) => {
@@ -51,13 +65,15 @@ const NavLinks = ({ match }) => {
   );
 };
 
-const GoToInfoPage = () => {
-  console.log("GoToInfoPage");
+const GoToInfoPage = (history, path) => {
+  const homeDepartment = `/${path.split("/")[1]}`;
+  history.push(`${homeDepartment}/About`);
 };
 
 // TODO: LOGIN Logic
-const NavMenu = props => {
-  const { name, match } = props;
+const NavMenu = ({ name, match }) => {
+  const history = useHistory();
+
   const node = useRef();
   const [display, _setDisplay] = useState(false);
   const mobileVersion = useContext(MobileContext);
@@ -124,26 +140,28 @@ const NavMenu = props => {
             />
           </DropDownToggleBtn>
           <Separator width={90} />
-          <BtnToggle
-            icon={Options.PRINT}
-            events={{ onClick: () => printContent("ContentPage") }}
-            toggle={!(themeToggle.fontState.type === "normal")}
-          >
-            <FormattedMessage
-              id="navMenu.PrintPage"
-              defaultMessage="Print Page"
-            />
-          </BtnToggle>
-          <BtnToggle
-            icon={Options.INFO_CIRCLE}
-            events={{ onClick: () => GoToInfoPage() }}
-            toggle={!(themeToggle.fontState.type === "normal")}
-          >
-            <FormattedMessage
-              id="navMenu.PageInfo"
-              defaultMessage="Page info"
-            />
-          </BtnToggle>
+          <BtnSection>
+            <BtnToggle
+              icon={Options.PRINT}
+              events={{ onClick: () => printContent("ContentPage") }}
+              toggle={!(themeToggle.fontState.type === "normal")}
+            >
+              <FormattedMessage
+                id="navMenu.PrintPage"
+                defaultMessage="Print Page"
+              />
+            </BtnToggle>
+            <BtnToggle
+              icon={Options.INFO_CIRCLE}
+              events={{ onClick: () => GoToInfoPage(history, match.url) }}
+              toggle={!(themeToggle.fontState.type === "normal")}
+            >
+              <FormattedMessage
+                id="navMenu.PageInfo"
+                defaultMessage="Page info"
+              />
+            </BtnToggle>
+          </BtnSection>
           <Separator width={90} />
           <LoginBtn />
         </DropMenuContainer>

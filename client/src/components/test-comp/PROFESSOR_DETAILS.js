@@ -96,7 +96,8 @@ const Professor = {
   ],
   ArticlesList: [
     {
-      section: "Java",
+      type: "section",
+      name: "Java",
       elements: [
         { id: 1, type: "lesson", name: "Wprowadzenie" },
         {
@@ -128,7 +129,8 @@ const Professor = {
       ]
     },
     {
-      section: "HTML",
+      type: "section",
+      name: "HTML",
       elements: [
         { id: 16, type: "lesson", name: "Wprowadzenie" },
         { id: 17, type: "lesson", name: "Struktura dokumentu" },

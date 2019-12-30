@@ -5,6 +5,7 @@ import styled from "styled-components";
 /* import:: colors */
 import { textHeader, primaryDefault } from "../../Theme/theme";
 
+/* import:: components */
 import ButtonIcon from "../buttons/BtnIcon";
 /* import:: Nav icons */
 import { PRINT, toggleArticleIcons } from "../icons/ICONS";

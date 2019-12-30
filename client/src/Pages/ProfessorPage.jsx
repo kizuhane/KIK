@@ -7,10 +7,10 @@ import { FormattedMessage } from "react-intl";
 import styled from "styled-components";
 
 /* import:: components */
-import Title from "../components/articleContent/title";
+import Title from "../components/articleContents/title";
 import ProfessorInfo from "../components/ProfessorsContent/professorInfo";
-import SubtitleHeader from "../components/articleContent/subtitleHeader";
-import ElementsHeader from "../components/articleContent/ElementsHeader";
+import SubtitleHeader from "../components/articleContents/subtitleHeader";
+import ElementsHeader from "../components/articleContents/ElementsHeader";
 
 // section list components
 import SectionHeader from "../components/lessonsList/sectionHeader";
@@ -18,11 +18,12 @@ import SectionChildrenHeader from "../components/lessonsList/sectionChildrenHead
 
 // list components
 import TextList from "../components/textList";
-import LinkList from "../components/articleContent/linkList";
+import LinkList from "../components/articleContents/linkList";
 
 /* import:: CONSTANT */
 import { stringToPath } from "../function/stringToPath";
 
+// TODO: create request for json file using props from react router and create rest api
 import ProfessorDetailsJSON from "../components/test-comp/PROFESSOR_DETAILS";
 
 const ProfessorDetailsWrapper = styled.div`
@@ -57,28 +58,30 @@ const lessonListComponent = (data, location) => {
           defaultMessage="Full lessons list"
         />
       </SubtitleHeader>
-      {data.map((el, index) => (
+      {data.map((section, index) => (
         <div key={index}>
-          <SectionHeader href={`${homeDepartment}/${stringToPath(el.section)}`}>
-            {el.section}
+          <SectionHeader
+            href={`${homeDepartment}/${stringToPath(section.name)}`}
+          >
+            {section.name}
           </SectionHeader>
-          {el.elements.map((secEl, secElIndex) => (
+          {section.elements.map((secEl, secElIndex) => (
             <SectionChildren key={secElIndex}>
               {secEl.type === "course" ? (
                 <>
                   <SectionChildrenHeader
                     href={`${homeDepartment}/${stringToPath(
-                      el.section
+                      section.name
                     )}#${stringToPath(secEl.name)}`}
                   >
                     {secEl.name}
                   </SectionChildrenHeader>
-                  <LinkList>{pushToArr(secEl.lessons, el.section)}</LinkList>
+                  <LinkList>{pushToArr(secEl.lessons, section.name)}</LinkList>
                 </>
               ) : (
                 <SectionChildrenHeader
                   href={`${homeDepartment}/${stringToPath(
-                    el.section
+                    section.name
                   )}#${stringToPath(secEl.name)}`}
                 >
                   {secEl.name}
@@ -159,12 +162,15 @@ const ProfessorPage = ({ location }) => {
         contactInfo={ProfessorDetailsJSON.contactInfo}
         orcid={ProfessorDetailsJSON.ORCID}
       />
-      {lessonListComponent(
-        ProfessorDetailsJSON.ArticlesList,
-        location.pathname
-      )}
-      {heldFunctionsSection(ProfessorDetailsJSON.heldFunctions)}
-      {activitiesListSection(ProfessorDetailsJSON.ActivitiesList)}
+      {ProfessorDetailsJSON.ArticlesList &&
+        lessonListComponent(
+          ProfessorDetailsJSON.ArticlesList,
+          location.pathname
+        )}
+      {ProfessorDetailsJSON.heldFunctions &&
+        heldFunctionsSection(ProfessorDetailsJSON.heldFunctions)}
+      {ProfessorDetailsJSON.ActivitiesList &&
+        activitiesListSection(ProfessorDetailsJSON.ActivitiesList)}
     </ProfessorDetailsWrapper>
   );
 };

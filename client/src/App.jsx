@@ -12,6 +12,8 @@ import "simplebar/src/simplebar.css";
 import LoginPage from "./Pages/admin/LoginPage";
 // landing page
 import MainPage from "./Pages/MainPage";
+// Home Page
+import WelcomePage from "./Pages/HomePage";
 
 // import Customers from './components/test-comp/customers';
 
@@ -19,14 +21,9 @@ function App(props) {
   return (
     <BrowserRouter>
       <Route path="/login/" component={LoginPage} />
-      <Route path="/KIK/" component={MainPage} />
-      <Route path="/NEXT/" component={MainPage} />
+      <Route path="/:department" component={MainPage} />
 
-      <Route exact path="/">
-        <Link to="/KIK">KIK</Link>
-        <hr />
-        <Link to="/NEXT">NEXT</Link>
-      </Route>
+      <Route exact path="/" component={WelcomePage} />
     </BrowserRouter>
   );
 }

@@ -2,27 +2,28 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 /* import:: components */
-import PathDirection from "../components/articleContent/pathDirection";
-import Title from "../components/articleContent/title";
-import Section from "../components/articleContent/Section";
-import Paragraphs from "../components/articleContent/paragraphs";
-import SubsectionHeader from "../components/articleContent/SubsectionHeader";
-import Quote from "../components/articleContent/quote";
-import ElementsHeader from "../components/articleContent/ElementsHeader";
-import ImageContainer from "../components/articleContent/imageContainer";
-import Delimiter from "../components/articleContent/delimiter";
-import Note from "../components/articleContent/note";
-import List from "../components/articleContent/list";
-import LinkList from "../components/articleContent/linkList";
-import Embed from "../components/articleContent/embed";
-import CodeBlock from "../components/articleContent/codeBlock";
-import Table from "../components/articleContent/table";
-import RawHtml from "../components/articleContent/rawHtml";
+import PathDirection from "../components/articleContents/pathDirection";
+import Title from "../components/articleContents/title";
+import Section from "../components/articleContents/Section";
+import Paragraphs from "../components/articleContents/paragraphs";
+import SubsectionHeader from "../components/articleContents/SubsectionHeader";
+import Quote from "../components/articleContents/quote";
+import ElementsHeader from "../components/articleContents/ElementsHeader";
+import ImageContainer from "../components/articleContents/imageContainer";
+import Delimiter from "../components/articleContents/delimiter";
+import Note from "../components/articleContents/note";
+import List from "../components/articleContents/list";
+import LinkList from "../components/articleContents/linkList";
+import Embed from "../components/articleContents/embed";
+import CodeBlock from "../components/articleContents/codeBlock";
+import Table from "../components/articleContents/table";
+import RawHtml from "../components/articleContents/rawHtml";
 
 /* import:: CONSTANT */
 import { SHOW_ALL_SECTION } from "../Constant/CONSTANT_STYLE_VALUE";
 import { hashLinkScroll } from "../function/hashLinkScroll";
 
+// TODO: create request for json file using props from react router and create rest api
 /* import:: JSON DATA */
 /* have all elements */
 // import Article from "../components/test-comp/ARTICLE";

@@ -1,25 +1,5 @@
 import theme from "styled-theming";
 
-export const backgroundColor = theme("mode", {
-  light: "#fafafa",
-  dark: "#222"
-});
-
-export const textColor = theme("mode", {
-  light: "#000",
-  dark: "#fff"
-});
-
-export const buttonBackgroundColor = theme("mode", {
-  light: "#222",
-  dark: "#eee"
-});
-
-export const buttonTextColor = theme("mode", {
-  light: "#eee",
-  dark: "#222"
-});
-
 /* ------------------ PRIMARY COLORS ------------------*/
 export const primaryDark = theme("mode", {
   light: "#0D47A1",
@@ -122,6 +102,12 @@ export const primaryBackground = theme("mode", {
 export const secondaryBackground = theme("mode", {
   light: "#F0F0F0",
   dark: "#121314"
+});
+
+/* ------------------ ABSOLUTE COLORS ------------------*/
+export const absoluteWhite = theme("mode", {
+  light: "#FFFFFF",
+  dark: "#FFFFFF"
 });
 
 /* ------------------ SHADOWS COLORS ------------------*/

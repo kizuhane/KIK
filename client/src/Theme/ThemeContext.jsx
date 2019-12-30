@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 /* Theme */
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
-import { backgroundColor, textColor, primaryDefault } from "./theme";
+import { primaryBackground, textPrimary, primaryDefault } from "./theme";
 import { font } from "./font";
 import { highlightJS } from "./highlightJS";
 /* import:: Font handlers */
@@ -47,20 +47,19 @@ export const KIKThemeProvider = ({ children }) => {
   ::selection {
       background: ${primaryDefault}AF;
     }
+  html,
   body {
-    background-color: ${backgroundColor};
-    color: ${textColor};
+    height: 100%;
+    background-color: ${primaryBackground};
+    color: ${textPrimary};
     ${[OpenSans, RobotoCondensed, FiraCode]}
     ${highlightJS}
-
-    
   }
   `;
 
-  // TODO: create wrapper style
   const Wrapper = styled.div`
-    background-color: ${backgroundColor};
-    color: ${textColor};
+    background-color: ${primaryBackground};
+    color: ${textPrimary};
     font-family: ${font};
   `;
 

@@ -22,8 +22,7 @@ const DropMenu = styled.div`
 
   @media (max-width: ${MOBILE_WIDTH_VALUE}px) {
     width: 100vw;
-    height: Calc(100vh - 68px);
-    transition: 0.2s;
+    height: Calc(100vh - 89px);
   }
 `;
 

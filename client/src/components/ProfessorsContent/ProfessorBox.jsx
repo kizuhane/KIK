@@ -106,8 +106,14 @@ const SectionElements = styled.div`
   }
 `;
 
-const ProfessorBox = props => {
-  const { name, titles, photo, department, contactInfo, orcid } = props;
+const ProfessorBox = ({
+  name,
+  titles,
+  photo,
+  department,
+  contactInfo,
+  orcid
+}) => {
   const history = useHistory();
   const mobileVersion = useContext(MobileContext);
   const elementID = stringToPath(name);

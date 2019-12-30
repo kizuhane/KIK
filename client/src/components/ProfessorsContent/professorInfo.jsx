@@ -4,14 +4,6 @@ import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 
 import styled from "styled-components";
-/* import:: colors */
-import {
-  textBold,
-  activeContent,
-  textHeader,
-  textHint,
-  textHyperlink
-} from "../../Theme/theme";
 
 /* import:: components */
 import ProfessorDetails from "./professorDetails";
@@ -19,8 +11,22 @@ import ProfessorPhoto from "./ProfessorPhoto";
 import ProfessorMoreLink from "./professorMoreLink";
 import StandardRenderErrorDiv from "../errors/standardRenderErrorDiv";
 
+/* import:: CONSTANT */
+import { MOBILE_WIDTH_VALUE } from "../../Constant/CONSTANT_STYLE_VALUE";
+
 const InfoBox = styled.div`
   display: flex;
+  @media (max-width: ${MOBILE_WIDTH_VALUE}px) {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    & img {
+      margin-left: auto;
+      margin-right: auto;
+      margin-bottom: 10px;
+    }
+  }
 `;
 
 const professorInfo = ({
@@ -32,14 +38,14 @@ const professorInfo = ({
   MoreBtnLink,
   mobileVersion
 }) => {
-  console.log(MoreBtnLink);
   return (
     <InfoBox>
-      {!mobileVersion && photo ? (
-        <ProfessorPhoto image={photo} name={name} />
-      ) : (
-        <StandardRenderErrorDiv message={name} icon={false} />
-      )}
+      {!mobileVersion &&
+        (photo ? (
+          <ProfessorPhoto image={photo} name={name} />
+        ) : (
+          <StandardRenderErrorDiv message={name} icon={false} />
+        ))}
       <ProfessorDetails
         department={department}
         contactInfo={contactInfo}
@@ -68,10 +74,11 @@ professorInfo.propTypes = {
     phone: PropTypes.string
   }).isRequired,
   orcid: PropTypes.string.isRequired,
-  mobileVersion: PropTypes.bool.isRequired,
+  mobileVersion: PropTypes.bool,
   MoreBtnLink: PropTypes.string
 };
 professorInfo.defaultProps = {
+  mobileVersion: false,
   MoreBtnLink: ""
 };
 

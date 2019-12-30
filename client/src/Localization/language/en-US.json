@@ -2,6 +2,9 @@
   "app.text": "Edit <code class='oneLine'>src/App.js =></code> and save to reload.<br/>Now with {what}!",
   "app.buttonLightMode": "Switch to Light Mode",
   "app.buttonDarkMode": "Switch to Dark Mode",
+  "error.404_Header": "Something happened",
+  "error.404_Message": "Something goes wrong and you’re special page of choice can't be found, whats is weird because it works for me",
+  "error.404_Help": "If you'd like to know more, you can search online for this error: 404_PAGE_NOT_FOUND",
   "navBar.BackToLandingPage": "Start",
   "navBar.GoToProfessorsPage": "Professors",
   "navBar.SearchPlaceholder": "Search...",
@@ -12,5 +15,9 @@
   "navMenu.PageInfo": "Page info",
   "navMenu.LogIn": "Log In",
   "navMenu.LogOut": "Log Out",
-  "ProfessorBox.moreLink": "More..."
+  "ProfessorBox.moreLink": "More...",
+  "ProfessorDetails.heldFunction": "Held function",
+  "ProfessorDetails.current": "Current",
+  "ProfessorDetails.past": "Past",
+  "ProfessorDetails.LessonsList": "Full lessons list"
 }

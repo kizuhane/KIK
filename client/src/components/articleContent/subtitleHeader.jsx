@@ -5,25 +5,23 @@ import styled from "styled-components";
 /* import:: colors */
 import { textHeader } from "../../Theme/theme";
 
-const Header = styled.h5`
-  margin: 10px 0 4px 0;
-  padding: 0;
+const SubtitleHeader = styled.h2`
+  margin: 16px 0 8px 0;
 
   color: ${textHeader};
 
   font-style: normal;
-  font-weight: bold;
-  font-size: 16px;
-  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 32px;
 `;
 
-const elementsHeader = ({ children }) => {
-  return <Header>{children}</Header>;
+const subtitleHeader = ({ children }) => {
+  return <SubtitleHeader>{children}</SubtitleHeader>;
 };
 
-elementsHeader.propTypes = {
+subtitleHeader.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
     .isRequired
 };
 
-export default elementsHeader;
+export default subtitleHeader;

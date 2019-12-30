@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 /* Theme */
 import styled, { ThemeProvider, createGlobalStyle } from "styled-components";
-import { backgroundColor, textColor } from "./theme";
+import { backgroundColor, textColor, primaryDefault } from "./theme";
 import { font } from "./font";
 import { highlightJS } from "./highlightJS";
 /* import:: Font handlers */
@@ -44,11 +44,16 @@ export const KIKThemeProvider = ({ children }) => {
 
   // create main colors and font holster
   const GlobalStyle = createGlobalStyle`
+  ::selection {
+      background: ${primaryDefault}AF;
+    }
   body {
     background-color: ${backgroundColor};
     color: ${textColor};
     ${[OpenSans, RobotoCondensed, FiraCode]}
     ${highlightJS}
+
+    
   }
   `;
 

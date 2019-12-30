@@ -68,11 +68,15 @@ Title.propTypes = {
   toggle: PropTypes.shape({
     showAll: PropTypes.bool,
     toggleArticle: PropTypes.func
-  }).isRequired,
+  }),
   ShowIcon: PropTypes.bool
 };
 Title.defaultProps = {
-  ShowIcon: true
+  ShowIcon: true,
+  toggle: {
+    showAll: false,
+    toggleArticle: null
+  }
 };
 
 export default Title;

@@ -16,11 +16,6 @@ const ProfessorsPage = props => {
     hashLinkScroll(history.location.hash);
   });
 
-  console.log("ProfessorsPage", props);
-  console.log("ProfessorsPage", ProfessorsList);
-
-  console.log(ProfessorsList[0]);
-
   return (
     <div>
       {ProfessorsList.map(professor => (
@@ -37,18 +32,6 @@ const ProfessorsPage = props => {
     </div>
   );
 };
-
-/*
-<ProfessorsList
-            key={data.text}
-            name={data.text}
-            show={ShowAllSections.showAll}
-          >
-            {data.content.map((content, index) =>
-              sectionsBody(content.type, content.data, index)
-            )}
-          </ProfessorsList>
-*/
 
 ProfessorsPage.propTypes = {
   history: PropTypes.shape({

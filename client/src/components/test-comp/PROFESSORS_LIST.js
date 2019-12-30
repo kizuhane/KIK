@@ -11,7 +11,7 @@ const Professors = [
       phone: "48 94 3478 703"
     },
     ORCID: "0000-0003-2732-4323",
-    photo: "http://placehold.jp/150x200.png?text=Henryk%20Budzisz"
+    photo: "http://placehold.jp/225x300.png?text=Henryk%20Budzisz"
   },
   {
     id: 2,

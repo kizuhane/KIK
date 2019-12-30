@@ -6,6 +6,7 @@ import { Route, Switch } from "react-router-dom";
 
 /* import:: Page  */
 import Professors from "./Professors";
+import ProfessorPage from "./ProfessorPage";
 // error pages
 import Error404Page from "./errors/404";
 
@@ -81,11 +82,30 @@ const MainPage = ({ match }) => {
         />
         <Content>
           <Switch>
-            <Route exact path={`${match.path}`} component={ArticlePage} />
+            <Route
+              exact
+              path={`${match.path}articles`}
+              component={ArticlePage}
+            />
+            <Route
+              exact
+              path={`${match.path}/article/:section`}
+              component={ArticlePage}
+            />
+            <Route
+              exact
+              path={`${match.path}/article/:section/:lesson`}
+              component={ArticlePage}
+            />
             <Route
               exact
               path={`${match.path}Professors`}
               component={Professors}
+            />
+            <Route
+              exact
+              path={`${match.path}Professors/:name`}
+              component={ProfessorPage}
             />
             <Route path="*" component={Error404Page} />
           </Switch>

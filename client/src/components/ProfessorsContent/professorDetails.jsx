@@ -1,4 +1,4 @@
-import React, { Children } from "react";
+import React from "react";
 import PropTypes from "prop-types";
 
 import styled from "styled-components";
@@ -9,12 +9,18 @@ import { textBold, textHeader, textPrimary } from "../../Theme/theme";
 import Icon from "../icons/Icon";
 import { contact } from "../icons/ICONS";
 
+/* import:: CONSTANT */
+import { MOBILE_WIDTH_VALUE } from "../../Constant/CONSTANT_STYLE_VALUE";
+
 const ProfessorDetails = styled.div`
   position: relative;
-  width: 100%;
   height: 100%;
 
   padding: 0 0 0 10px;
+
+  @media (max-width: ${MOBILE_WIDTH_VALUE}px) {
+    padding: 0 0 0 0;
+  }
 `;
 
 const DepartmentHeader = styled.h4`

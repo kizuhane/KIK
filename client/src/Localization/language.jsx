@@ -45,6 +45,7 @@ export const KIKIntlProvider = ({ children }) => {
     localStorage.setItem("language", JSON.stringify(intlState));
   }, [intlState]);
 
+  // eslint-disable-next-line no-unused-vars
   const toggle = () => {
     const language = intlState.mode === "en" ? `pl` : `en`;
     _setIntlState({ language });

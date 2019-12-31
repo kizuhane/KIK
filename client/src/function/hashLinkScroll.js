@@ -1,6 +1,6 @@
 export const hashLinkScroll = hash => {
   if (hash) {
-    const id = hash.replace("#", "");
+    const id = decodeURI(hash).replace("#", "");
     const element = document.getElementById(id);
     if (element) {
       setTimeout(() => {

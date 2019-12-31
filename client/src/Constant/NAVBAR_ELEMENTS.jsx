@@ -1,6 +1,9 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
+/* import:: CONFIG route names */
+import { DEFAULT_PROFESSORS_ROUTE_NAME } from "../Config/routeName";
+
 export const NavLinkElement = [
   {
     id: "navBar.BackToLandingPage",
@@ -13,7 +16,7 @@ export const NavLinkElement = [
   {
     id: "navBar.GoToProfessorsPage",
     type: "relative",
-    link: "/Professors",
+    link: `/${DEFAULT_PROFESSORS_ROUTE_NAME}`,
     name: (
       <FormattedMessage
         id="navBar.GoToProfessorsPage"

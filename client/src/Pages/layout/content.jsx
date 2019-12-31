@@ -36,7 +36,7 @@ const Content = styled(SimpleBarReact)`
 const content = props => {
   const { children } = props;
   return (
-    <Content scrollbarMinSize={100}>
+    <Content id="Article" scrollbarMinSize={100}>
       <div id="ContentPage">{children}</div>
     </Content>
   );

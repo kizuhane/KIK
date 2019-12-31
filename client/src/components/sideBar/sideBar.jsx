@@ -44,6 +44,7 @@ const SideBarContainer = props => {
   const mobileVersion = useContext(MobileContext);
   return (
     <SideBar
+      id="SideBar"
       show={(toggleSidebar || !mobileVersion).toString()}
       scrollbarMinSize={100}
     >

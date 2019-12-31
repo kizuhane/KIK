@@ -19,5 +19,5 @@
   "ProfessorDetails.heldFunction": "Pełnione funkcje",
   "ProfessorDetails.current": "Aktualne",
   "ProfessorDetails.past": "Wcześniejsze",
-  "ProfessorDetails.LessonsList": "Pełna lista lekcji"
+  "LessonsListHeader.LessonsList": "Pełna lista lekcji"
 }

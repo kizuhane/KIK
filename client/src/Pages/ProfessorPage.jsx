@@ -22,6 +22,10 @@ import LinkList from "../components/articleContents/linkList";
 
 /* import:: CONSTANT */
 import { stringToPath } from "../function/stringToPath";
+import { nameToUrl } from "../function/nameToUrl";
+
+/* import:: CONFIG route names */
+import { DEFAULT_ARTICLE_ROUTE_NAME as ARTICLE_NAME } from "../Config/routeName";
 
 // TODO: create request for json file using props from react router and create rest api
 import ProfessorDetailsJSON from "../components/test-comp/PROFESSOR_DETAILS";
@@ -37,32 +41,30 @@ const SectionChildren = styled.div`
 `;
 
 const lessonListComponent = (data, location) => {
-  const homeDepartment = `/${location.split("/")[1]}/articles`;
+  const homeDepartment = `/${location.split("/")[1]}/${ARTICLE_NAME}`;
 
   const pushToArr = (arr, section) => {
-    const a = [];
+    const ObjArr = [];
     arr.forEach(el =>
-      a.push({
+      ObjArr.push({
         text: el.name,
-        href: `${homeDepartment}/${section}/${stringToPath(el.name)}`
+        href: `${homeDepartment}/${section}/${nameToUrl(el.name)}`
       })
     );
-    return a;
+    return ObjArr;
   };
 
   return (
     <section>
       <SubtitleHeader>
         <FormattedMessage
-          id="ProfessorDetails.LessonsList"
+          id="LessonsListHeader.LessonsList"
           defaultMessage="Full lessons list"
         />
       </SubtitleHeader>
       {data.map((section, index) => (
         <div key={index}>
-          <SectionHeader
-            href={`${homeDepartment}/${stringToPath(section.name)}`}
-          >
+          <SectionHeader href={`${homeDepartment}/${nameToUrl(section.name)}`}>
             {section.name}
           </SectionHeader>
           {section.elements.map((secEl, secElIndex) => (

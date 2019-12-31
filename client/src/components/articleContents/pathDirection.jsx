@@ -15,6 +15,13 @@ import { PathDirectionIcons } from "../icons/ICONS";
 
 /* import:: functions */
 import { stringToPath } from "../../function/stringToPath";
+import { nameToUrl } from "../../function/nameToUrl";
+
+/* import:: CONFIG route path name */
+import {
+  DEFAULT_ARTICLE_ROUTE_NAME as ARTICLE_ROUTE,
+  DEFAULT_PROFESSORS_ROUTE_NAME as PROFESSOR_ROUTE
+} from "../../Config/routeName";
 
 /* import:: CONSTANT */
 import { MOBILE_WIDTH_VALUE } from "../../Constant/CONSTANT_STYLE_VALUE";
@@ -29,6 +36,7 @@ const PathDirection = styled.nav`
   justify-content: flex-start;
 
   && svg {
+    display: block;
     padding: 0 5px;
   }
 
@@ -71,11 +79,11 @@ const Separator = styled.span`
     padding: 0 5px;
   }
 `;
-
 const pathDirection = ({ baseRoute, section, course, lesson, author }) => {
+  const homeDepartment = `/${baseRoute.split("/")[1]}`;
   return (
     <PathDirection>
-      <PathLink to={`${baseRoute}/${stringToPath(section)}`}>
+      <PathLink to={`${homeDepartment}/${ARTICLE_ROUTE}/${nameToUrl(section)}`}>
         {section}
       </PathLink>
       <Icons
@@ -83,25 +91,31 @@ const pathDirection = ({ baseRoute, section, course, lesson, author }) => {
         size={16}
         color={textBold}
       />
-      <PathLink
-        to={`${baseRoute}/${stringToPath(section)}#${stringToPath(course)}`}
-      >
-        {course}
-      </PathLink>
+      {course && (
+        <PathLink
+          to={`${homeDepartment}/${ARTICLE_ROUTE}/${nameToUrl(
+            section
+          )}#${stringToPath(course)}`}
+        >
+          {course}
+        </PathLink>
+      )}
       <Icons
         name={PathDirectionIcons.PATH_LESSONS}
         size={16}
         color={textBold}
       />
       <PathLink
-        to={`${baseRoute}/${stringToPath(section)}/${stringToPath(
-          course
-        )}/${stringToPath(lesson)}`}
+        to={`${homeDepartment}/${ARTICLE_ROUTE}/${nameToUrl(
+          section
+        )}/${nameToUrl(lesson)}`}
       >
         {lesson}
       </PathLink>
       <Separator />
-      <PathLink to={`${baseRoute}/Professors/${stringToPath(author)}`}>
+      <PathLink
+        to={`${homeDepartment}/${PROFESSOR_ROUTE}/${nameToUrl(author)}`}
+      >
         {author}
       </PathLink>
     </PathDirection>

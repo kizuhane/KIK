@@ -25,7 +25,7 @@ import ProfessorInfo from "./professorInfo";
 import { MOBILE_WIDTH_VALUE } from "../../Constant/CONSTANT_STYLE_VALUE";
 import { MobileContext } from "../../Pages/layout/mobileProvider";
 import { copyStringToClipboard } from "../../function/copyStringToClipboard";
-import { stringToPath } from "../../function/stringToPath";
+import { nameToUrl } from "../../function/nameToUrl";
 
 const SectionContainer = styled.section`
   margin: 8px 0 18px 0;
@@ -116,10 +116,10 @@ const ProfessorBox = ({
 }) => {
   const history = useHistory();
   const mobileVersion = useContext(MobileContext);
-  const elementID = stringToPath(name);
+  const elementID = nameToUrl(name);
 
   const defaultShowSection = () => {
-    return !!(history.location.hash === `#${elementID}`);
+    return !!(decodeURI(history.location.hash) === `#${elementID}`);
   };
 
   const [showSection, _setShowSection] = useState(defaultShowSection());

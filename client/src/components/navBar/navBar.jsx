@@ -51,7 +51,7 @@ const NavLinks = ({ match }) => {
 function NavBar({ match, displaySidebar, toggleSidebarEvent }) {
   const mobileVersion = useContext(MobileContext);
   return (
-    <Nav>
+    <Nav id="NavBar">
       {mobileVersion && (
         <ButtonIcon
           name={navBarIcons.BARS}

@@ -29,7 +29,6 @@ function getInitialFont() {
   const savedFont = localStorage.getItem("font");
   return savedFont ? JSON.parse(savedFont) : defaultFont;
 }
-
 export const KIKThemeProvider = ({ children }) => {
   const [themeState, _setThemeState] = React.useState(getInitialTheme);
   const [fontState, _setFontState] = React.useState(getInitialFont);
@@ -54,6 +53,27 @@ export const KIKThemeProvider = ({ children }) => {
     color: ${textPrimary};
     ${[OpenSans, RobotoCondensed, FiraCode]}
     ${highlightJS}
+  }
+
+  /* TODO: FIXME: print don't work */
+  @media print {
+    & #SideBar,#NavBar {
+      display:none !important;
+      z-index:-100 !important;
+      width: 0px !important;
+      height: 0px !important;
+    } 
+
+    & #Article{
+      position: absolute !important;
+      height: 100vh !important;
+      width: 100vw !important;
+      top: 0 !important;
+      left: 0 !important;
+      margin: 0 !important;
+      overflow-y: scroll !important;
+      z-index:100 !important;
+    }
   }
   `;
 

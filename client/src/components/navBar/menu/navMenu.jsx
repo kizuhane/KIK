@@ -33,6 +33,9 @@ import { Options } from "../../icons/ICONS";
 /* import:: functions */
 import { printContent } from "../../../function/printContent";
 
+/* import:: CONFIG route names */
+import { DEFAULT_ABOUT_ROUTE_NAME } from "../../../Config/routeName";
+
 /* import:: CONSTANT */
 import { MOBILE_WIDTH_VALUE } from "../../../Constant/CONSTANT_STYLE_VALUE";
 
@@ -67,7 +70,7 @@ const NavLinks = ({ match }) => {
 
 const GoToInfoPage = (history, path) => {
   const homeDepartment = `/${path.split("/")[1]}`;
-  history.push(`${homeDepartment}/About`);
+  history.push(`${homeDepartment}/${DEFAULT_ABOUT_ROUTE_NAME}`);
 };
 
 // TODO: LOGIN Logic

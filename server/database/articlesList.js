@@ -1,4 +1,4 @@
-const articlesList = [
+export const ArticlesListDB = [
   {
     type: "section",
     name: "Android",
@@ -101,11 +101,11 @@ const articlesList = [
       { id: 401, type: "lesson", name: "Struktura dokumentu" },
       {
         type: "course",
-        name: "Instalacja",
+        name: "DOM",
         lessons: [
-          { id: 402, type: "lesson", name: "Instalacja lesson 1" },
-          { id: 403, type: "lesson", name: "Instalacja lesson 2" },
-          { id: 404, type: "lesson", name: "Instalacja lesson 3" }
+          { id: 402, type: "lesson", name: "Wprowadzenie" },
+          { id: 403, type: "lesson", name: "head" },
+          { id: 404, type: "lesson", name: "body" }
         ]
       }
     ]
@@ -167,4 +167,4 @@ const articlesList = [
     ]
   }
 ];
-export default articlesList;
+export default ArticlesListDB;

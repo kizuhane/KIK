@@ -9,6 +9,7 @@ import { Route, Switch } from "react-router-dom";
 import WelcomePage from "./WelcomePage";
 // Article Page
 import ArticlePage from "./ArticlePage";
+import SectionPage from "./SectionPage";
 // Professors Page
 import Professors from "./Professors";
 import ProfessorPage from "./ProfessorPage";
@@ -28,8 +29,14 @@ import NavBar from "../components/navBar/navBar";
 import SideBar from "../components/sideBar/sideBar";
 
 /* import:: Views  */
-// TODO: rest api to search amiable departments
 
+/* import:: CONFIG */
+import {
+  DEFAULT_ARTICLE_ROUTE_NAME as ARTICLE_ROUTE,
+  DEFAULT_PROFESSORS_ROUTE_NAME as PROFESSOR_ROUTE
+} from "../Config/routeName";
+
+// TODO: rest api to search amiable departments
 import { AvailablePages } from "../components/test-comp/DEPARTAMENTS_LIST";
 
 // TODO: END SIDEBAR
@@ -100,27 +107,27 @@ const MainPage = props => {
               <Route exact path={`${match.path}/About`} component={AboutPage} />
               <Route
                 exact
-                path={`${match.path}articles`}
+                path={`${match.path}/${ARTICLE_ROUTE}`}
+                component={WelcomePage}
+              />
+              <Route
+                exact
+                path={`${match.path}/${ARTICLE_ROUTE}/:section`}
+                component={SectionPage}
+              />
+              <Route
+                exact
+                path={`${match.path}/${ARTICLE_ROUTE}/:section/:lesson`}
                 component={ArticlePage}
               />
               <Route
                 exact
-                path={`${match.path}/article/:section`}
-                component={ArticlePage}
-              />
-              <Route
-                exact
-                path={`${match.path}/article/:section/:lesson`}
-                component={ArticlePage}
-              />
-              <Route
-                exact
-                path={`${match.path}/Professors`}
+                path={`${match.path}/${PROFESSOR_ROUTE}`}
                 component={Professors}
               />
               <Route
                 exact
-                path={`${match.path}/Professors/:name`}
+                path={`${match.path}/${PROFESSOR_ROUTE}/:name`}
                 component={ProfessorPage}
               />
               <Route path="*" component={Error404Page} />

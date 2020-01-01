@@ -20,7 +20,7 @@ const articlesList = [
         lessons: [
           { id: 321, type: "lesson", name: "test lesson 1" },
           { id: 323, type: "lesson", name: "test lesson 2" },
-          { id: 323, type: "lesson", name: "test lesson 3" },
+          { id: 329, type: "lesson", name: "test lesson 3" },
           { id: 324, type: "lesson", name: "test lesson 4" }
         ]
       },

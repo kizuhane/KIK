@@ -1,10 +1,128 @@
-import React from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 
+import { useLocation } from "react-router-dom";
+
+/* import:: Theme */
+import styled from "styled-components";
+/* import:: colors */
+import {
+  textPrimary,
+  textBold,
+  textHeader,
+  textHint,
+  activeNavigation
+} from "../../../Theme/theme";
+
+import { SideBarArrows } from "../../icons/ICONS";
+import ButtonIcon from "../../buttons/BtnIcon";
+
+/* import:: CONFIG route names */
+import { DEFAULT_ARTICLE_ROUTE_NAME as ARTICLE_NAME } from "../../../Config/routeName";
+
+const CourseBoxContainer = styled.div`
+  display: flex;
+  align-items: center;
+
+  color: ${textHeader};
+
+  padding: 5px 10px 5px 20px;
+
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+
+  /* FIXME:  here bg when path correct */
+  background: ${props => (props.active ? activeNavigation : "")};
+
+  padding-bottom: ${props => (props.active ? "10px" : "5px")};
+
+  :hover {
+    background: ${activeNavigation}7f;
+  }
+  & button {
+    background: none;
+  }
+
+  & button:hover path {
+    background: inherit;
+    fill: ${textHeader};
+  }
+
+  & > a {
+    display: block;
+    width: 100%;
+
+    color: inherit;
+    text-decoration: none;
+  }
+`;
+const QuantityNumber = styled.span`
+  color: ${textHint};
+  font-size: 12px;
+`;
+
+/** @description  children container */
+const CourseBoxElements = styled.div`
+  ${props => (props.show ? "" : "display:none")}
+  padding: 0;
+
+  & a {
+    padding-left: 40px;
+  }
+`;
+
 const CourseBox = props => {
-  return <div>CourseBox</div>;
+  const { id, parentBox, name, quantity, children } = props;
+
+  const location = useLocation();
+
+  const currentParentUrl = `/${
+    location.pathname.split("/")[1]
+  }/${ARTICLE_NAME}/${parentBox}`;
+
+  const defaultShowSection = () => {
+    return location.pathname.split("/")[4] === id;
+  };
+
+  const [showCourseSectionBox, _setShowCourseSectionBox] = useState(
+    defaultShowSection()
+  );
+
+  const toggleShowCourseSectionBox = () => {
+    _setShowCourseSectionBox(!showCourseSectionBox);
+  };
+
+  return (
+    <>
+      <CourseBoxContainer active={defaultShowSection()}>
+        <ButtonIcon
+          name={
+            showCourseSectionBox
+              ? SideBarArrows.CARET_DOWN
+              : SideBarArrows.CARET_RIGHT
+          }
+          size={14}
+          padding="0 5px 0 0"
+          color={showCourseSectionBox ? textBold : textPrimary}
+          events={{ onClick: () => toggleShowCourseSectionBox() }}
+        />
+        <a href={`${currentParentUrl}/${id}`}>{name}</a>
+        <QuantityNumber>{quantity}</QuantityNumber>
+      </CourseBoxContainer>
+      <CourseBoxElements show={showCourseSectionBox}>
+        {children}
+      </CourseBoxElements>
+    </>
+  );
 };
 
-CourseBox.propTypes = {};
+CourseBox.propTypes = {
+  id: PropTypes.string.isRequired,
+  parentBox: PropTypes.string.isRequired,
+  quantity: PropTypes.number.isRequired,
+  name: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired
+};
 
 export default CourseBox;

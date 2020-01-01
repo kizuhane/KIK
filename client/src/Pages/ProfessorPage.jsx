@@ -43,12 +43,12 @@ const SectionChildren = styled.div`
 const lessonListComponent = (data, location) => {
   const homeDepartment = `/${location.split("/")[1]}/${ARTICLE_NAME}`;
 
-  const pushToArr = (arr, section) => {
+  const pushToArr = (arr, course, section) => {
     const ObjArr = [];
     arr.forEach(el =>
       ObjArr.push({
         text: el.name,
-        href: `${homeDepartment}/${section}/${nameToUrl(el.name)}`
+        href: `${homeDepartment}/${course}/${section}/${nameToUrl(el.name)}`
       })
     );
     return ObjArr;
@@ -72,17 +72,23 @@ const lessonListComponent = (data, location) => {
               {secEl.type === "course" ? (
                 <>
                   <SectionChildrenHeader
-                    href={`${homeDepartment}/${stringToPath(
+                    href={`${homeDepartment}/${nameToUrl(
                       section.name
                     )}#${stringToPath(secEl.name)}`}
                   >
                     {secEl.name}
                   </SectionChildrenHeader>
-                  <LinkList>{pushToArr(secEl.lessons, section.name)}</LinkList>
+                  <LinkList>
+                    {pushToArr(
+                      secEl.lessons,
+                      stringToPath(secEl.name),
+                      nameToUrl(section.name)
+                    )}
+                  </LinkList>
                 </>
               ) : (
                 <SectionChildrenHeader
-                  href={`${homeDepartment}/${stringToPath(
+                  href={`${homeDepartment}/${nameToUrl(
                     section.name
                   )}#${stringToPath(secEl.name)}`}
                 >

@@ -5,6 +5,7 @@
   "error.404_Header": "Coś się stało",
   "error.404_Message": "Coś poszło nie tak i nie można znaleźć twojej specjalnej strony wyboru, co jest dziwne, ponieważ u mnie działa",
   "error.404_Help": "Jeśli chcesz dowiedzieć się więcej, możesz wyszukać błąd online: 404_PAGE_NOT_FOUND",
+  "error.SideBarEmpty": "Niestety brak żadych lekcji",
   "navBar.BackToLandingPage": "Start",
   "navBar.GoToProfessorsPage": "Profesorowie",
   "navBar.SearchPlaceholder": "Szukaj...",

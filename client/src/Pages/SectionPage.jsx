@@ -32,10 +32,11 @@ const pushToArr = (arr, section) => {
 };
 
 const SectionPage = props => {
-  const { location } = props;
+  const { location, match } = props;
   /** @description jump do id from hash from link */
+
   useEffect(() => {
-    hashLinkScroll(location.hash);
+    hashLinkScroll(location.hash ? location.hash : match.params.course);
   });
   return (
     <>
@@ -67,8 +68,6 @@ const SectionPage = props => {
   );
 };
 
-/* <LinkList>{pushToArr(secEl.lessons, section.name)}</LinkList> */
-
 SectionPage.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string,
@@ -76,6 +75,11 @@ SectionPage.propTypes = {
     hash: PropTypes.string,
     state: PropTypes.any,
     key: PropTypes.string
+  }).isRequired,
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired,
+    path: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
   }).isRequired
 };
 

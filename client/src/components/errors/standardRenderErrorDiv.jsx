@@ -52,7 +52,7 @@ const standardRenderErrorDiv = ({ message, icon }) => {
 export default standardRenderErrorDiv;
 
 standardRenderErrorDiv.propTypes = {
-  message: PropTypes.string,
+  message: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   icon: PropTypes.bool
 };
 standardRenderErrorDiv.defaultProps = {

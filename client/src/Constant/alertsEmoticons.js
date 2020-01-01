@@ -6,7 +6,6 @@ export const errorsEmoticons = [
   ",_,",
   "._.",
   "(°ロ°)",
-  "(╯°□°）╯︵ ┻━┻",
   "(¬_¬)"
 ];
 export const successEmoticons = [

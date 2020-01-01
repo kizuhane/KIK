@@ -40,6 +40,7 @@ import {
 import { AvailablePages } from "../components/test-comp/DEPARTAMENTS_LIST";
 
 // TODO: END SIDEBAR
+// TODO: rest api response draw error if notching comes back
 const MainPage = props => {
   const { match } = props;
   console.log(props);
@@ -62,43 +63,7 @@ const MainPage = props => {
           <Route
             path={`${match.path}`}
             render={routeProps => (
-              <SideBar {...routeProps} toggleSidebar={displaySidebar}>
-                <p>Lorem ipsum dolor sit amet.</p>
-                <p>2</p>
-                <p>3</p>
-                <p>4</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-                <p>6</p>
-              </SideBar>
+              <SideBar {...routeProps} toggleSidebar={displaySidebar} />
             )}
           />
           <Content>
@@ -117,7 +82,12 @@ const MainPage = props => {
               />
               <Route
                 exact
-                path={`${match.path}/${ARTICLE_ROUTE}/:section/:lesson`}
+                path={`${match.path}/${ARTICLE_ROUTE}/:section/:course`}
+                component={SectionPage}
+              />
+              <Route
+                exact
+                path={`${match.path}/${ARTICLE_ROUTE}/:section/:course/:lesson`}
                 component={ArticlePage}
               />
               <Route

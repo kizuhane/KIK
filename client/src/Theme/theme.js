@@ -21,7 +21,7 @@ export const primaryLight = theme("mode", {
 /* ------------------ ACTIVE COLORS ------------------*/
 export const activeNavigation = theme("mode", {
   light: "#B5E5FD",
-  dark: "#B5E5FD"
+  dark: "#00274E"
 });
 export const inactive = theme("mode", {
   light: "#C7C7D6",

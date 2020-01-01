@@ -15,12 +15,18 @@ import { secondaryBackground, textPrimary } from "../../Theme/theme";
 import SectionBox from "./elements/SectionBox";
 import CourseBox from "./elements/CourseBox";
 import LessonLink from "./elements/lessonLink";
+// Searched List components
+import SearchedListBox from "./elements/searchedListBox";
+import SearchLink from "./elements/searchLink";
 
 import StandardRenderErrorDiv from "../errors/standardRenderErrorDiv";
 
 /* import:: Function */
 import { stringToPath } from "../../function/stringToPath";
 import { nameToUrl } from "../../function/nameToUrl";
+
+/* import:: SearchBar value Context form Provider  */
+import { SearchBarContext } from "../navBar/elements/SearchBarProvider";
 
 /* import:: CONFIG route names */
 import { DEFAULT_ARTICLE_ROUTE_NAME as ARTICLE_ROUTE } from "../../Config/routeName";
@@ -67,9 +73,17 @@ const SideBarChildren = styled.div`
 TODO: FIXME: ERROR: pat don't work if lesson don't have course
 /:department/:section/:course/:lesson || don't allow have wild lesson
 /:department/:section#course/:lesson || don't allow have lined nav
+
+TEST: THIS WORK
 /:department/:section//:lesson || add wild route
+
+router.get("/:id//:name", (req, res) => {
+  res.json({
+    msg: `hello from wild route req: ${req.params.id} ${req.params.name}`
+  });
+});
 */
-const drawSideBarElements = (data, location) => {
+const DrawSideBarElements = (data, location, SearchValue) => {
   const homeDepartment = `${location}/${ARTICLE_ROUTE}`;
 
   return data.map((section, sectionIndex) => (
@@ -115,14 +129,48 @@ const drawSideBarElements = (data, location) => {
   ));
 };
 
-// TODO: search bar LOGIC
-// TODO: name of rest app call if empty
+const DrawSearchListBarElements = (data, location) => {
+  const homeDepartment = `${location}/${ARTICLE_ROUTE}`;
+
+  return (
+    <SearchedListBox>
+      {data.map(section =>
+        section.elements.map(el =>
+          el.type === "lesson" ? (
+            <SearchLink
+              key={el.id}
+              icon={section.icon}
+              href={`${homeDepartment}/${nameToUrl(section.name)}//${nameToUrl(
+                el.name
+              )}`}
+            >
+              {section.name} / {el.name}
+            </SearchLink>
+          ) : (
+            el.lessons.map(lesson => (
+              <SearchLink
+                key={lesson.id}
+                icon={section.icon}
+                href={`${homeDepartment}/${nameToUrl(
+                  section.name
+                )}/${stringToPath(el.name)}/${nameToUrl(lesson.name)}`}
+              >
+                {section.name} / {el.name} / {lesson.name}
+              </SearchLink>
+            ))
+          )
+        )
+      )}
+    </SearchedListBox>
+  );
+};
+// TODO: name of rest app call if empty [articlesList]
 const SideBarContainer = props => {
   const { toggleSidebar, match } = props;
-  console.log("SideBarContainer", props);
-  const mobileVersion = useContext(MobileContext);
 
-  const _1stElement = articlesList[1];
+  const mobileVersion = useContext(MobileContext);
+  const SearchBarContextValue = useContext(SearchBarContext);
+
   return (
     <SideBar
       id="SideBar"
@@ -131,7 +179,13 @@ const SideBarContainer = props => {
     >
       {articlesList ? (
         <SideBarChildren>
-          {drawSideBarElements(articlesList, match.url)}
+          {!SearchBarContextValue.SearchValue
+            ? DrawSideBarElements(articlesList, match.url)
+            : DrawSearchListBarElements(
+                articlesList,
+                match.url,
+                SearchBarContextValue.SearchValue
+              )}
         </SideBarChildren>
       ) : (
         <StandardRenderErrorDiv
@@ -158,53 +212,3 @@ SideBarContainer.propTypes = {
 };
 
 export default SideBarContainer;
-
-/*
-<SideBarChildren>
-          <SectionBox
-            id={nameToUrl(_1stElement.name)}
-            icon={_1stElement.icon}
-            quantity={_1stElement.elements.length}
-            name={_1stElement.name}
-          >
-            <LessonLink href="/">Lorem 1</LessonLink>
-            <LessonLink href="/">Lorem 1</LessonLink>
-            <CourseBox
-              id={stringToPath(_1stElement.elements[1].name)}
-              parentBox={nameToUrl(_1stElement.name)}
-              quantity={_1stElement.elements[1].lessons.length}
-              name={_1stElement.elements[1].name}
-            >
-              <LessonLink href="/KIK/article/Java/instalacja/c">
-                Lorem 1
-              </LessonLink>
-              <LessonLink href="/">Lorem 2</LessonLink>
-              <LessonLink href="/">Lorem 3</LessonLink>
-              <LessonLink href="/">Lorem ipsum dolor sit amet.</LessonLink>
-              <LessonLink href="/">Lorem ipsum dolor sit amet.</LessonLink>
-            </CourseBox>
-          </SectionBox>
-          <SectionBox
-            id="XD"
-            icon={_1stElement.icon}
-            quantity={_1stElement.elements.length}
-            name="XD"
-          >
-            <LessonLink href="/">Lorem ipsum dolor sit amet.</LessonLink>
-          </SectionBox>
-          <SectionBox
-            id="BLA"
-            icon=""
-            quantity={_1stElement.elements.length}
-            name="BLA"
-          >
-            <>
-              <LessonLink href="/KIK/article/BLA/a">Lorem 1</LessonLink>
-              <LessonLink href="/">Lorem 2</LessonLink>
-              <LessonLink href="/">Lorem 3</LessonLink>
-              <LessonLink href="/">Lorem ipsum dolor sit amet.</LessonLink>
-            </>
-          </SectionBox>
-        </SideBarChildren>
-
-*/

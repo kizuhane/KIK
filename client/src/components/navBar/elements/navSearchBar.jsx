@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import PropTypes from "prop-types";
+import React, { useContext } from "react";
 
 /* import:: localization provider */
 import { FormattedMessage } from "react-intl";
@@ -13,6 +12,9 @@ import {
   textHint,
   absoluteContrast
 } from "../../../Theme/theme";
+
+/* import:: SearchBar value Context form Provider  */
+import { SearchBarContext } from "./SearchBarProvider";
 
 /* import:: CONSTANT VALUE */
 import { MOBILE_WIDTH_VALUE } from "../../../Constant/CONSTANT_STYLE_VALUE";
@@ -56,25 +58,11 @@ const InputSearchBar = styled.input.attrs({
   }
 `;
 
-const useFormInput = initialState => {
-  const [value, _setValue] = useState(initialState);
-
-  const handleChange = e => _setValue(e.target.value);
-  const resetValue = () => _setValue("");
-
-  return {
-    value,
-    onChange: handleChange,
-    onClick: resetValue
-  };
-};
-
-// TODO: Search bar logic
 const NavSearchBar = () => {
-  const search = useFormInput("");
+  const SearchBarContextValue = useContext(SearchBarContext);
 
   return (
-    <SearchBar value={search.value}>
+    <SearchBar value={SearchBarContextValue.SearchValue}>
       <FormattedMessage
         id="navBar.SearchPlaceholder"
         defaultMessage="Search..."
@@ -82,15 +70,15 @@ const NavSearchBar = () => {
         {placeholder => (
           <InputSearchBar
             placeholder={placeholder}
-            value={search.value}
-            onChange={search.onChange}
+            value={SearchBarContextValue.SearchValue}
+            onChange={SearchBarContextValue.onChange}
           />
         )}
       </FormattedMessage>
       <ButtonIcon
-        events={{ onClick: search.onClick }}
-        disabled={!search.value.length}
-        name={search.value.length ? TIMES : SEARCH}
+        events={{ onClick: SearchBarContextValue.onClick }}
+        disabled={!SearchBarContextValue.SearchValue.length}
+        name={SearchBarContextValue.SearchValue.length ? TIMES : SEARCH}
         size={18}
         padding="5px 10px 5px 0"
       />

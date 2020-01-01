@@ -39,7 +39,6 @@ const SectionBoxHeaderContainer = styled.div`
   font-weight: normal;
   font-size: 14px;
 
-  /* FIXME:  here bg when path correct */
   background: ${props => (props.active ? activeNavigation : "")};
 
   padding-bottom: ${props => (props.active ? "10px" : "5px")};
@@ -51,7 +50,8 @@ const SectionBoxHeaderContainer = styled.div`
     background: none;
   }
 
-  & > svg {
+  & > span {
+    display: block;
     padding-right: 5px;
   }
   & > a {
@@ -85,7 +85,7 @@ const SectionBox = ({ id, icon, name, quantity, children }) => {
   }/${ARTICLE_ROUTE}`;
 
   const defaultShowSection = () => {
-    return location.pathname.split("/")[3] === id;
+    return !!(location.pathname.split("/")[3] === id);
   };
 
   const [showSectionBox, _setShowSectionBox] = useState(defaultShowSection());
@@ -108,7 +108,11 @@ const SectionBox = ({ id, icon, name, quantity, children }) => {
           color={showSectionBox ? textBold : textPrimary}
           events={{ onClick: () => toggleShowSectionBox() }}
         />
-        {icon && <Icon name={icon} size={14} color={textBold} />}
+        {icon && (
+          <span>
+            <Icon name={icon} size={14} color={textBold} />
+          </span>
+        )}
         <a href={`${currentParentUrl}/${id}`}>{name}</a>
         <QuantityNumber>{quantity}</QuantityNumber>
       </SectionBoxHeaderContainer>

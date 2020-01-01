@@ -14,10 +14,14 @@ import {
   primaryBackground
 } from "../../../Theme/theme";
 
+/* import:: components */
+import Icon from "../../icons/Icon";
+
 const LessonNavLinkSelect = "LessonNavLinkActive";
 const LessonNavLink = styled(NavLink)`
-  display: block;
+  display: flex;
   padding: 5px 10px;
+  align-items: center;
 
   color: ${textPrimary};
 
@@ -42,19 +46,30 @@ const LessonNavLink = styled(NavLink)`
     color: ${textHyperlink};
     background-color: ${primaryBackground};
   }
+
+  & > span:nth-child(1) {
+    display: block;
+    padding-right: 5px;
+  }
 `;
 
-const lessonLink = ({ href, children }) => {
+const searchLink = ({ icon, href, children }) => {
   return (
     <LessonNavLink exact to={href} activeClassName={LessonNavLinkSelect}>
+      {icon && (
+        <span>
+          <Icon name={icon} size={18} color={textBold} />
+        </span>
+      )}
       {children}
     </LessonNavLink>
   );
 };
 
-lessonLink.propTypes = {
+searchLink.propTypes = {
+  icon: PropTypes.string.isRequired,
   href: PropTypes.string.isRequired,
-  children: PropTypes.string.isRequired
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.array]).isRequired
 };
 
-export default lessonLink;
+export default searchLink;

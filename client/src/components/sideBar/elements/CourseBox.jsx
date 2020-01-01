@@ -21,6 +21,10 @@ import ButtonIcon from "../../buttons/BtnIcon";
 import { DEFAULT_ARTICLE_ROUTE_NAME as ARTICLE_NAME } from "../../../Config/routeName";
 
 const CourseBoxContainer = styled.div`
+  display: block;
+`;
+
+const CourseBoxHeader = styled.div`
   display: flex;
   align-items: center;
 
@@ -32,7 +36,6 @@ const CourseBoxContainer = styled.div`
   font-weight: normal;
   font-size: 14px;
 
-  /* FIXME:  here bg when path correct */
   background: ${props => (props.active ? activeNavigation : "")};
 
   padding-bottom: ${props => (props.active ? "10px" : "5px")};
@@ -56,6 +59,11 @@ const CourseBoxContainer = styled.div`
     color: inherit;
     text-decoration: none;
   }
+
+  & div {
+    background: red;
+    /* display: none; */
+  }
 `;
 const QuantityNumber = styled.span`
   color: ${textHint};
@@ -72,9 +80,7 @@ const CourseBoxElements = styled.div`
   }
 `;
 
-const CourseBox = props => {
-  const { id, parentBox, name, quantity, children } = props;
-
+const CourseBox = ({ id, parentBox, name, quantity, children }) => {
   const location = useLocation();
 
   const currentParentUrl = `/${
@@ -82,7 +88,8 @@ const CourseBox = props => {
   }/${ARTICLE_NAME}/${parentBox}`;
 
   const defaultShowSection = () => {
-    return location.pathname.split("/")[4] === id;
+    const pathHeader = location.pathname.split("/");
+    return pathHeader[3] === parentBox && pathHeader[4] === id;
   };
 
   const [showCourseSectionBox, _setShowCourseSectionBox] = useState(
@@ -94,8 +101,8 @@ const CourseBox = props => {
   };
 
   return (
-    <>
-      <CourseBoxContainer active={defaultShowSection()}>
+    <CourseBoxContainer>
+      <CourseBoxHeader active={defaultShowSection()}>
         <ButtonIcon
           name={
             showCourseSectionBox
@@ -109,11 +116,11 @@ const CourseBox = props => {
         />
         <a href={`${currentParentUrl}/${id}`}>{name}</a>
         <QuantityNumber>{quantity}</QuantityNumber>
-      </CourseBoxContainer>
+      </CourseBoxHeader>
       <CourseBoxElements show={showCourseSectionBox}>
         {children}
       </CourseBoxElements>
-    </>
+    </CourseBoxContainer>
   );
 };
 

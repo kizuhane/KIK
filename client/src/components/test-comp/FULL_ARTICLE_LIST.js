@@ -29,10 +29,10 @@ const articlesList = [
         type: "course",
         name: "Test course 2",
         lessons: [
-          { id: 330, type: "lesson", name: "test lesson 5" },
+          { id: 334, type: "lesson", name: "test lesson 5" },
           { id: 331, type: "lesson", name: "test lesson 6" },
           { id: 332, type: "lesson", name: "test lesson 7" },
-          { id: 323, type: "lesson", name: "test lesson 8" }
+          { id: 328, type: "lesson", name: "test lesson 8" }
         ]
       }
     ]

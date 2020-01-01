@@ -23,6 +23,9 @@ import Error404Page from "./errors/404";
 import Content from "./layout/content";
 import MobileProvider from "./layout/mobileProvider";
 
+/* import:: SearchBox provider   */
+import SearchBarProvider from "../components/navBar/elements/SearchBarProvider";
+
 /* import:: Components  */
 // nav components
 import NavBar from "../components/navBar/navBar";
@@ -39,7 +42,6 @@ import {
 // TODO: rest api to search amiable departments
 import { AvailablePages } from "../components/test-comp/DEPARTAMENTS_LIST";
 
-// TODO: END SIDEBAR
 // TODO: rest api response draw error if notching comes back
 const MainPage = props => {
   const { match } = props;
@@ -50,22 +52,24 @@ const MainPage = props => {
     <>
       {AvailablePages.find(page => page === match.params.department) ? (
         <MobileProvider>
-          <Route
-            path={`${match.path}`}
-            render={routeProps => (
-              <NavBar
-                {...routeProps}
-                displaySidebar={displaySidebar}
-                toggleSidebarEvent={e => _setDisplaySidebar(!displaySidebar)}
-              />
-            )}
-          />
-          <Route
-            path={`${match.path}`}
-            render={routeProps => (
-              <SideBar {...routeProps} toggleSidebar={displaySidebar} />
-            )}
-          />
+          <SearchBarProvider>
+            <Route
+              path={`${match.path}`}
+              render={routeProps => (
+                <NavBar
+                  {...routeProps}
+                  displaySidebar={displaySidebar}
+                  toggleSidebarEvent={e => _setDisplaySidebar(!displaySidebar)}
+                />
+              )}
+            />
+            <Route
+              path={`${match.path}`}
+              render={routeProps => (
+                <SideBar {...routeProps} toggleSidebar={displaySidebar} />
+              )}
+            />
+          </SearchBarProvider>
           <Content>
             <Switch>
               <Route exact path={`${match.path}`} component={WelcomePage} />
@@ -80,7 +84,6 @@ const MainPage = props => {
                 path={`${match.path}/${ARTICLE_ROUTE}/:section`}
                 component={SectionPage}
               />
-              {/* TEST: testing wild route */}
               <Route
                 exact
                 path={`${match.path}/${ARTICLE_ROUTE}/:section//:lesson`}

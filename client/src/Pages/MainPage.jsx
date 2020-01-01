@@ -80,6 +80,12 @@ const MainPage = props => {
                 path={`${match.path}/${ARTICLE_ROUTE}/:section`}
                 component={SectionPage}
               />
+              {/* TEST: testing wild route */}
+              <Route
+                exact
+                path={`${match.path}/${ARTICLE_ROUTE}/:section//:lesson`}
+                component={ArticlePage}
+              />
               <Route
                 exact
                 path={`${match.path}/${ARTICLE_ROUTE}/:section/:course`}

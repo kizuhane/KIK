@@ -65,8 +65,9 @@ const SideBarChildren = styled.div`
 `;
 /* 
 TODO: FIXME: ERROR: pat don't work if lesson don't have course
-/:department/:section/:course/:lesson don't allow have wild lesson
-/:department/:section#course/:lesson don't allow have lined nav
+/:department/:section/:course/:lesson || don't allow have wild lesson
+/:department/:section#course/:lesson || don't allow have lined nav
+/:department/:section//:lesson || add wild route
 */
 const drawSideBarElements = (data, location) => {
   const homeDepartment = `${location}/${ARTICLE_ROUTE}`;
@@ -83,7 +84,9 @@ const drawSideBarElements = (data, location) => {
         el.type === "lesson" ? (
           <LessonLink
             key={el.id}
-            href={`${homeDepartment}/${nameToUrl(el.name)}`}
+            href={`${homeDepartment}/${nameToUrl(section.name)}//${nameToUrl(
+              el.name
+            )}`}
           >
             {el.name}
           </LessonLink>
@@ -91,7 +94,7 @@ const drawSideBarElements = (data, location) => {
           <CourseBox
             key={elIndex}
             id={stringToPath(el.name)}
-            parentBox={nameToUrl(el.name)}
+            parentBox={nameToUrl(section.name)}
             quantity={el.lessons.length}
             name={el.name}
           >

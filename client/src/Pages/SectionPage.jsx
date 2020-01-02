@@ -5,12 +5,12 @@ import PropTypes from "prop-types";
 import { FormattedMessage } from "react-intl";
 
 /* import:: components */
-import Title from "../components/articleContents/title";
-import SubtitleHeader from "../components/articleContents/subtitleHeader";
-import ElementsHeader from "../components/articleContents/ElementsHeader";
+import Title from "../components/articleComponents/title";
+import SubtitleHeader from "../components/articleComponents/subtitleHeader";
+import ElementsHeader from "../components/articleComponents/ElementsHeader";
 
 import SectionChildrenHeader from "../components/lessonsList/sectionChildrenHeader";
-import LinkList from "../components/articleContents/linkList";
+import LinkList from "../components/articleComponents/linkList";
 
 /* import:: CONSTANT */
 import { stringToPath } from "../function/stringToPath";

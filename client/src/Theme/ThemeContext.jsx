@@ -17,7 +17,7 @@ import { FiraCode } from "./fonts/FiraCode";
 const ThemeToggleContext = React.createContext();
 
 const defaultTheme = { mode: "light" };
-const defaultFont = { mode: "normal" };
+const defaultFont = { type: "normal" };
 
 export const useTheme = () => React.useContext(ThemeToggleContext);
 

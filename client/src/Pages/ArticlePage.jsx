@@ -2,22 +2,22 @@ import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 /* import:: components */
-import PathDirection from "../components/articleContents/pathDirection";
-import Title from "../components/articleContents/title";
-import Section from "../components/articleContents/Section";
-import Paragraphs from "../components/articleContents/paragraphs";
-import SubsectionHeader from "../components/articleContents/SubsectionHeader";
-import Quote from "../components/articleContents/quote";
-import ElementsHeader from "../components/articleContents/ElementsHeader";
-import ImageContainer from "../components/articleContents/imageContainer";
-import Delimiter from "../components/articleContents/delimiter";
-import Note from "../components/articleContents/note";
-import List from "../components/articleContents/list";
-import LinkList from "../components/articleContents/linkList";
-import Embed from "../components/articleContents/embed";
-import CodeBlock from "../components/articleContents/codeBlock";
-import Table from "../components/articleContents/table";
-import RawHtml from "../components/articleContents/rawHtml";
+import PathDirection from "../components/articleComponents/pathDirection";
+import Title from "../components/articleComponents/title";
+import Section from "../components/articleComponents/Section";
+import Paragraphs from "../components/articleComponents/paragraphs";
+import SubsectionHeader from "../components/articleComponents/SubsectionHeader";
+import Quote from "../components/articleComponents/quote";
+import ElementsHeader from "../components/articleComponents/ElementsHeader";
+import ImageContainer from "../components/articleComponents/imageContainer";
+import Delimiter from "../components/articleComponents/delimiter";
+import Note from "../components/articleComponents/note";
+import List from "../components/articleComponents/list";
+import LinkList from "../components/articleComponents/linkList";
+import Embed from "../components/articleComponents/embed";
+import CodeBlock from "../components/articleComponents/codeBlock";
+import Table from "../components/articleComponents/table";
+import RawHtml from "../components/articleComponents/rawHtml";
 
 /* import:: CONSTANT */
 import { SHOW_ALL_SECTION } from "../Constant/CONSTANT_STYLE_VALUE";

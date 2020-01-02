@@ -1,31 +1,35 @@
 import React from "react";
 import { FormattedMessage } from "react-intl";
 
+/* import:: Router */
+import { useHistory } from "react-router-dom";
+
 import styled from "styled-components";
 
 import BtnSecondary from "../../buttons/btnSecondary";
 
-const LoginBtn = styled.div`
+const LoginBtnContainer = styled.div`
   text-align: center;
 `;
 
-const loginLogic = () => {
-  console.log("login");
-};
-
-const loginBtn = props => {
+const LoginBtn = () => {
+  const history = useHistory();
+  // NOTE: Login logic
   const login = false;
   return (
-    <LoginBtn>
-      <BtnSecondary to="#6" events={{ onClick: loginLogic }}>
+    <LoginBtnContainer>
+      <BtnSecondary
+        to="#6"
+        events={{ onClick: () => history.push("/admin/login") }}
+      >
         {!login ? (
           <FormattedMessage id="navMenu.LogIn" defaultMessage="Log In" />
         ) : (
           <FormattedMessage id="navMenu.LogOut" defaultMessage="Log Out" />
         )}
       </BtnSecondary>
-    </LoginBtn>
+    </LoginBtnContainer>
   );
 };
 
-export default loginBtn;
+export default LoginBtn;

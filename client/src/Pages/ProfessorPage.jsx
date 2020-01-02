@@ -7,10 +7,10 @@ import { FormattedMessage } from "react-intl";
 import styled from "styled-components";
 
 /* import:: components */
-import Title from "../components/articleContents/title";
+import Title from "../components/articleComponents/title";
 import ProfessorInfo from "../components/ProfessorsContent/professorInfo";
-import SubtitleHeader from "../components/articleContents/subtitleHeader";
-import ElementsHeader from "../components/articleContents/ElementsHeader";
+import SubtitleHeader from "../components/articleComponents/subtitleHeader";
+import ElementsHeader from "../components/articleComponents/ElementsHeader";
 
 // section list components
 import SectionHeader from "../components/lessonsList/sectionHeader";
@@ -18,7 +18,7 @@ import SectionChildrenHeader from "../components/lessonsList/sectionChildrenHead
 
 // list components
 import TextList from "../components/textList";
-import LinkList from "../components/articleContents/linkList";
+import LinkList from "../components/articleComponents/linkList";
 
 /* import:: CONSTANT */
 import { stringToPath } from "../function/stringToPath";

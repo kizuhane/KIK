@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useContext } from "react";
 import PropTypes from "prop-types";
+/* import:: Localization */
 import { FormattedMessage } from "react-intl";
 /* import:: react router history */
 import { useHistory } from "react-router-dom";
@@ -7,6 +8,7 @@ import { useHistory } from "react-router-dom";
 /* import:: Theme */
 import styled from "styled-components";
 import { useTheme } from "../../../Theme/ThemeContext";
+import { textHeader } from "../../../Theme/theme";
 
 /* import:: dropMenu components */
 import ButtonIcon from "../../buttons/BtnIcon";
@@ -17,9 +19,7 @@ import DropDownSectionHeader from "./dropDownSectionHeader";
 import DropDownToggleBtn from "./dropDownToggleBtn";
 import BtnToggle from "../../buttons/btnToggle";
 
-import LoginBtn from "./loginBtn";
-
-import { textHeader } from "../../../Theme/theme";
+import LoginBtn from "./LoginBtn";
 
 /* import:: components */
 import Separator from "../../separator";

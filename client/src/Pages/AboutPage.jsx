@@ -1,11 +1,10 @@
 import React from "react";
 
 /* import:: components */
-import Title from "../components/articleContents/title";
-import Paragraphs from "../components/articleContents/paragraphs";
-import ElementsHeader from "../components/articleContents/ElementsHeader";
-import LinkList from "../components/articleContents/linkList";
-import ATag from "../components/aTag";
+import Title from "../components/articleComponents/title";
+import Paragraphs from "../components/articleComponents/paragraphs";
+import ElementsHeader from "../components/articleComponents/ElementsHeader";
+import LinkList from "../components/articleComponents/linkList";
 
 const UsedTechnologyList = [
   { text: "ReactJS", href: "https://pl.reactjs.org/" },
@@ -13,6 +12,10 @@ const UsedTechnologyList = [
   {
     text: "Styled Components",
     href: "https://www.styled-components.com/"
+  },
+  {
+    text: "FormatJS React Intl",
+    href: "https://github.com/formatjs/react-intl"
   },
   { text: "Express", href: "https://expressjs.com/" },
   { text: "Highlight.js", href: "https://highlightjs.org/" }
@@ -23,6 +26,18 @@ const UsedDependenciesList = [
   {
     text: "normalize-strings",
     href: "https://www.npmjs.com/package/normalize-strings"
+  }
+];
+
+const RepoList = [
+  {
+    text: "Link do pracy na stronie github",
+    href: "https://github.com/ArturJakiel/KIK"
+  },
+  {
+    text: "Zobacz mocap pracy",
+    href:
+      "https://www.figma.com/file/01ejK9gIp90Yhw894RZ25tAR/Praca-Inzynierska-KiK?node-id=0%3A1"
   }
 ];
 
@@ -43,12 +58,7 @@ const AboutPage = () => {
       <LinkList>{UsedDependenciesList}</LinkList>
 
       <ElementsHeader>Pozostałe informacje</ElementsHeader>
-      <ATag href="https://github.com/ArturJakiel/KIK">
-        Link do pracy na stronie github
-      </ATag>
-      <ATag href="https://www.figma.com/file/01ejK9gIp90Yhw894RZ25tAR/Praca-Inzynierska-KiK?node-id=0%3A1">
-        Zobacz mocap pracy
-      </ATag>
+      <LinkList>{RepoList}</LinkList>
     </article>
   );
 };

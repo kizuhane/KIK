@@ -6,10 +6,9 @@ import styled from "styled-components";
 // colors
 import { textBold, textInactive, activeContent } from "../../Theme/theme";
 
-// TODO: Style THIS
-const ButtonPrimary = styled.button.attrs({
-  type: "button"
-})`
+const ButtonPrimary = styled.button.attrs(props => ({
+  type: props.type
+}))`
   position: relative;
 
   border: none;
@@ -77,9 +76,9 @@ const ButtonPrimary = styled.button.attrs({
   }
 `;
 
-const btnPrimary = ({ children, events, disabled }) => {
+const btnPrimary = ({ children, events, disabled, type }) => {
   return (
-    <ButtonPrimary {...events} disabled={disabled}>
+    <ButtonPrimary {...events} disabled={disabled} type={type}>
       {children}
     </ButtonPrimary>
   );
@@ -89,9 +88,11 @@ btnPrimary.propTypes = {
   children: PropTypes.oneOfType([PropTypes.string, PropTypes.element])
     .isRequired,
   events: PropTypes.PropTypes.objectOf(PropTypes.func).isRequired,
-  disabled: PropTypes.bool
+  disabled: PropTypes.bool,
+  type: PropTypes.string
 };
 btnPrimary.defaultProps = {
+  type: "button",
   disabled: false
 };
 

@@ -1,7 +1,7 @@
 {
-  "app.text": "Edytuj <code class='oneLine'>src/App.js =></code> i zapisz aby odświerzyć.<br/>Teraz z {what}!",
-  "app.buttonLightMode": "Włącz Jasny Motyw",
-  "app.buttonDarkMode": "Włącz Ciemny Motyw",
+  "form.RememberMe": "Zapamiętaj mnie",
+  "form.Username": "Nazwa Użytkownika",
+  "form.Password": "Hasło",
   "error.404_Header": "Coś się stało",
   "error.404_Message": "Coś poszło nie tak i nie można znaleźć twojej specjalnej strony wyboru, co jest dziwne, ponieważ u mnie działa",
   "error.404_Help": "Jeśli chcesz dowiedzieć się więcej, możesz wyszukać błąd online: 404_PAGE_NOT_FOUND",

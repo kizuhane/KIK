@@ -5,8 +5,8 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 
 /* import:: components */
-import Paragraphs from "../components/articleContents/paragraphs";
-import ElementsHeader from "../components/articleContents/ElementsHeader";
+import Paragraphs from "../components/articleComponents/paragraphs";
+import ElementsHeader from "../components/articleComponents/ElementsHeader";
 import BtnPrimary from "../components/buttons/btnPrimary";
 
 /* import:: CONSTANT */

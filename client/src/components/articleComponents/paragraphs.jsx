@@ -8,7 +8,9 @@ import {
   paragraphInlineCodeBG,
   textInlineCode,
   paragraphMarker,
-  textBold
+  textBold,
+  textHyperlink,
+  primaryDark
 } from "../../Theme/theme";
 
 const Paragraphs = styled.p`
@@ -32,6 +34,21 @@ const Paragraphs = styled.p`
   mark {
     background: ${paragraphMarker};
     color: ${textBold};
+  }
+  a {
+    text-decoration: none;
+
+    :link,
+    :visited {
+      color: ${textHyperlink};
+    }
+    :hover {
+      text-decoration: underline;
+      color: ${primaryDark};
+    }
+    :active {
+      color: ${textHyperlink};
+    }
   }
 `;
 const paragraphs = ({ children }) => {

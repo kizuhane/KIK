@@ -26,7 +26,6 @@ import {
 /* import:: CONSTANT */
 import { MOBILE_WIDTH_VALUE } from "../../Constant/CONSTANT_STYLE_VALUE";
 
-// TODO: FIX wrapping and spacing between elements
 const PathDirection = styled.nav`
   margin: 14px 5px 4px 28px;
   padding: 0;
@@ -86,19 +85,21 @@ const pathDirection = ({ baseRoute, section, course, lesson, author }) => {
       <PathLink to={`${homeDepartment}/${ARTICLE_ROUTE}/${nameToUrl(section)}`}>
         {section}
       </PathLink>
-      <Icons
-        name={PathDirectionIcons.PATH_SECTION}
-        size={16}
-        color={textBold}
-      />
       {course && (
-        <PathLink
-          to={`${homeDepartment}/${ARTICLE_ROUTE}/${nameToUrl(
-            section
-          )}#${stringToPath(course)}`}
-        >
-          {course}
-        </PathLink>
+        <>
+          <Icons
+            name={PathDirectionIcons.PATH_SECTION}
+            size={16}
+            color={textBold}
+          />
+          <PathLink
+            to={`${homeDepartment}/${ARTICLE_ROUTE}/${nameToUrl(
+              section
+            )}#${stringToPath(course)}`}
+          >
+            {course}
+          </PathLink>
+        </>
       )}
       <Icons
         name={PathDirectionIcons.PATH_LESSONS}

@@ -57,6 +57,7 @@ const Input = ({ id, type, children, placeholder, required, formData }) => {
           name={id}
           placeholder={placeholder}
           required={required}
+          // eslint-disable-next-line react/jsx-props-no-spreading
           {...formData}
         />
       </label>

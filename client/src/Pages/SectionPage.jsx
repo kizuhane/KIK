@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
@@ -12,13 +13,16 @@ import ElementsHeader from "../components/articleComponents/ElementsHeader";
 import SectionChildrenHeader from "../components/lessonsList/sectionChildrenHeader";
 import LinkList from "../components/articleComponents/linkList";
 
+import Loading from "../components/Loading/LoadingCircleAnimation";
+import Error404Page from "./errors/404";
+
+/* import:: fetch Data function */
+import useFetch from "../hooks/FetchData";
+
 /* import:: CONSTANT */
 import { stringToPath } from "../function/stringToPath";
 import { nameToUrl } from "../function/nameToUrl";
 import { hashLinkScroll } from "../function/hashLinkScroll";
-
-// TODO: create request for json file using props from react router and create rest api
-import sectionList from "../components/test-comp/SECTION_LIST";
 
 const pushToArr = (arr, section) => {
   const ObjArr = [];
@@ -33,21 +37,29 @@ const pushToArr = (arr, section) => {
 
 const SectionPage = props => {
   const { location, match } = props;
-  /** @description jump do id from hash from link */
+  const [data, loading] = useFetch(
+    `/api/section/${match.params.department}/${match.params.section}`
+  );
 
+  /** @description jump do id from hash from link */
   useEffect(() => {
     hashLinkScroll(location.hash ? location.hash : match.params.course);
   });
-  return (
+
+  return loading ? (
+    <Loading />
+  ) : data.type === "error" ? (
+    <Error404Page message={data.msg} />
+  ) : (
     <>
-      <Title ShowIcon={false}>{sectionList.name}</Title>
+      <Title ShowIcon={false}>{data.name}</Title>
       <SubtitleHeader>
         <FormattedMessage
           id="LessonsListHeader.LessonsList"
           defaultMessage="Full lessons list"
         />
       </SubtitleHeader>
-      {sectionList.elements.map((el, index) =>
+      {data.elements.map((el, index) =>
         el.type === "lesson" ? (
           <div key={index}>
             <SectionChildrenHeader

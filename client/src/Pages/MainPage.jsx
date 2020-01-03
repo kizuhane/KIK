@@ -15,13 +15,13 @@ import Professors from "./Professors";
 import ProfessorPage from "./ProfessorPage";
 // Info Page
 import AboutPage from "./AboutPage";
-
 // error pages
 import Error404Page from "./errors/404";
 
 /* import:: Layout  */
 import Content from "./layout/content";
 import MobileProvider from "./layout/mobileProvider";
+import Loading from "../components/Loading/LoadingCircleAnimation";
 
 /* import:: SearchBox provider   */
 import SearchBarProvider from "../components/navBar/elements/SearchBarProvider";
@@ -31,7 +31,8 @@ import SearchBarProvider from "../components/navBar/elements/SearchBarProvider";
 import NavBar from "../components/navBar/navBar";
 import SideBar from "../components/sideBar/sideBar";
 
-/* import:: Views  */
+/* import:: fetch Data function */
+import useFetch from "../hooks/FetchData";
 
 /* import:: CONFIG */
 import {
@@ -39,18 +40,17 @@ import {
   DEFAULT_PROFESSORS_ROUTE_NAME as PROFESSOR_ROUTE
 } from "../Config/routeName";
 
-// TODO: rest api to search amiable departments
-import { AvailablePages } from "../components/test-comp/DEPARTAMENTS_LIST";
-
-// TODO: rest api response draw error if notching comes back
-const MainPage = props => {
-  const { match } = props;
-  console.log(props);
+const MainPage = ({ match }) => {
   const [displaySidebar, _setDisplaySidebar] = useState(true);
+  const [data, loading] = useFetch(
+    `/api/departments/${match.params.department}`
+  );
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : (
     <>
-      {AvailablePages.find(page => page === match.params.department) ? (
+      {data.exist ? (
         <MobileProvider>
           <SearchBarProvider>
             <Route

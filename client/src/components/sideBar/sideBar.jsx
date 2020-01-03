@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
 import React, { useContext } from "react";
 import PropTypes from "prop-types";
@@ -20,10 +21,13 @@ import SearchedListBox from "./elements/searchedListBox";
 import SearchLink from "./elements/searchLink";
 
 import StandardRenderErrorDiv from "../errors/standardRenderErrorDiv";
+import Loading from "../Loading/LoadingCircleAnimation";
 
 /* import:: Function */
 import { stringToPath } from "../../function/stringToPath";
 import { nameToUrl } from "../../function/nameToUrl";
+/* import:: fetch Data function */
+import useFetch from "../../hooks/FetchData";
 
 /* import:: SearchBar value Context form Provider  */
 import { SearchBarContext } from "../navBar/elements/SearchBarProvider";
@@ -34,9 +38,6 @@ import { DEFAULT_ARTICLE_ROUTE_NAME as ARTICLE_ROUTE } from "../../Config/routeN
 /* import:: CONSTANT VALUE */
 import { MOBILE_WIDTH_VALUE } from "../../Constant/CONSTANT_STYLE_VALUE";
 import { MobileContext } from "../../Pages/layout/mobileProvider";
-
-// TODO: create request for json file using props from react router and create rest api
-import articlesList from "../test-comp/FULL_ARTICLE_LIST";
 
 // const SideBar = styled.div`
 const SideBar = styled(SimpleBarReact)`
@@ -69,20 +70,7 @@ const SideBarChildren = styled.div`
 
   margin: 0;
 `;
-/* 
-TODO: FIXME: ERROR: pat don't work if lesson don't have course
-/:department/:section/:course/:lesson || don't allow have wild lesson
-/:department/:section#course/:lesson || don't allow have lined nav
 
-TEST: THIS WORK
-/:department/:section//:lesson || add wild route
-
-router.get("/:id//:name", (req, res) => {
-  res.json({
-    msg: `hello from wild route req: ${req.params.id} ${req.params.name}`
-  });
-});
-*/
 const DrawSideBarElements = (data, location, SearchValue) => {
   const homeDepartment = `${location}/${ARTICLE_ROUTE}`;
 
@@ -164,9 +152,10 @@ const DrawSearchListBarElements = (data, location) => {
     </SearchedListBox>
   );
 };
-// TODO: name of rest app call if empty [articlesList]
-const SideBarContainer = props => {
-  const { toggleSidebar, match } = props;
+
+/** React Component */
+const SideBarContainer = ({ toggleSidebar, match }) => {
+  const [data, loading] = useFetch(`/api/sidebar/${match.params.department}`);
 
   const mobileVersion = useContext(MobileContext);
   const SearchBarContextValue = useContext(SearchBarContext);
@@ -177,12 +166,14 @@ const SideBarContainer = props => {
       show={(toggleSidebar || !mobileVersion).toString()}
       scrollbarMinSize={100}
     >
-      {articlesList ? (
+      {loading ? (
+        <Loading />
+      ) : data.length ? (
         <SideBarChildren>
           {!SearchBarContextValue.SearchValue
-            ? DrawSideBarElements(articlesList, match.url)
+            ? DrawSideBarElements(data, match.url)
             : DrawSearchListBarElements(
-                articlesList,
+                data,
                 match.url,
                 SearchBarContextValue.SearchValue
               )}

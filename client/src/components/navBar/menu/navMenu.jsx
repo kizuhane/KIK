@@ -73,7 +73,6 @@ const GoToInfoPage = (history, path) => {
   history.push(`${homeDepartment}/${DEFAULT_ABOUT_ROUTE_NAME}`);
 };
 
-// TODO: LOGIN Logic
 const NavMenu = ({ name, match }) => {
   const history = useHistory();
 

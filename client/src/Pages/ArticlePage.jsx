@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
@@ -19,6 +20,14 @@ import CodeBlock from "../components/articleComponents/codeBlock";
 import Table from "../components/articleComponents/table";
 import RawHtml from "../components/articleComponents/rawHtml";
 
+// loading animation
+import Loading from "../components/Loading/LoadingCircleAnimation";
+// error pages
+import Error404Page from "./errors/404";
+
+/* import:: fetch Data function */
+import useFetch from "../hooks/FetchData";
+
 /* import:: CONSTANT */
 import { SHOW_ALL_SECTION } from "../Constant/CONSTANT_STYLE_VALUE";
 import { hashLinkScroll } from "../function/hashLinkScroll";
@@ -29,7 +38,7 @@ import { hashLinkScroll } from "../function/hashLinkScroll";
 // import Article from "../components/test-comp/ARTICLE";
 
 /* for showcase */
-import Article from "../components/test-comp/ARTICLE_";
+// import Article from "../components/test-comp/ARTICLE_";
 
 const useShowAllSections = bool => {
   const [showAll, _setShowAll] = useState(bool);
@@ -43,8 +52,16 @@ const useShowAllSections = bool => {
     toggleArticle
   };
 };
-
+// TODO: ERROR: don't refresh page when changing routing becouse of NavLink
 const ArticlePage = ({ history, match }) => {
+  // const [ulrState, _setUrlState] = useEffect(window.location);
+
+  const [Article, loading] = useFetch(
+    `/api/article/${match.params.department}/${match.params.section}/${match.params.lesson}`
+  );
+
+  console.log(Article);
+
   const ShowAllSections = useShowAllSections(SHOW_ALL_SECTION);
 
   /** @description jump do id from hash from link */
@@ -52,77 +69,77 @@ const ArticlePage = ({ history, match }) => {
     hashLinkScroll(history.location.hash);
   });
 
-  const sectionsBody = (type, data, key) => {
+  const sectionsBody = (type, DbData, key) => {
     switch (type) {
       case "paragraph":
-        return <Paragraphs key={key}>{data.text}</Paragraphs>;
+        return <Paragraphs key={key}>{DbData.text}</Paragraphs>;
       case "subsection":
-        return <SubsectionHeader key={key}>{data.text}</SubsectionHeader>;
+        return <SubsectionHeader key={key}>{DbData.text}</SubsectionHeader>;
       case "quote":
         return (
-          <Quote author={data.author} key={key}>
-            {data.text}
+          <Quote author={DbData.author} key={key}>
+            {DbData.text}
           </Quote>
         );
       case "header":
-        return <ElementsHeader key={key}>{data.text}</ElementsHeader>;
+        return <ElementsHeader key={key}>{DbData.text}</ElementsHeader>;
       case "image":
         return (
           <ImageContainer
-            image={data.url}
-            description={data.description}
+            image={DbData.url}
+            description={DbData.description}
             key={key}
           />
         );
       case "code":
         return (
-          <CodeBlock language={data.language} key={key}>
-            {data.text}
+          <CodeBlock language={DbData.language} key={key}>
+            {DbData.text}
           </CodeBlock>
         );
       case "note":
         return (
-          <Note type={data.style} key={key}>
-            {data.text}
+          <Note type={DbData.style} key={key}>
+            {DbData.text}
           </Note>
         );
       case "delimiter":
         return <Delimiter key={key} />;
       case "list":
         return (
-          <List type={data.style} key={key}>
-            {data.items}
+          <List type={DbData.style} key={key}>
+            {DbData.items}
           </List>
         );
       case "embed":
-        return <Embed {...data} key={key} />;
+        return <Embed {...DbData} key={key} />;
       case "table":
-        return <Table key={key}>{data.content}</Table>;
+        return <Table key={key}>{DbData.content}</Table>;
       case "rawHtml":
-        return <RawHtml key={key}>{data.text}</RawHtml>;
+        return <RawHtml key={key}>{DbData.text}</RawHtml>;
       case "linkList":
-        return <LinkList key={key}>{data.items}</LinkList>;
+        return <LinkList key={key}>{DbData.items}</LinkList>;
       default:
         return null;
     }
   };
 
-  const articleSections = (type, data) => {
+  const articleSections = (type, DbData) => {
     switch (type) {
       case "title":
         return (
           <Title key={type} toggle={ShowAllSections}>
-            {data.text}
+            {DbData.text}
           </Title>
         );
       case "section":
         return (
           <Section
-            key={data.text}
-            name={data.text}
+            key={DbData.text}
+            name={DbData.text}
             show={ShowAllSections.showAll}
           >
-            {data.content.map((content, index) =>
+            {DbData.content.map((content, index) =>
               sectionsBody(content.type, content.data, index)
             )}
           </Section>
@@ -134,15 +151,23 @@ const ArticlePage = ({ history, match }) => {
 
   return (
     <article>
-      <PathDirection
-        baseRoute={match.url}
-        section={Article.section}
-        course={Article.course}
-        lesson={Article.lesson}
-        author={Article.author}
-      />
-      {Article.articleBody.map(sections =>
-        articleSections(sections.type, sections.data)
+      {loading ? (
+        <Loading />
+      ) : Article.type === "error" ? (
+        <Error404Page message={Article.msg} />
+      ) : (
+        <>
+          <PathDirection
+            baseRoute={match.url}
+            section={Article.section}
+            course={Article.course}
+            lesson={Article.lesson}
+            author={Article.author}
+          />
+          {Article.articleBody.map(sections =>
+            articleSections(sections.type, sections.data)
+          )}
+        </>
       )}
     </article>
   );

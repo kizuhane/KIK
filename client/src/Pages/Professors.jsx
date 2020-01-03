@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
@@ -7,18 +8,28 @@ import ProfessorBox from "../components/ProfessorsContent/ProfessorBox";
 /* import:: CONSTANT */
 import { hashLinkScroll } from "../function/hashLinkScroll";
 
-// TODO: fetch data from rest api
-import ProfessorsList from "../components/test-comp/PROFESSORS_LIST";
+import Loading from "../components/Loading/LoadingCircleAnimation";
+import Error404Page from "./errors/404";
 
-const ProfessorsPage = ({ history }) => {
+/* import:: fetch Data function */
+import useFetch from "../hooks/FetchData";
+
+const ProfessorsPage = ({ history, match }) => {
+  const [data, loading] = useFetch(
+    `/api/professors/${match.params.department}`
+  );
   /** @description jump do id from hash from link */
   useEffect(() => {
     hashLinkScroll(history.location.hash);
   });
 
-  return (
+  return loading ? (
+    <Loading />
+  ) : data.type === "error" ? (
+    <Error404Page message={data.msg} />
+  ) : (
     <div>
-      {ProfessorsList.map(professor => (
+      {data.map(professor => (
         <ProfessorBox
           key={professor.id}
           name={`${professor.name} ${professor.surname}`}

@@ -2,7 +2,7 @@ const Article = {
   _id: "1",
   author: "Henryk Budzisz",
 
-  section: "java",
+  section: "Java",
   course: "Programowanie komponentowe",
   lesson: "Wprowadzenie",
 
@@ -113,7 +113,7 @@ const Article = {
     }
   ],
   _info: {
-    UrlID:"",
+    UrlID: "",
     createdDate: "2019-12-01",
     createdBy: "Author1",
     edit: [

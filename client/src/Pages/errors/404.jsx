@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 
 import { FormattedMessage } from "react-intl";
 
@@ -52,7 +53,7 @@ const ErrorEmoticon = styled.div`
   }
 `;
 
-const Error404 = () => {
+const Error404 = ({ message }) => {
   return (
     <ErrorWrapper>
       <ErrorEmoticon>
@@ -76,8 +77,16 @@ const Error404 = () => {
           defaultMessage="If you'd like to know more, you can search online for this error: 404_PAGE_NOT_FOUND"
         />
       </p>
+      {message && <p>{message}</p>}
     </ErrorWrapper>
   );
+};
+Error404.propTypes = {
+  message: PropTypes.string
+};
+
+Error404.defaultProps = {
+  message: ""
 };
 
 export default Error404;

@@ -1,9 +1,33 @@
-# Json export schema for lessons
+# Json export schema 
 
-### export json for:
+### export json for Template:
+- department
+> used by HomePage
+
+```json
+departments: [
+  {
+    fullName: "Katedra Inżynierji Komputerowej",
+    url: "KIK",
+    descriptions: "Strona z dokumentcją Katedra Inżynierji Komputerowej"
+  },
+  {
+    fullName: "Pokazowa strona testowa o url NEXT",
+    url: "NEXT",
+    descriptions: "Pokazowa strona testowa"
+  },
+  {
+    fullName: "Pokazowa strona testowa o url NEW",
+    url: "NEW",
+    descriptions: "Pokazowa strona testowa"
+  }
+]
+```
+### export json for Template:
  - sidebar
  - professors list 
 
+> used by HomePage sidebar Professor List
 ```json
 ArticlesList: [
   {

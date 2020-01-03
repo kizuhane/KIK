@@ -1,16 +1,16 @@
 /* eslint-disable react/jsx-filename-extension */
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
 /* import:: Internationalization provider */
-import { KIKIntlProvider } from './Localization/language';
+import { KIKIntlProvider } from "./Localization/language";
 
 /* import:: Theme provider */
-import { KIKThemeProvider } from './Theme/ThemeContext';
+import { KIKThemeProvider } from "./Theme/ThemeContext";
 
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <KIKIntlProvider>
@@ -18,7 +18,7 @@ ReactDOM.render(
       <App />
     </KIKThemeProvider>
   </KIKIntlProvider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

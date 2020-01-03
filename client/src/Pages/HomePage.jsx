@@ -1,14 +1,18 @@
 /* eslint-disable react/no-array-index-key */
 import React from "react";
 
+import { FormattedMessage } from "react-intl";
+
 /* import:: theme */
 import styled from "styled-components";
 import { secondaryBackground } from "../Theme/theme";
 /* import:: components */
 import DepartmentBox from "../components/homeComponents/departmentBox";
+import Loading from "../components/Loading/LoadingCircleAnimation";
+import StandardRenderErrorDiv from "../components/errors/standardRenderErrorDiv";
 
-// TODO: create rest api for this
-import { departments } from "../components/test-comp/DEPARTAMENTS_LIST";
+/* import:: fetch Data function */
+import useFetch from "../hooks/FetchData";
 
 const WelcomePageContainer = styled.div`
   display: flex;
@@ -31,13 +35,29 @@ const WelcomePageContainer = styled.div`
 `;
 
 const WelcomePage = () => {
-  return (
+  const [data, loading] = useFetch("/api/departments");
+
+  return loading ? (
+    <Loading />
+  ) : (
     <WelcomePageContainer>
-      {departments.map((el, index) => (
-        <DepartmentBox key={index} title={el.descriptions} to={el.url}>
-          {el.fullName}
-        </DepartmentBox>
-      ))}
+      {data.length ? (
+        data.map((el, index) => (
+          <DepartmentBox key={index} title={el.descriptions} to={el.url}>
+            {el.fullName}
+          </DepartmentBox>
+        ))
+      ) : (
+        <StandardRenderErrorDiv
+          message={
+            // eslint-disable-next-line react/jsx-wrap-multilines
+            <FormattedMessage
+              id="error.SideBarEmpty"
+              defaultMessage="Sadly there is nothing here"
+            />
+          }
+        />
+      )}
     </WelcomePageContainer>
   );
 };

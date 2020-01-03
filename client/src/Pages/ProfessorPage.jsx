@@ -1,3 +1,4 @@
+/* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
 import React from "react";
 import PropTypes from "prop-types";
@@ -27,8 +28,11 @@ import { nameToUrl } from "../function/nameToUrl";
 /* import:: CONFIG route names */
 import { DEFAULT_ARTICLE_ROUTE_NAME as ARTICLE_NAME } from "../Config/routeName";
 
-// TODO: create request for json file using props from react router and create rest api
-import ProfessorDetailsJSON from "../components/test-comp/PROFESSOR_DETAILS";
+import Loading from "../components/Loading/LoadingCircleAnimation";
+import Error404Page from "./errors/404";
+
+/* import:: fetch Data function */
+import useFetch from "../hooks/FetchData";
 
 const ProfessorDetailsWrapper = styled.div`
   display: block;
@@ -156,40 +160,40 @@ const activitiesListSection = data => {
   );
 };
 
-const ProfessorPage = ({ location }) => {
-  return (
+const ProfessorPage = ({ match }) => {
+  const [data, loading] = useFetch(
+    `/api/professors/${match.params.department}/${match.params.name}`
+  );
+
+  return loading ? (
+    <Loading />
+  ) : data.type === "error" ? (
+    <Error404Page message={data.msg} />
+  ) : (
     <ProfessorDetailsWrapper>
       <Title ShowIcon={false}>
-        {`${ProfessorDetailsJSON.titles} ${ProfessorDetailsJSON.name}
-        ${ProfessorDetailsJSON.surname}`}
+        {`${data.titles} ${data.name}
+        ${data.surname}`}
       </Title>
       <ProfessorInfo
-        name={ProfessorDetailsJSON.name}
-        photo={ProfessorDetailsJSON.photo}
-        department={ProfessorDetailsJSON.department}
-        contactInfo={ProfessorDetailsJSON.contactInfo}
-        orcid={ProfessorDetailsJSON.ORCID}
+        name={data.name}
+        photo={data.photo}
+        department={data.department}
+        contactInfo={data.contactInfo}
+        orcid={data.ORCID}
       />
-      {ProfessorDetailsJSON.ArticlesList &&
-        lessonListComponent(
-          ProfessorDetailsJSON.ArticlesList,
-          location.pathname
-        )}
-      {ProfessorDetailsJSON.heldFunctions &&
-        heldFunctionsSection(ProfessorDetailsJSON.heldFunctions)}
-      {ProfessorDetailsJSON.ActivitiesList &&
-        activitiesListSection(ProfessorDetailsJSON.ActivitiesList)}
+      {data.ArticlesList && lessonListComponent(data.ArticlesList, match.url)}
+      {data.heldFunctions && heldFunctionsSection(data.heldFunctions)}
+      {data.ActivitiesList && activitiesListSection(data.ActivitiesList)}
     </ProfessorDetailsWrapper>
   );
 };
 
 ProfessorPage.propTypes = {
-  location: PropTypes.shape({
-    pathname: PropTypes.string,
-    search: PropTypes.string,
-    hash: PropTypes.string,
-    state: PropTypes.any,
-    key: PropTypes.string
+  match: PropTypes.shape({
+    params: PropTypes.object.isRequired,
+    path: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired
   }).isRequired
 };
 

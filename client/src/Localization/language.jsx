@@ -23,8 +23,6 @@ export const useInit = () => React.useContext(InitToggleContext);
 // specify default language
 const defaultLanguage = { language: DEFAULT_LANGUAGE };
 
-// TODO: map thru getBrowserLanguage and mach supported language
-
 // get default language set by browser
 function getDefaultLanguage() {
   const getBrowserLanguage = navigator.language.split(/[-_]/)[0];

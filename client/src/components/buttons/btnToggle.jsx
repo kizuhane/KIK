@@ -8,7 +8,6 @@ import { textHeader, primaryHover, textInactive } from "../../Theme/theme";
 
 import Icons from "../icons/Icon";
 
-// TODO: Style THIS
 const ButtonToggle = styled.button.attrs({
   type: "button"
 })`
@@ -35,10 +34,6 @@ const ButtonToggle = styled.button.attrs({
   && > svg {
     padding-right: 13px;
     min-width: 24px;
-  }
-
-  && > [text] {
-    background: red;
   }
 
   :hover {

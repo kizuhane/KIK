@@ -28,9 +28,9 @@ router.get("/professors/:department", async (req, res) => {
         titles: el.titles,
         department: el.department,
         contactInfo: {
-          address: el.address,
-          mail: el.mail,
-          phone: el.phone
+          address: el.contactInfo.address,
+          mail: el.contactInfo.mail,
+          phone: el.contactInfo.phone
         },
         ORCID: el.ORCID,
         photo: el.photo

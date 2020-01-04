@@ -18,6 +18,8 @@ const ProfessorsPage = ({ history, match }) => {
   const [data, loading] = useFetch(
     `/api/professors/${match.params.department}`
   );
+
+  console.log(data);
   /** @description jump do id from hash from link */
   useEffect(() => {
     hashLinkScroll(history.location.hash);

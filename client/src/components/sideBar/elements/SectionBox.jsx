@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 /* import:: Theme */
 import styled from "styled-components";
@@ -113,7 +113,13 @@ const SectionBox = ({ id, icon, name, quantity, children }) => {
             <Icon name={icon} size={14} color={textBold} />
           </span>
         )}
-        <a href={`${currentParentUrl}/${id}`}>{name}</a>
+        {/* <a href={`${currentParentUrl}/${id}`}>{name}</a> */}
+        <Link
+          to={`${currentParentUrl}/${id}`}
+          onClick={() => _setShowSectionBox(true)}
+        >
+          {name}
+        </Link>
         <QuantityNumber>{quantity}</QuantityNumber>
       </SectionBoxHeaderContainer>
       <SectionBoxElements show={showSectionBox}>{children}</SectionBoxElements>

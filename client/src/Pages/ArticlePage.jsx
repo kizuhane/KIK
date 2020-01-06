@@ -44,8 +44,10 @@ const useShowAllSections = bool => {
     toggleArticle
   };
 };
+
 const ArticlePage = ({ history, match }) => {
   const { data, loading, fetchDataFromUrl } = UseFetch();
+  const ShowAllSections = useShowAllSections(SHOW_ALL_SECTION);
 
   useEffect(() => {
     fetchDataFromUrl(
@@ -53,9 +55,9 @@ const ArticlePage = ({ history, match }) => {
         ? `/api/article/${match.params.department}/${match.params.section}/${match.params.lesson}`
         : null
     );
+    if (!history.location.hash)
+      document.getElementById("ContentPage").scrollIntoView();
   }, [window.location.pathname]);
-
-  const ShowAllSections = useShowAllSections(SHOW_ALL_SECTION);
 
   /** @description jump do id from hash from link */
   useEffect(() => {

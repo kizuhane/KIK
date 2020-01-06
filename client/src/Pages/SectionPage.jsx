@@ -17,7 +17,7 @@ import Loading from "../components/Loading/LoadingCircleAnimation";
 import Error404Page from "./errors/404";
 
 /* import:: fetch Data function */
-import useFetch from "../hooks/FetchData";
+import UseFetch from "../hooks/UseFetch";
 
 /* import:: CONSTANT */
 import { stringToPath } from "../function/stringToPath";
@@ -37,9 +37,15 @@ const pushToArr = (arr, section) => {
 
 const SectionPage = props => {
   const { location, match } = props;
-  const [data, loading] = useFetch(
-    `/api/section/${match.params.department}/${match.params.section}`
-  );
+  const { data, loading, fetchDataFromUrl } = UseFetch();
+
+  useEffect(() => {
+    fetchDataFromUrl(
+      match
+        ? `/api/section/${match.params.department}/${match.params.section}`
+        : null
+    );
+  }, [window.location.pathname]);
 
   /** @description jump do id from hash from link */
   useEffect(() => {

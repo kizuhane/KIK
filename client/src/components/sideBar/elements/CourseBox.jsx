@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import PropTypes from "prop-types";
 
-import { useLocation } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 /* import:: Theme */
 import styled from "styled-components";
@@ -114,7 +114,13 @@ const CourseBox = ({ id, parentBox, name, quantity, children }) => {
           color={showCourseSectionBox ? textBold : textPrimary}
           events={{ onClick: () => toggleShowCourseSectionBox() }}
         />
-        <a href={`${currentParentUrl}/${id}`}>{name}</a>
+        {/* <a href={`${currentParentUrl}/${id}`}>{name}</a> */}
+        <Link
+          to={`${currentParentUrl}/${id}`}
+          onClick={() => _setShowCourseSectionBox(true)}
+        >
+          {name}
+        </Link>
         <QuantityNumber>{quantity}</QuantityNumber>
       </CourseBoxHeader>
       <CourseBoxElements show={showCourseSectionBox}>

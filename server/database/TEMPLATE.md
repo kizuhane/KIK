@@ -31,7 +31,9 @@ departments: [
 ```json
 ArticlesList: [
   {
-    section: "section name",
+    type: "section",
+    name: "section name",
+    icon: "M64...",
     elements: [
       { id: 1, type: "lesson", name: "Wprowadzenie" },
       {

@@ -26,19 +26,11 @@ import Loading from "../components/Loading/LoadingCircleAnimation";
 import Error404Page from "./errors/404";
 
 /* import:: fetch Data function */
-import useFetch from "../hooks/FetchData";
+import UseFetch from "../hooks/UseFetch";
 
 /* import:: CONSTANT */
 import { SHOW_ALL_SECTION } from "../Constant/CONSTANT_STYLE_VALUE";
 import { hashLinkScroll } from "../function/hashLinkScroll";
-
-// TODO: create request for json file using props from react router and create rest api
-/* import:: JSON DATA */
-/* have all elements */
-// import Article from "../components/test-comp/ARTICLE";
-
-/* for showcase */
-// import Article from "../components/test-comp/ARTICLE_";
 
 const useShowAllSections = bool => {
   const [showAll, _setShowAll] = useState(bool);
@@ -52,15 +44,16 @@ const useShowAllSections = bool => {
     toggleArticle
   };
 };
-// TODO: ERROR: don't refresh page when changing routing becouse of NavLink
 const ArticlePage = ({ history, match }) => {
-  // const [ulrState, _setUrlState] = useEffect(window.location);
+  const { data, loading, fetchDataFromUrl } = UseFetch();
 
-  const [Article, loading] = useFetch(
-    `/api/article/${match.params.department}/${match.params.section}/${match.params.lesson}`
-  );
-
-  console.log(Article);
+  useEffect(() => {
+    fetchDataFromUrl(
+      match
+        ? `/api/article/${match.params.department}/${match.params.section}/${match.params.lesson}`
+        : null
+    );
+  }, [window.location.pathname]);
 
   const ShowAllSections = useShowAllSections(SHOW_ALL_SECTION);
 
@@ -153,18 +146,18 @@ const ArticlePage = ({ history, match }) => {
     <article>
       {loading ? (
         <Loading />
-      ) : Article.type === "error" ? (
-        <Error404Page message={Article.msg} />
+      ) : data.type === "error" ? (
+        <Error404Page message={data.msg} />
       ) : (
         <>
           <PathDirection
             baseRoute={match.url}
-            section={Article.section}
-            course={Article.course}
-            lesson={Article.lesson}
-            author={Article.author}
+            section={data.section}
+            course={data.course}
+            lesson={data.lesson}
+            author={data.author}
           />
-          {Article.articleBody.map(sections =>
+          {data.articleBody.map(sections =>
             articleSections(sections.type, sections.data)
           )}
         </>

@@ -28,12 +28,12 @@ const GoToInfoPage = history => {
 const WelcomePage = ({ history }) => {
   return (
     <WelcomePageContainer>
-      <h1>Witam na stronie Bazay wiedzy Politechniki Koszalińskiej </h1>
+      <h1>Witam na stronie Bazy wiedzy Politechniki Koszalińskiej </h1>
       <Paragraphs>
         Jest to strona zawierające lekcje, dokumentacje oraz informacje dla
         studentów z poszczególnych katedr z Politechniki Koszalińskiej
       </Paragraphs>
-      <ElementsHeader>Po więcej informacji zajżyj tutaj</ElementsHeader>
+      <ElementsHeader>Po więcej informacji zajrzyj tutaj</ElementsHeader>
       <BtnPrimary events={{ onClick: () => GoToInfoPage(history) }}>
         Informacje o stronie
       </BtnPrimary>

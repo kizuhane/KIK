@@ -45,7 +45,7 @@ const useShowAllSections = bool => {
   };
 };
 
-const ArticlePage = ({ history, match }) => {
+const ArticlePage = ({ history, match, location }) => {
   const { data, loading, fetchDataFromUrl } = UseFetch();
   const ShowAllSections = useShowAllSections(SHOW_ALL_SECTION);
 
@@ -63,7 +63,7 @@ const ArticlePage = ({ history, match }) => {
     return () => {
       currentPage = false;
     };
-  }, [window.location.pathname]);
+  }, [location.pathname]);
 
   /** @description jump do id from hash from link */
   useEffect(() => {
@@ -193,6 +193,13 @@ ArticlePage.propTypes = {
     url: PropTypes.string,
     isExact: PropTypes.bool,
     params: PropTypes.object
+  }).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+    search: PropTypes.string,
+    hash: PropTypes.string,
+    state: PropTypes.bool,
+    key: PropTypes.string
   }).isRequired
 };
 

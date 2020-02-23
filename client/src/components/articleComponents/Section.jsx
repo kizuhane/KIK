@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { useHistory } from "react-router-dom";
@@ -114,6 +114,10 @@ const Section = ({ name, children, show }) => {
   const toggleShowSection = e => {
     _setShowSection(!showSection);
   };
+
+  useEffect(() => {
+    _setShowSection(show);
+  }, [show]);
 
   const updateHref = e => {
     history.push({

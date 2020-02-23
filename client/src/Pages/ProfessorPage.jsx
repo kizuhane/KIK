@@ -1,6 +1,6 @@
 /* eslint-disable no-nested-ternary */
 /* eslint-disable react/no-array-index-key */
-import React from "react";
+import React, { useEffect } from "react";
 import PropTypes from "prop-types";
 
 import { FormattedMessage } from "react-intl";
@@ -32,7 +32,7 @@ import Loading from "../components/Loading/LoadingCircleAnimation";
 import Error404Page from "./errors/404";
 
 /* import:: fetch Data function */
-import useFetch from "../hooks/FetchData";
+import UseFetch from "../hooks/UseFetch";
 
 const ProfessorDetailsWrapper = styled.div`
   display: block;
@@ -160,10 +160,24 @@ const activitiesListSection = data => {
   );
 };
 
-const ProfessorPage = ({ match }) => {
-  const [data, loading] = useFetch(
-    `/api/professors/${match.params.department}/${match.params.name}`
-  );
+const ProfessorPage = ({ match, history, location }) => {
+  const { data, loading, fetchDataFromUrl } = UseFetch();
+
+  useEffect(() => {
+    let currentPage = true;
+    if (currentPage) {
+      fetchDataFromUrl(
+        match
+          ? `/api/professors/${match.params.department}/${match.params.name}`
+          : null
+      );
+      if (!history.location.hash)
+        document.getElementById("ContentPage").scrollIntoView();
+    }
+    return () => {
+      currentPage = false;
+    };
+  }, [location.pathname]);
 
   return loading ? (
     <Loading />
@@ -190,10 +204,31 @@ const ProfessorPage = ({ match }) => {
 };
 
 ProfessorPage.propTypes = {
+  history: PropTypes.shape({
+    length: PropTypes.number,
+    action: PropTypes.string,
+    location: PropTypes.object,
+    createHref: PropTypes.func,
+    push: PropTypes.func,
+    replace: PropTypes.func,
+    go: PropTypes.func,
+    goBack: PropTypes.func,
+    goForward: PropTypes.func,
+    block: PropTypes.func,
+    listen: PropTypes.func
+  }).isRequired,
   match: PropTypes.shape({
-    params: PropTypes.object.isRequired,
-    path: PropTypes.string.isRequired,
-    url: PropTypes.string.isRequired
+    path: PropTypes.string,
+    url: PropTypes.string,
+    isExact: PropTypes.bool,
+    params: PropTypes.object
+  }).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+    search: PropTypes.string,
+    hash: PropTypes.string,
+    state: PropTypes.bool,
+    key: PropTypes.string
   }).isRequired
 };
 

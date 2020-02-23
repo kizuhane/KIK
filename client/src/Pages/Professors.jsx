@@ -12,14 +12,25 @@ import Loading from "../components/Loading/LoadingCircleAnimation";
 import Error404Page from "./errors/404";
 
 /* import:: fetch Data function */
-import useFetch from "../hooks/FetchData";
+import UseFetch from "../hooks/UseFetch";
 
-const ProfessorsPage = ({ history, match }) => {
-  const [data, loading] = useFetch(
-    `/api/professors/${match.params.department}`
-  );
+const ProfessorsPage = ({ history, match, location }) => {
+  const { data, loading, fetchDataFromUrl } = UseFetch();
 
-  console.log(data);
+  useEffect(() => {
+    let currentPage = true;
+    if (currentPage) {
+      fetchDataFromUrl(
+        match ? `/api/professors/${match.params.department}` : null
+      );
+      if (!history.location.hash)
+        document.getElementById("ContentPage").scrollIntoView();
+    }
+    return () => {
+      currentPage = false;
+    };
+  }, [location.pathname]);
+
   /** @description jump do id from hash from link */
   useEffect(() => {
     hashLinkScroll(history.location.hash);
@@ -65,6 +76,13 @@ ProfessorsPage.propTypes = {
     url: PropTypes.string,
     isExact: PropTypes.bool,
     params: PropTypes.object
+  }).isRequired,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+    search: PropTypes.string,
+    hash: PropTypes.string,
+    state: PropTypes.bool,
+    key: PropTypes.string
   }).isRequired
 };
 

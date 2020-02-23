@@ -51,7 +51,7 @@ const SectionPage = props => {
     return () => {
       currentPage = false;
     };
-  }, [window.location.pathname]);
+  }, [location.pathname]);
 
   /** @description jump do id from hash from link */
   useEffect(() => {

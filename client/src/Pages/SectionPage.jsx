@@ -40,11 +40,17 @@ const SectionPage = props => {
   const { data, loading, fetchDataFromUrl } = UseFetch();
 
   useEffect(() => {
-    fetchDataFromUrl(
-      match
-        ? `/api/section/${match.params.department}/${match.params.section}`
-        : null
-    );
+    let currentPage = true;
+    if (currentPage) {
+      fetchDataFromUrl(
+        match
+          ? `/api/section/${match.params.department}/${match.params.section}`
+          : null
+      );
+    }
+    return () => {
+      currentPage = false;
+    };
   }, [window.location.pathname]);
 
   /** @description jump do id from hash from link */

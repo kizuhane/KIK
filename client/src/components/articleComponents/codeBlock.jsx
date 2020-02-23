@@ -7,7 +7,7 @@ import Highlight from "react-highlight";
 import styled from "styled-components";
 
 const CodeBlock = styled.div`
-  margin: 4px 0 4px 0;
+  margin: 8px 0 8px 0;
 
   font-style: normal;
   font-weight: normal;

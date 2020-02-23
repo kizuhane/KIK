@@ -11,7 +11,7 @@ const articlesDB = [
         lesson: "Wprowadzenie do Java",
 
         articleBody: [
-          { type: "title", data: { text: "Wprowadzenie do komponętów" } },
+          { type: "title", data: { text: "Wprowadzenie do języka Java" } },
           {
             type: "section",
             data: {
@@ -1953,6 +1953,258 @@ const articlesDB = [
                     language: "javascript",
                     text:
                       '// Start of dummy file\nvar logUpperCase = function(){\n  const _this = this\n\n  this.string = this.string.toUpperCase()\n  return function () {\n    return console.log(_this.string)\n  }\n}\n\nlogUpperCase.call({ string: \'es6 rocks\' })()\n\n//Good looking example comment\nfunction examplefunction(param){\n  var text = "string";\n  for (let i = 0; i <param.lenght; i++) {\n    text += i;\n  }\n  return {\n    "text": text,\n    "boolean": false\n  };\n}'
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        _info: {
+          createdDate: "2019-12-01",
+          createdBy: "Author1",
+          edit: [
+            { _id: "1", date: "2019-12-01", by: "Author1" },
+            { _id: "2", date: "2019-12-21", by: "Author1" },
+            { _id: "3", date: "2019-12-22", by: "Author1" }
+          ]
+        }
+      },
+      {
+        _id: "19",
+        author: "Piotr Ratuszniak",
+
+        section: "JavaScript",
+        course: "",
+        lesson: "Wyrażenia warunkowe",
+
+        articleBody: [
+          {
+            type: "title",
+            data: { text: "Wyrażenia warunkowe" }
+          },
+          {
+            type: "section",
+            data: {
+              text: "Składnia",
+              content: [
+                {
+                  type: "paragraph",
+                  data: {
+                    text:
+                      "Wyrażenia warynkowe są to inaczej instrukcje warunkowe służą do wykonywania różnych działań w oparciu o różne warunki."
+                  }
+                },
+                {
+                  type: "paragraph",
+                  data: {
+                    text:
+                      "<code>warunek</code> jest to dowolne wyrażęnie winikiem której będzie wartość logiczna <i>true false</i>. W warunku nie należy umiesczać przypisania.</br><code>polecenie1</code> może być dowolnym poleceniem JavaScript, wykonywane gdy warunek jest prawdą.</br><code>polecenie2</code> może być dowolnym poleceniem JavaScript, wykonywane gdy warunek jest fałszem."
+                  }
+                },
+                {
+                  type: "code",
+                  data: {
+                    language: "javascript",
+                    text: "if(warunek){\n  polecenie1\n} else{\n  polecenie1\n}"
+                  }
+                },
+                {
+                  type: "note",
+                  data: {
+                    style: "info",
+                    text:
+                      "klamry otaczające polecenia w przypadku pojedyńczego polecenia nie jest wymagany."
+                  }
+                },
+                {
+                  type: "paragraph",
+                  data: {
+                    text:
+                      "Możliwe jest zagnieżdżanie wielu instrukcji if ... else, aby utworzyć wielokierunkową klauzurę else if, należy określić nowy warunek, jeśli pierwszy warunek jest fałszywy."
+                  }
+                },
+                {
+                  type: "code",
+                  data: {
+                    language: "javascript",
+                    text:
+                      "if(warunek){\n  polecenie1\n} else if{\n  polecenie2\n} else{\n  polecenie3\n}"
+                  }
+                },
+                {
+                  type: "paragraph",
+                  data: {
+                    text: "możliwe jest także nestowanie wyrażenia."
+                  }
+                },
+                {
+                  type: "code",
+                  data: {
+                    language: "javascript",
+                    text:
+                      "if(warunek){\n  polecenie1\n} else {\n  if(warunek2){\n    polecenie2\n  } else {\n    polecenie3\n}"
+                  }
+                },
+                {
+                  type: "paragraph",
+                  data: {
+                    text:
+                      "Gdy nie jest istotne wykonania polecenia w przypadku fałszu nie jest wymagana część <code>else</code> i można ją pominąć. Składnie tego typu często wykożystuje się do sprawdiania błędów "
+                  }
+                },
+                {
+                  type: "code",
+                  data: {
+                    language: "javascript",
+                    text: "if(warunek){\n  polecenie1\n}"
+                  }
+                },
+                { type: "subsection", data: { text: "Operator warunkowy" } },
+                {
+                  type: "code",
+                  data: {
+                    language: "javascript",
+                    text: "warunek ? wyrażenieTrue  : wyrażenieFalse "
+                  }
+                },
+                {
+                  type: "note",
+                  data: {
+                    style: "info",
+                    text:
+                      "zapisanie instrucji warunkowej za pomocą operatora pozwala umieszczanie go jako parametr funcji myFunction(localPort === 3000 ? 3000 : 5000);"
+                  }
+                },
+                {
+                  type: "paragraph",
+                  data: {
+                    text:
+                      "Możliwe jest nestowanie operatora warunkowego if w następujący sposób. Działanie przypomina operatora <code>switch</code>"
+                  }
+                },
+                {
+                  type: "code",
+                  data: {
+                    language: "javascript",
+                    text:
+                      "warunek1 ? wyrażenieTrue\n         : warunek2 ? wyrażenieTrue\n         : warunek3 ? wyrażenieTrue\n         : wyrażenieFalse;"
+                  }
+                },
+                {
+                  type: "code",
+                  data: {
+                    language: "javascript",
+                    text: "warunek && wyrażenie;"
+                  }
+                },
+                {
+                  type: "paragraph",
+                  data: {
+                    text:
+                      "podczas przypisania do zmiennej wykożystać operatory waruknowe <code>&&</code> (AND) albo <code>||</code> (OR) aby wpełni zrozumieć jak do działa należy rzozumieć założenia truthy & falsy "
+                  }
+                },
+                {
+                  type: "code",
+                  data: {
+                    language: "javascript",
+                    text:
+                      "zmienna = wyrażenie1 [operator warunkowy] wyrażenie2 \n// przykład \nconst PORT = process.env.PORT || 3000"
+                  }
+                },
+                {
+                  type: "note",
+                  data: {
+                    style: "info",
+                    text:
+                      "W podobny sposób można wykożystać wszyskie operatory logiczne takie jak '>', '<' itd."
+                  }
+                }
+              ]
+            }
+          },
+          {
+            type: "section",
+            data: {
+              text: "Truthy & falsy zmienne boolean",
+              content: [
+                {
+                  type: "paragraph",
+                  data: {
+                    text:
+                      "W języku JavaScript każda zmienna, podczas sprawdzenia <code>if(zmienna)</code> jest prawdziwa albo fałszywa. <code>Truthy</code> znaczy że zmienna równa jest <code>true</code> podczas przekształcana na boolean. Aby zamienić zmienną na operator logiczny możemy użyć wykrzyknika <code>!</code>  dzięki temu podczas sprawdzania zamienimy zmienną na boolean"
+                  }
+                },
+                {
+                  type: "code",
+                  data: {
+                    language: "javascript",
+                    text:
+                      "formData ? SendData(formData) : FormError();\n// jeśli obiekt zawierający dane jest pusty wyświetl error"
+                  }
+                },
+                {
+                  type: "note",
+                  data: {
+                    style: "info",
+                    text:
+                      "pełna lista wszyskich zmiennych znajduje się https://uxworks.online/truthy-and-falsy-value-in-javascript/"
+                  }
+                }
+              ]
+            }
+          },
+          {
+            type: "section",
+            data: {
+              text: "Przykłady",
+              content: [
+                {
+                  type: "paragraph",
+                  data: {
+                    text:
+                      "Wyświetlenie elementu ukazujące animacje wczytywania dopóki wszystkie dane nie będą dostępne"
+                  }
+                },
+                {
+                  type: "code",
+                  data: {
+                    language: "javascript",
+                    text:
+                      "{loading ? (\n  <Loading />\n  ) : (\n  <div> \n    <PageContent>\n      {data.articleBody.map(sections =>\n        articleSections(sections.type, sections.data)\n      )}\n   </div>\n)}"
+                  }
+                },
+                {
+                  type: "paragraph",
+                  data: {
+                    text: "Przykłady kilku użyć skruconych wyrażeń warunkowych"
+                  }
+                },
+                {
+                  type: "code",
+                  data: {
+                    language: "javascript",
+                    text:
+                      '// ucieczka z funkcji gdy nie otrzymamy żadnych informacji\nfunction (data) {\nif (!data) return;\n// dalsza część funckji    \n}\n// nadanie wartości boolean wykożysując wartosć z funkcji porównując ją do wartości stałej\nconst translateWindowWidth = widthValue =>\n  !!(widthValue() < MOBILE_WIDTH_VALUE);\n\n// logika dla przycisku zmieniającego theme\nconst toggleTheme = () => {\n    const mode = themeState.mode === "light" ? `dark` : `light`;\n    _setThemeState({ mode });\n  };'
+                  }
+                }
+              ]
+            }
+          },
+          {
+            type: "section",
+            data: {
+              text: "Zadania",
+              content: [
+                {
+                  type: "list",
+                  data: {
+                    style: "ordered",
+                    items: [
+                      "Wykożysując operatory warunkowe pobierz dane z <a href='http://dummy.restapiexample.com/api/v1/employees'>http://dummy.restapiexample.com/api/v1/employees</a> oraz wyświetl wszyskich pracowników, których wiek jest powyżej 30 lat.",
+                      "Wykożysyjąc truthy & falsy zmiennych stóż tablice zawierające wszyskie elemęty <code>&lt;code&gt;</code> i na zasadzie jej zawatości nadaj im klase z nowym stylem.",
+                      "Wykożysując dane z <a href='https://jsonplaceholder.typicode.com/todos'>https://jsonplaceholder.typicode.com/todos</a> wyświetl wszyskie zakończone zadania dla wskazanego użydkownika."
+                    ]
                   }
                 }
               ]

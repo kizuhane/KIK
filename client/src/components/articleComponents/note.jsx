@@ -33,7 +33,7 @@ const note = ({ type, children }) => {
   const Note = styled.div`
     position: relative;
     display: flex;
-    margin: 8px 0 0 0;
+    margin: 8px 0 10px 0;
     padding: 0;
     border-left: 4px solid ${data.color};
 

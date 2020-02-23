@@ -50,13 +50,19 @@ const ArticlePage = ({ history, match }) => {
   const ShowAllSections = useShowAllSections(SHOW_ALL_SECTION);
 
   useEffect(() => {
-    fetchDataFromUrl(
-      match
-        ? `/api/article/${match.params.department}/${match.params.section}/${match.params.lesson}`
-        : null
-    );
-    if (!history.location.hash)
-      document.getElementById("ContentPage").scrollIntoView();
+    let currentPage = true;
+    if (currentPage) {
+      fetchDataFromUrl(
+        match
+          ? `/api/article/${match.params.department}/${match.params.section}/${match.params.lesson}`
+          : null
+      );
+      if (!history.location.hash)
+        document.getElementById("ContentPage").scrollIntoView();
+    }
+    return () => {
+      currentPage = false;
+    };
   }, [window.location.pathname]);
 
   /** @description jump do id from hash from link */

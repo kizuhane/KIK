@@ -4,7 +4,7 @@
   "description": "A documentation website created for Politechnika Koszalińska as Jakiel Artur engineer's thesis",
   "main": "server.js",
   "scripts": {
-    "instalAll": "npm install && cd client && npm install",
+    "installAll": "npm install && cd client && npm install",
     "startServer": "node ./server/server.js",
     "server": "nodemon ./server/server.js",
     "client": "npm start --prefix client",

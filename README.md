@@ -1,6 +1,6 @@
 # Katedra Inżynierii Komputerowej  
 
-A documentation website created for Politechnika Koszalińska as Jakiel Artur engineer's thesis
+A documentation website created as part of my engineer's thesis
 
 ## App Preview  
 
